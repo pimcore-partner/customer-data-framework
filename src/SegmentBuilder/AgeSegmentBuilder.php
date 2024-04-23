@@ -19,6 +19,7 @@ use CustomerManagementFrameworkBundle\DataTransformer\Date\TimestampToAge;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Model\Tool\TmpStore;
 
 class AgeSegmentBuilder extends AbstractSegmentBuilder
@@ -143,13 +144,15 @@ class AgeSegmentBuilder extends AbstractSegmentBuilder
 
         $paginator = $this->paginator->paginate($list, 1, 100);
 
-        $pageCount = $paginator->getPaginationData()['pageCount'];
-        for ($i = 1; $i <= $pageCount; $i++) {
-            $paginator = $this->paginator->paginate($list, $i, 100);
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $pageCount = $paginator->getPaginationData()['pageCount'];
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $paginator = $this->paginator->paginate($list, $i, 100);
 
-            foreach ($paginator as $customer) {
-                $this->calculateSegments($customer, $segmentManager);
-                $segmentManager->saveMergedSegments($customer);
+                foreach ($paginator as $customer) {
+                    $this->calculateSegments($customer, $segmentManager);
+                    $segmentManager->saveMergedSegments($customer);
+                }
             }
         }
     }
