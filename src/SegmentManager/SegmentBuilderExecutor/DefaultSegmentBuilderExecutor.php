@@ -167,10 +167,7 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
         $paginator = $this->paginator->paginate($idList, 1, $pageSize);
 
         $totalAmount = $paginator->getTotalItemCount();
-        $totalPages = 0;
-        if ($paginator instanceof SlidingPaginationInterface) {
-            $totalPages = $paginator->getPaginationData()['pageCount'];
-        }
+        $totalPages = $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0;
 
         $startPage = $desiredStartPage !== null && $desiredStartPage > 0 ? min($totalPages, $desiredStartPage) : 1;
         $endPage = $totalPages;

@@ -27,6 +27,7 @@ use CustomerManagementFrameworkBundle\Helper\Objects;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\Model\CustomerSegmentInterface;
 use CustomerManagementFrameworkBundle\Model\CustomerView\FilterDefinition;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Db;
 use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\Concrete;
@@ -96,7 +97,7 @@ class CustomersController extends Admin
         if ($request->isXmlHttpRequest()) {
             return $this->render($customerView->getOverviewWrapperTemplate(), [
                 'paginator' => $paginator,
-                'paginationVariables' => $paginator->getPaginationData(),
+                'paginationVariables' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData() : [],
                 'customerView' => $customerView,
                 'idField' => Service::getVersionDependentDatabaseColumnName('id')
             ]);
@@ -108,7 +109,7 @@ class CustomersController extends Admin
                     'filters' => $filters,
                     'errors' => $errors,
                     'paginator' => $paginator,
-                    'paginationVariables' => $paginator->getPaginationData(),
+                    'paginationVariables' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData() : [],
                     'customerView' => $customerView,
                     'searchBarFields' => $this->getSearchHelper()->getConfiguredSearchBarFields(),
                     'request' => $request,

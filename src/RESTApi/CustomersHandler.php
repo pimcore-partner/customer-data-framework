@@ -22,6 +22,7 @@ use CustomerManagementFrameworkBundle\RESTApi\Exception\ResourceNotFoundExceptio
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResourceUrlGenerator;
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResponseGenerator;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Model\DataObject\Customer;
 use Pimcore\Model\DataObject\Service;
@@ -89,7 +90,7 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
         return new Response(
             [
                 'page' => $paginator->getCurrentPageNumber(),
-                'totalPages' => $paginator->getPaginationData()['pageCount'],
+                'totalPages' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0,
                 'timestamp' => $timestamp,
                 'data' => $result,
             ]

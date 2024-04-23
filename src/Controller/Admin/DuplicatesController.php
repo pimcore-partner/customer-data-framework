@@ -18,6 +18,7 @@ namespace CustomerManagementFrameworkBundle\Controller\Admin;
 use CustomerManagementFrameworkBundle\Controller\Admin;
 use CustomerManagementFrameworkBundle\CustomerList\SearchHelper;
 use CustomerManagementFrameworkBundle\DuplicatesIndex\DuplicatesIndexInterface;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\Service;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -76,7 +77,7 @@ class DuplicatesController extends Admin
             '@PimcoreCustomerManagementFramework/admin/duplicates/list.html.twig',
             [
                 'paginator' => $paginator,
-                'paginationVariables' => $paginator->getPaginationData(),
+                'paginationVariables' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData() : [],
                 'duplicates' => $paginator->getItems(),
                 'duplicatesView' => \Pimcore::getContainer()->get('cmf.customer_duplicates_view'),
                 'searchBarFields' => $this->getSearchHelper()->getConfiguredSearchBarFields(),

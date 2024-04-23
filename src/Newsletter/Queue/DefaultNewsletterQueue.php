@@ -252,20 +252,22 @@ class DefaultNewsletterQueue implements NewsletterQueueInterface
         $rows = $db->fetchAllAssociative((string)$select);
 
         $paginator = $this->paginator->paginate($rows, 1, $this->maxItemsPerRound);
-        $pageCount = $paginator->getPaginationData()['pageCount'];
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $pageCount = $paginator->getPaginationData()['pageCount'];
 
-        for ($i = 1; $i <= $pageCount; $i++) {
-            $paginator = $this->paginator->paginate($rows, $i, $this->maxItemsPerRound);
-            $items = [];
-            foreach ($paginator as $row) {
-                if ($item = $this->createItemFromData($row)) {
-                    $items[] = $item;
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $paginator = $this->paginator->paginate($rows, $i, $this->maxItemsPerRound);
+                $items = [];
+                foreach ($paginator as $row) {
+                    if ($item = $this->createItemFromData($row)) {
+                        $items[] = $item;
+                    }
                 }
+
+                $this->processQueueItems($newsletterProviderHandlers, $items, $forceUpdate);
+
+                \Pimcore::collectGarbage();
             }
-
-            $this->processQueueItems($newsletterProviderHandlers, $items, $forceUpdate);
-
-            \Pimcore::collectGarbage();
         }
     }
 
