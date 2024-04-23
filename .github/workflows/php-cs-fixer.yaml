@@ -5,14 +5,15 @@ on:
         branches:
             - "[0-9]+.[0-9]+"
             - "[0-9]+.x"
+            - "*_actions"
 
 permissions:
-  contents: read
+    contents: read
 
 jobs:
     php-cs-fixer:
         permissions:
-          contents: write  # for stefanzweifel/git-auto-commit-action to push code in repo
+            contents: write  # for stefanzweifel/git-auto-commit-action to push code in repo
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -20,7 +21,7 @@ jobs:
                   ref: ${{ github.head_ref }}
 
             - name: PHP-CS-Fixer
-              uses: docker://oskarstark/php-cs-fixer-ga:latest
+              uses: docker://oskarstark/php-cs-fixer-ga:3
 
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
