@@ -17,6 +17,7 @@ namespace CustomerManagementFrameworkBundle\Controller\Admin;
 
 use CustomerManagementFrameworkBundle\ActivityStore\MariaDb;
 use CustomerManagementFrameworkBundle\CustomerProvider\CustomerProviderInterface;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Controller\KernelControllerEventInterface;
 use Pimcore\Controller\UserAwareController;
@@ -78,7 +79,7 @@ class ActivitiesController extends UserAwareController implements KernelControll
                     'types' => $types,
                     'selectedType' => $type,
                     'activities' => $paginator,
-                    'paginationVariables' => $paginator->getPaginationData(),
+                    'paginationVariables' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData() : [],
                     'customer' => $customer,
                     'activityView' => \Pimcore::getContainer()->get('cmf.activity_view'),
                 ]

@@ -21,6 +21,7 @@ use CustomerManagementFrameworkBundle\DataTransformer\DuplicateIndex\Standard;
 use CustomerManagementFrameworkBundle\Factory;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Db;
 use Pimcore\Logger;
@@ -107,18 +108,20 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
         $paginator = $this->paginator->paginate($customerList);
         $paginator->setItemNumberPerPage(200);
 
-        $totalPages = $paginator->getPaginationData()['pageCount'];
-        for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-            $logger->notice(sprintf('execute page %s of %s', $pageNumber, $totalPages));
-            $paginator = $this->paginator->paginate($customerList, $pageNumber, 200);
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $totalPages = $paginator->getPaginationData()['pageCount'];
+            for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                $logger->notice(sprintf('execute page %s of %s', $pageNumber, $totalPages));
+                $paginator = $this->paginator->paginate($customerList, $pageNumber, 200);
 
-            foreach ($paginator as $customer) {
-                $logger->notice(sprintf('update index for %s', (string)$customer));
+                foreach ($paginator as $customer) {
+                    $logger->notice(sprintf('update index for %s', (string)$customer));
 
-                $this->updateDuplicateIndexForCustomer($customer, true);
+                    $this->updateDuplicateIndexForCustomer($customer, true);
+                }
+
+                \Pimcore::collectGarbage();
             }
-
-            \Pimcore::collectGarbage();
         }
     }
 

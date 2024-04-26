@@ -22,6 +22,7 @@ use CustomerManagementFrameworkBundle\Newsletter\ProviderHandler\NewsletterProvi
 use CustomerManagementFrameworkBundle\Newsletter\Queue\Item\DefaultNewsletterQueueItem;
 use CustomerManagementFrameworkBundle\Newsletter\Queue\Item\NewsletterQueueItemInterface;
 use CustomerManagementFrameworkBundle\Traits\ApplicationLoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Db;
 use Pimcore\Model\DataObject\Service;
@@ -213,24 +214,26 @@ class DefaultNewsletterQueue implements NewsletterQueueInterface
         $list = $customerProvider->getList();
 
         $paginator = $this->paginator->paginate($list, 1, $this->maxItemsPerRound);
-        $pageCount = $paginator->getPaginationData()['pageCount'];
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $pageCount = $paginator->getPaginationData()['pageCount'];
 
-        for ($i = 1; $i <= $pageCount; $i++) {
-            $paginator = $this->paginator->paginate($list, $i, $this->maxItemsPerRound);
-            $items = [];
-            foreach ($paginator as $customer) {
-                if ($item = $this->createUpdateItem($customer)) {
-                    $items[] = $item;
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $paginator = $this->paginator->paginate($list, $i, $this->maxItemsPerRound);
+                $items = [];
+                foreach ($paginator as $customer) {
+                    if ($item = $this->createUpdateItem($customer)) {
+                        $items[] = $item;
+                    }
                 }
-            }
 
-            try {
-                $this->processQueueItems($newsletterProviderHandlers, $items, $forceUpdate);
-            } catch (\Exception $e) {
-                $this->getLogger()->error('newsletter queue processing exception: ' . $e->getMessage());
-            }
+                try {
+                    $this->processQueueItems($newsletterProviderHandlers, $items, $forceUpdate);
+                } catch (\Exception $e) {
+                    $this->getLogger()->error('newsletter queue processing exception: ' . $e->getMessage());
+                }
 
-            \Pimcore::collectGarbage();
+                \Pimcore::collectGarbage();
+            }
         }
     }
 
@@ -249,20 +252,22 @@ class DefaultNewsletterQueue implements NewsletterQueueInterface
         $rows = $db->fetchAllAssociative((string)$select);
 
         $paginator = $this->paginator->paginate($rows, 1, $this->maxItemsPerRound);
-        $pageCount = $paginator->getPaginationData()['pageCount'];
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $pageCount = $paginator->getPaginationData()['pageCount'];
 
-        for ($i = 1; $i <= $pageCount; $i++) {
-            $paginator = $this->paginator->paginate($rows, $i, $this->maxItemsPerRound);
-            $items = [];
-            foreach ($paginator as $row) {
-                if ($item = $this->createItemFromData($row)) {
-                    $items[] = $item;
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $paginator = $this->paginator->paginate($rows, $i, $this->maxItemsPerRound);
+                $items = [];
+                foreach ($paginator as $row) {
+                    if ($item = $this->createItemFromData($row)) {
+                        $items[] = $item;
+                    }
                 }
+
+                $this->processQueueItems($newsletterProviderHandlers, $items, $forceUpdate);
+
+                \Pimcore::collectGarbage();
             }
-
-            $this->processQueueItems($newsletterProviderHandlers, $items, $forceUpdate);
-
-            \Pimcore::collectGarbage();
         }
     }
 

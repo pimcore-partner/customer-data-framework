@@ -24,6 +24,7 @@ use CustomerManagementFrameworkBundle\RESTApi\Exception\ResourceNotFoundExceptio
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResourceUrlGenerator;
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResponseGenerator;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ActivitiesHandler extends AbstractHandler implements CrudHandlerInterface
@@ -56,7 +57,7 @@ class ActivitiesHandler extends AbstractHandler implements CrudHandlerInterface
 
         $result = [
             'page' => $page,
-            'totalPages' => $paginator->getPaginationData()['pageCount'],
+            'totalPages' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0,
             'timestamp' => $timestamp,
             'data' => [],
         ];

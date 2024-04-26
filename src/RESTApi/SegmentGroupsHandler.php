@@ -20,6 +20,7 @@ use CustomerManagementFrameworkBundle\RESTApi\Traits\ResourceUrlGenerator;
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResponseGenerator;
 use CustomerManagementFrameworkBundle\Service\ObjectToArray;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Model\DataObject\CustomerSegmentGroup;
 use Pimcore\Model\DataObject\Service;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,7 +58,7 @@ class SegmentGroupsHandler extends AbstractHandler implements CrudHandlerInterfa
         return new Response(
             [
                 'page' => $paginator->getCurrentPageNumber(),
-                'totalPages' => $paginator->getPaginationData()['pageCount'],
+                'totalPages' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0,
                 'timestamp' => $timestamp,
                 'data' => $result,
             ]

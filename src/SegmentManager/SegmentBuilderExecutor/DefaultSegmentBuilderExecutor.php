@@ -21,6 +21,7 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\SegmentBuilder\SegmentBuilderInterface;
 use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Db;
 use Pimcore\Model\DataObject\Concrete;
@@ -166,7 +167,7 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
         $paginator = $this->paginator->paginate($idList, 1, $pageSize);
 
         $totalAmount = $paginator->getTotalItemCount();
-        $totalPages = $paginator->getPaginationData()['pageCount'];
+        $totalPages = $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0;
 
         $startPage = $desiredStartPage !== null && $desiredStartPage > 0 ? min($totalPages, $desiredStartPage) : 1;
         $endPage = $totalPages;
