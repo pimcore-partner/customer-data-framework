@@ -1,17 +1,13 @@
 name: "PHP-CS-Fixer"
 
 on:
-    pull_request_target:
-        branches:
-            - "[0-9]+.[0-9]+"
-            - "[0-9]+.x"
-            - "feature-*"
     push:
         branches:
             - "[0-9]+.[0-9]+"
             - "[0-9]+.x"
             - "*_actions"
             - "feature-*"
+    pull_request_target:
 
 permissions:
     contents: read
