@@ -35,8 +35,10 @@ class PimcoreCustomerManagementFrameworkBundle extends AbstractPimcoreBundle imp
     use BundleAdminClassicTrait;
     use PackageVersionTrait;
 
-    protected function getComposerPackageName(): string
-    {
+    /**
+     * @just a test for CS fixer
+     */
+    protected function getComposerPackageName(): string {
         return 'pimcore/customer-management-framework-bundle';
     }
 
