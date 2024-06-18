@@ -37,7 +37,6 @@ class Email extends AbstractCustomerSaveHandler
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

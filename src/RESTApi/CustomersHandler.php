@@ -22,6 +22,7 @@ use CustomerManagementFrameworkBundle\RESTApi\Exception\ResourceNotFoundExceptio
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResourceUrlGenerator;
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResponseGenerator;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Model\DataObject\Customer;
 use Pimcore\Model\DataObject\Service;
@@ -38,9 +39,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
      */
     protected $customerProvider;
 
-    /**
-     * @param CustomerProviderInterface $customerProvider
-     */
     public function __construct(PaginatorInterface $paginator, CustomerProviderInterface $customerProvider)
     {
         parent::__construct($paginator);
@@ -50,7 +48,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * GET /customers
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -89,7 +86,7 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
         return new Response(
             [
                 'page' => $paginator->getCurrentPageNumber(),
-                'totalPages' => $paginator->getPaginationData()['pageCount'],
+                'totalPages' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0,
                 'timestamp' => $timestamp,
                 'data' => $result,
             ]
@@ -99,7 +96,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * GET /customers/{id}
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -113,7 +109,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * POST /customers
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -139,7 +134,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
      *
      * TODO support partial updates as we do now or demand whole object in PUT? Use PATCH for partial requests?
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -161,7 +155,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * DELETE /customers/{id}
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -211,9 +204,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * Create customer response with hydrated customer data
      *
-     * @param CustomerInterface $customer
-     * @param Request $request
-     * @param ExportCustomersFilterParams|null $params
      *
      * @return Response
      */
@@ -234,8 +224,6 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
-     * @param ExportCustomersFilterParams $params
      *
      * @return array
      */

@@ -43,7 +43,6 @@ interface CustomerProviderInterface
     /**
      * Create a published customer instance and sets it's values from given data
      *
-     * @param array $data
      *
      * @return CustomerInterface
      */
@@ -59,8 +58,6 @@ interface CustomerProviderInterface
     /**
      * Update a customer instance
      *
-     * @param CustomerInterface $customer
-     * @param array $data
      *
      * @return CustomerInterface
      */
@@ -69,7 +66,6 @@ interface CustomerProviderInterface
     /**
      * Delete a customer instance
      *
-     * @param CustomerInterface $customer
      *
      * @return $this
      */
@@ -99,7 +95,6 @@ interface CustomerProviderInterface
     /**
      * Sets the correct parent folder and object key for the given customer.
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */

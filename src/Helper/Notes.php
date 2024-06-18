@@ -20,7 +20,6 @@ use Pimcore\Model\Element\ElementInterface;
 class Notes
 {
     /**
-     * @param ElementInterface $element
      * @param string $type
      * @param string $title
      * @param string|null $description

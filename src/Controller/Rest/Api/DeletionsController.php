@@ -48,9 +48,6 @@ class DeletionsController extends RestHandlerController
         return $response;
     }
 
-    /**
-     * @return DeletionsHandler
-     */
     protected function getHandler(): DeletionsHandler
     {
         return \Pimcore::getContainer()->get('cmf.rest.deletions_handler');

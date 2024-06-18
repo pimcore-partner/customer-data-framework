@@ -33,9 +33,6 @@ class MailChimpExportService
      */
     protected $apiClient;
 
-    /**
-     * @param MailChimp $apiClient
-     */
     public function __construct(MailChimp $apiClient)
     {
         $this->apiClient = $apiClient;
@@ -69,7 +66,6 @@ class MailChimpExportService
     /**
      * Get remote mailchimp ID as stored in export notes
      *
-     * @param ElementInterface $object
      * @param string $listId
      *
      * @return string|null
@@ -101,7 +97,6 @@ class MailChimpExportService
     }
 
     /**
-     * @param ElementInterface $object
      * @param string $listId
      *
      * @return bool
@@ -149,10 +144,8 @@ class MailChimpExportService
     }
 
     /**
-     * @param ElementInterface $object
      * @param string $listId
      * @param string $remoteId
-     * @param \DateTime|null $date
      *
      * @return Note
      */
@@ -181,7 +174,6 @@ class MailChimpExportService
     }
 
     /**
-     * @param ElementInterface $object
      * @param string $listId
      * @param bool $refresh
      *
@@ -209,7 +201,6 @@ class MailChimpExportService
     }
 
     /**
-     * @param ElementInterface $object
      * @param string $listId
      * @param bool $refresh
      *
@@ -227,7 +218,6 @@ class MailChimpExportService
     }
 
     /**
-     * @param ElementInterface $object
      * @param string $listId
      * @param array $exportData
      *
@@ -249,7 +239,6 @@ class MailChimpExportService
     }
 
     /**
-     * @param ElementInterface $object
      * @param string $listId
      *
      * @return \DateTime|null
@@ -276,7 +265,6 @@ class MailChimpExportService
     }
 
     /**
-     * @param Note $note
      *
      * @return \DateTime
      */

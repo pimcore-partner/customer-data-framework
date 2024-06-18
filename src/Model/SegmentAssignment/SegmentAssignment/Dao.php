@@ -24,8 +24,11 @@ class Dao extends AbstractDao
     const TABLE_NAME = 'plugin_cmf_segment_assignment';
 
     const ATTRIBUTE_SEGMENT_IDS = 'segments';
+
     const ATTRIBUTE_ELEMENT_ID = 'elementId';
+
     const ATTRIBUTE_ELEMENT_TYPE = 'elementType';
+
     const ATTRIBUTE_BREAKS_INHERITANCE = 'breaksInheritance';
 
     /**
@@ -53,9 +56,6 @@ class Dao extends AbstractDao
         return $this;
     }
 
-    /**
-     * @param SegmentAssignmentInterface|null $model
-     */
     public function __construct(?SegmentAssignmentInterface $model)
     {
         $this->setModel($model);

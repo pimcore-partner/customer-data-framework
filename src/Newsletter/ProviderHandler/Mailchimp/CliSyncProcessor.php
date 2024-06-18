@@ -84,6 +84,7 @@ class CliSyncProcessor
                     if ($client->success() && sizeof($result['members'])) {
                         foreach ($result['members'] as $row) {
                             $customer = null;
+
                             try {
                                 if (!$customer = $newsletterProviderHandler->getActiveCustomerByEmail(
                                     $row['email_address']
@@ -96,9 +97,11 @@ class CliSyncProcessor
                                 $this->getLogger()->error(
                                     sprintf('multiple active customers with email %s found', $row['email_address'])
                                 );
+
                                 continue;
                             } catch (\Exception $e) {
                                 $this->getLogger()->error($e->getMessage());
+
                                 continue;
                             }
 
@@ -214,6 +217,7 @@ class CliSyncProcessor
                                 'get members failed: ' . $url
                             );
                         }
+
                         break;
                     }
                 }

@@ -77,25 +77,16 @@ class FilterDefinition extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOwnerId(): int
     {
         return $this->ownerId;
     }
 
-    /**
-     * @param int $ownerId
-     */
     public function setOwnerId(int $ownerId)
     {
         $this->ownerId = $ownerId;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -113,16 +104,12 @@ class FilterDefinition extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getDefinition(): array
     {
         return $this->definition;
     }
 
     /**
-     * @param array $definition
      *
      * @return $this
      */
@@ -133,9 +120,6 @@ class FilterDefinition extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getAllowedUserIds(): array
     {
         return $this->allowedUserIds;
@@ -144,7 +128,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Set allowed user ids. Also removes duplicates and sorts ids ascending
      *
-     * @param array $allowedUserIds
      *
      * @return $this
      */
@@ -165,13 +148,13 @@ class FilterDefinition extends AbstractModel
     /**
      * Add single user id to allowed user ids array
      *
-     * @param int $allowedUserId
      *
      * @return $this
      */
     public function addAllowedUserId(int $allowedUserId)
     {
         $this->setAllowedUserIds(array_merge($this->allowedUserIds, [$allowedUserId]));
+
         // return current object
         return $this;
     }
@@ -179,27 +162,23 @@ class FilterDefinition extends AbstractModel
     /**
      * Add multiple user ids to allowed user ids array
      *
-     * @param array $allowedUserIds
      *
      * @return $this
      */
     public function addAllowedUserIds(array $allowedUserIds)
     {
         $this->setAllowedUserIds(array_merge($this->allowedUserIds, $allowedUserIds));
+
         // return current object
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getShowSegments(): array
     {
         return $this->getDefinition()['showSegments'] ?? [];
     }
 
     /**
-     * @param array $showSegments
      *
      * @return $this
      */
@@ -210,16 +189,12 @@ class FilterDefinition extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isReadOnly(): bool
     {
         return boolval($this->readOnly);
     }
 
     /**
-     * @param bool $readOnly
      *
      * @return $this
      */
@@ -230,16 +205,12 @@ class FilterDefinition extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isShortcutAvailable(): bool
     {
         return boolval($this->shortcutAvailable);
     }
 
     /**
-     * @param bool $shortcutAvailable
      *
      * @return $this
      */
@@ -260,6 +231,7 @@ class FilterDefinition extends AbstractModel
     public static function getById($id)
     {
         $cacheKey = 'cmf_customerlist_filterdefinition_'.$id;
+
         try {
             $filterDefinition = RuntimeCache::get($cacheKey);
             if (!$filterDefinition) {
@@ -286,7 +258,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Load FilterDefinition object by id
      *
-     * @param string $name
      *
      * @return self|null
      */
@@ -346,17 +317,11 @@ class FilterDefinition extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDirty(): bool
     {
         return $this->isDirty;
     }
 
-    /**
-     * @param bool $isDirty
-     */
     public function setIsDirty(bool $isDirty)
     {
         $this->isDirty = $isDirty;
@@ -385,7 +350,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if single user id is allowed to use the FilterDefinition. Must be referenced in allowedUsers or must be owner
      *
-     * @param User $user
      *
      * @return bool
      */
@@ -397,7 +361,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if single user id is allowed to use the FilterDefinition. Must be referenced in allowedUsers or must be owner
      *
-     * @param int $userId
      *
      * @return bool
      */
@@ -409,7 +372,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if any of the given user ids is allowed to use the FilterDefinition
      *
-     * @param array $userIds
      *
      * @return bool
      */
@@ -422,6 +384,7 @@ class FilterDefinition extends AbstractModel
                 return true;
             }
         }
+
         // none of the user ids is allowed
         return false;
     }
@@ -499,6 +462,7 @@ class FilterDefinition extends AbstractModel
         if ($isChanged && $saveOnChange) {
             $this->save();
         }
+
         // return if object changed
         return $isChanged;
     }
@@ -524,6 +488,7 @@ class FilterDefinition extends AbstractModel
                 unset($segments[$groupId]);
                 // set object needs to be saved
                 $this->setIsDirty(true);
+
                 // skip segment ids
                 continue;
             }
@@ -662,7 +627,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Fetch all FilterDefinition objects with shortcut for specific user
      *
-     * @param User $user
      *
      * @return array
      */
@@ -670,8 +634,8 @@ class FilterDefinition extends AbstractModel
     {
         $filterDefinitions = [];
         foreach (self::getAllShortcutAvailable() as $filterDefinition) {
-            if (/*$user->isAdmin() || */
-            $filterDefinition->isUserAllowed($user)) {
+            if (// $user->isAdmin() ||
+                $filterDefinition->isUserAllowed($user)) {
                 $filterDefinitions[] = $filterDefinition;
             }
         }
@@ -682,7 +646,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Prepare FilterDefinition objects for menu representation with id and name
      *
-     * @param array $filterDefinitions
      *
      * @return array
      */
@@ -717,6 +680,7 @@ class FilterDefinition extends AbstractModel
         if (!$user) {
             return null;
         }
+
         // return found user
         return $user;
     }
@@ -724,7 +688,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if user is owner of filter
      *
-     * @param User $user
      *
      * @return bool
      */
@@ -740,7 +703,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if user is able to update existing filter definition
      *
-     * @param User $user
      *
      * @return bool Returns true if user is owner of filter or filter admin
      */
@@ -752,7 +714,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if user is allowed to share the filter
      *
-     * @param User $user
      *
      * @return bool
      */
@@ -764,7 +725,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Fetch all user ids of current user
      *
-     * @param User $user
      *
      * @return array
      */
@@ -774,6 +734,7 @@ class FilterDefinition extends AbstractModel
         $userIds = $user->getRoles();
         // fetch id of user
         $userIds[] = $user->getId();
+
         // return user ids
         return $userIds;
     }
@@ -781,7 +742,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if user is filter admin
      *
-     * @param User $user
      *
      * @return bool
      */
@@ -793,7 +753,6 @@ class FilterDefinition extends AbstractModel
     /**
      * Check if user has permission to share
      *
-     * @param User $user
      *
      * @return bool
      */

@@ -29,7 +29,7 @@ For a first impression have a look at our [Demo](https://demo.pimcore.fun/). For
 The following sections provide shortcuts into the documentation to start working with the Customer Management Framework (CMF) for Pimcore: 
 - See the [Getting Started](#getting-started) section for an overview of the CMF Framework architecture or information about the installation process.
 - See the [Customer-Related Data](#customer-related-data) section for details about the management of customer-related data with the CMF Framework.
-- See the [Platform Topics](#platform-topics) section for documentation about services provided by the CMF Framework.
+- See the [Provided Services](#provided-services) section for documentation about services provided by the CMF Framework.
 
 ### Getting Started
 * [Architecture Overview](./doc/01_Architecture-Overview.md)

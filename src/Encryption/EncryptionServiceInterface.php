@@ -30,7 +30,6 @@ interface EncryptionServiceInterface
      * Encrypt data with key (will fall back to default key if none given)
      *
      * @param string $plaintext
-     * @param Key|null $key
      * @param bool $rawBinary
      *
      * @return string
@@ -41,7 +40,6 @@ interface EncryptionServiceInterface
      * Decrypt ciphertext with key (will fall back to default key if none given)
      *
      * @param string $ciphertext
-     * @param Key|null $key
      * @param bool $rawBinary
      *
      * @return string

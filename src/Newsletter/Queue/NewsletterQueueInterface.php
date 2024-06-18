@@ -22,10 +22,10 @@ use CustomerManagementFrameworkBundle\Newsletter\Queue\Item\NewsletterQueueItemI
 interface NewsletterQueueInterface
 {
     const OPERATION_UPDATE = 'update';
+
     const OPERATION_DELETE = 'delete';
 
     /**
-     * @param NewsletterAwareCustomerInterface $customer
      * @param string $operation
      * @param string|null $email
      * @param bool $immediateAsyncProcessQueueItem
@@ -44,15 +44,12 @@ interface NewsletterQueueInterface
     public function processQueue(array $newsletterProviderHandler, $forceAllCustomers = false, $forceUpdate = false);
 
     /**
-     * @param array $newsletterProviderHandler
-     * @param NewsletterQueueItemInterface $newsletterQueueItem
      *
      * @return void
      */
     public function syncSingleQueueItem(array $newsletterProviderHandler, NewsletterQueueItemInterface $newsletterQueueItem);
 
     /**
-     * @param NewsletterQueueItemInterface $item
      *
      * @return void
      */

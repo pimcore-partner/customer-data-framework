@@ -21,6 +21,7 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\SegmentBuilder\SegmentBuilderInterface;
 use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Db;
 use Pimcore\Model\DataObject\Concrete;
@@ -60,9 +61,6 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
         $this->paginator = $paginator;
     }
 
-    /**
-     * @param CustomerInterface $customer
-     */
     public function buildCalculatedSegmentsOnCustomerSave(CustomerInterface $customer)
     {
         $this->prepareSegmentBuilders($this->segmentManager->getSegmentBuilders(), true);
@@ -166,7 +164,7 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
         $paginator = $this->paginator->paginate($idList, 1, $pageSize);
 
         $totalAmount = $paginator->getTotalItemCount();
-        $totalPages = $paginator->getPaginationData()['pageCount'];
+        $totalPages = $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0;
 
         $startPage = $desiredStartPage !== null && $desiredStartPage > 0 ? min($totalPages, $desiredStartPage) : 1;
         $endPage = $totalPages;
@@ -235,6 +233,7 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
         $progressCount = max((int)($pageSize / 10), 1);
         $progressTime = time();
         $itemCount = 1;
+
         try {
             for ($pageNumber = $startPage; $pageNumber <= $endPage && $pageNumber <= $totalPages && !$stopFurtherProcessing; $pageNumber++) {
                 $logger->notice(
@@ -348,9 +347,6 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
             ? (int)$options[$option] : null;
     }
 
-    /**
-     * @param CustomerInterface $customer
-     */
     public function addCustomerToChangesQueue(CustomerInterface $customer)
     {
         Db::get()->executeQuery(
@@ -366,10 +362,6 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
         }
     }
 
-    /**
-     * @param CustomerInterface $customer
-     * @param SegmentBuilderInterface $segmentBuilder
-     */
     protected function applySegmentBuilderToCustomer(
         CustomerInterface $customer,
         SegmentBuilderInterface $segmentBuilder

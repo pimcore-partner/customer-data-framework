@@ -30,29 +30,21 @@ abstract class AbstractRestController extends UserAwareController
 {
     use JsonHelperTrait;
 
-//    public function __construct(protected LoggerInterface $pimcoreApiLogger)
-//    {
-//    }
+    //    public function __construct(protected LoggerInterface $pimcoreApiLogger)
+    //    {
+    //    }
 
     /**
      * @var Stopwatch
      */
     protected $stopwatch;
 
-    /**
-     * @inheritDoc
-     *
-     * @return bool
-     */
     public function needsSessionDoubleAuthenticationCheck(): bool
     {
         // do not double-check session as api key auth is possible
         return false;
     }
 
-    /**
-     * @inheritDoc
-     */
     protected function checkPermission($permission): void
     {
         try {
@@ -123,7 +115,6 @@ abstract class AbstractRestController extends UserAwareController
     }
 
     /**
-     * @param array $data
      * @param int   $status
      *
      * @return JsonResponse
@@ -150,9 +141,6 @@ abstract class AbstractRestController extends UserAwareController
         );
     }
 
-    /**
-     * @inheritDoc
-     */
     protected function createNotFoundResponseException($message = null, \Exception $previous = null)
     {
         return new ResponseException($this->createErrorResponse(
@@ -164,7 +152,6 @@ abstract class AbstractRestController extends UserAwareController
     /**
      * Get decoded JSON request data
      *
-     * @param Request $request
      *
      * @return array
      *
@@ -203,7 +190,6 @@ abstract class AbstractRestController extends UserAwareController
     /**
      * Get ID either as parameter or from request
      *
-     * @param Request $request
      * @param int|null $id
      *
      * @return mixed|null
@@ -293,7 +279,6 @@ abstract class AbstractRestController extends UserAwareController
     }
 
     /**
-     * @param Request $request
      *
      * @throws \Exception
      *

@@ -32,9 +32,7 @@ class LinkActivityDefinitionLinkGenerator implements LinkGeneratorInterface
 
     /**
      * @param LinkActivityDefinition $object
-     * @param array $params
      *
-     * @return string
      */
     public function generate(object $object, array $params = []): string
     {

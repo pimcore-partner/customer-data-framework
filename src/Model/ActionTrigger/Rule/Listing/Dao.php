@@ -43,7 +43,6 @@ class Dao extends Model\Listing\Dao\AbstractDao
     }
 
     /**
-     * @return int
      *
      * @throws Exception
      */

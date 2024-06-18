@@ -106,7 +106,7 @@ class HelperController extends UserAwareController
                     'id' => $groupSegment->getId(),
                     'name' => $groupSegment->getName(),
                     'groupId' => $group->getId(),
-                    'groupName' => $group->getName()
+                    'groupName' => $group->getName(),
                 ];
             }
         }
@@ -124,7 +124,7 @@ class HelperController extends UserAwareController
             'duplicatesViewEnabled' => $this->getParameter('pimcore_customer_management_framework.customer_duplicates_services.duplicates_view.enabled'),
             'segmentAssignment' => $this->getParameter('pimcore_customer_management_framework.segment_assignment_classes.types'),
             'customerClassName' => $this->getParameter('pimcore_customer_management_framework.general.customerPimcoreClass'),
-            'shortcutFilterDefinitions' => FilterDefinition::prepareDataForMenu(FilterDefinition::getAllShortcutAvailableForUser($this->getPimcoreUser()))
+            'shortcutFilterDefinitions' => FilterDefinition::prepareDataForMenu(FilterDefinition::getAllShortcutAvailableForUser($this->getPimcoreUser())),
         ];
 
         $content = '
@@ -158,7 +158,7 @@ class HelperController extends UserAwareController
         }
 
         return $this->json([
-            'data' => $possibleFlags
+            'data' => $possibleFlags,
         ]);
     }
 }

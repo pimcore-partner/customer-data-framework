@@ -26,7 +26,6 @@ interface CustomerDuplicatesViewInterface
     public function getViewFormatter();
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return array
      */

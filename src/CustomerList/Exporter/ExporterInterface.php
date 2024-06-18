@@ -34,9 +34,6 @@ interface ExporterInterface
      */
     public function getProperties();
 
-    /**
-     * @param array $properties
-     */
     public function setProperties(array $properties);
 
     /**
@@ -44,9 +41,6 @@ interface ExporterInterface
      */
     public function getListing();
 
-    /**
-     * @param Concrete $listing
-     */
     public function setListing(Concrete $listing);
 
     /**
@@ -80,7 +74,6 @@ interface ExporterInterface
     /**
      * Generates the export file from given export data.
      *
-     * @param array $exportData
      *
      * @return mixed
      */

@@ -67,30 +67,21 @@ class Customers extends DataObjects
         $config['include'] = true;
         $this->config = [
             'classes' => [
-                $this->customerClassName => $config
-            ]
+                $this->customerClassName => $config,
+            ],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getName(): string
     {
         return 'customers';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getJsClassName(): string
     {
         return 'pimcore.plugin.GDPRDataExtractorBundle.dataproviders.customers';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSortPriority(): int
     {
         return 5;
@@ -99,9 +90,7 @@ class Customers extends DataObjects
     /**
      * Exports data of given object as json including all references that are configured to be included
      *
-     * @param AbstractObject $object
      *
-     * @return array
      */
     public function doExportData(AbstractObject $object): array
     {
@@ -118,7 +107,7 @@ class Customers extends DataObjects
                 $object = Concrete::getById($id);
                 if (!empty($object)) {
                     $data = [
-                        'className' => $object->getClass()->getName()
+                        'className' => $object->getClass()->getName(),
                     ];
                     $data['data'] = $objectToArrayHelper->toArray($object);
 
@@ -143,17 +132,6 @@ class Customers extends DataObjects
         return $exportResult;
     }
 
-    /**
-     * @param int $id
-     * @param string $firstname
-     * @param string $lastname
-     * @param string $email
-     * @param int $start
-     * @param int $limit
-     * @param string|null $sort
-     *
-     * @return array
-     */
     public function searchData(int $id, string $firstname, string $lastname, string $email, int $start, int $limit, string $sort = null): array
     {
         $listing = $this->customerProvider->getList();

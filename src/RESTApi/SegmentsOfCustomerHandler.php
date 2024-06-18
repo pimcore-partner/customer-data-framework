@@ -38,7 +38,6 @@ class SegmentsOfCustomerHandler extends AbstractHandler
     /**
      * POST /segments-of-customer
      *
-     * @param Request $request
      */
     public function updateRecords(Request $request)
     {

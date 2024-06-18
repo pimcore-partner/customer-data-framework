@@ -27,6 +27,7 @@ use Pimcore\Model\Element\ElementInterface;
 interface SegmentManagerInterface
 {
     const CONDITION_AND = 'and';
+
     const CONDITION_OR = 'or';
 
     /**
@@ -61,7 +62,6 @@ interface SegmentManagerInterface
      * Returns all segments assigned to $element or one of its parents
      * uses the directly assigned segments, not the indexed ones
      *
-     * @param ElementInterface $element
      *
      * @return CustomerSegmentInterface[]
      */
@@ -71,8 +71,6 @@ interface SegmentManagerInterface
      * Returns all segments assigned to $id with $type or one of its parents
      * uses the directly assigned segments, not the indexed ones
      *
-     * @param string $id
-     * @param string $type
      *
      * @return CustomerSegmentInterface[]
      */
@@ -100,7 +98,6 @@ interface SegmentManagerInterface
     public function getSegmentsFolder($calculated = true);
 
     /**
-     * @param SegmentBuilderInterface $segmentBuilder
      *
      * @return void
      */
@@ -116,9 +113,6 @@ interface SegmentManagerInterface
      * If segments are added or removed this will be tracked in the notes/events tab of the customer.
      * The changes of this method will be persisted when saveMergedSegments() gets called.
      *
-     * @param CustomerInterface $customer
-     * @param array $addSegments
-     * @param array $deleteSegments
      * @param string|null $hintForNotes additional hint for the notes/event entries
      * @param int|true|null $segmentCreatedTimestamp
      *  Optional. Can be used to store the date when the segment was added (for potentially expiring segments).
@@ -157,7 +151,6 @@ interface SegmentManagerInterface
     /**
      * Needs to be called after segments are merged with mergeSegments() in order to persist the segments in the customer object.
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -201,7 +194,6 @@ interface SegmentManagerInterface
      * If no CustomerSegmentGroup is given it will search globally.
      *
      * @param string $segmentReference
-     * @param CustomerSegmentGroup|null $segmentGroup
      * @param bool $calculated
      *
      * @return CustomerSegmentInterface|null
@@ -214,7 +206,6 @@ interface SegmentManagerInterface
      * @param string|CustomerSegmentGroup $segmentGroupName
      * @param string|null $segmentGroupReference
      * @param bool $calculated
-     * @param array $values
      *
      * @return CustomerSegmentGroup
      */
@@ -228,8 +219,6 @@ interface SegmentManagerInterface
     /**
      * Updates a segment group.
      *
-     * @param CustomerSegmentGroup $segmentGroup
-     * @param array $values
      *
      * @return mixed
      */
@@ -239,7 +228,6 @@ interface SegmentManagerInterface
      * Updates a segment.
      *
      * @param Concrete&CustomerSegmentInterface $segment
-     * @param array $values
      *
      * @return mixed
      */
@@ -256,7 +244,6 @@ interface SegmentManagerInterface
     public function getSegmentGroupByReference($segmentGroupReference, $calculated);
 
     /**
-     * @param CustomerSegmentGroup $segmentGroup
      * @param CustomerSegmentInterface[] $ignoreSegments
      *
      * @return CustomerSegmentInterface[]
@@ -264,36 +251,28 @@ interface SegmentManagerInterface
     public function getSegmentsFromSegmentGroup(CustomerSegmentGroup $segmentGroup, array $ignoreSegments = []);
 
     /**
-     * @param CustomerInterface $customer
-     * @param CustomerSegmentInterface $segment
      *
      * @return bool
      */
     public function customerHasSegment(CustomerInterface $customer, CustomerSegmentInterface $segment);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return CustomerSegmentInterface[]
      */
     public function getCalculatedSegmentsFromCustomer(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return CustomerSegmentInterface[]
      */
     public function getManualSegmentsFromCustomer(CustomerInterface $customer);
 
-    /**
-     * @return SegmentExtractorInterface
-     */
     public function getSegmentExtractor(): SegmentExtractorInterface;
 
     /**
      * Return segments of given customers which are within given customer segment group.
      *
-     * @param CustomerInterface $customer
      * @param CustomerSegmentGroup|string $group
      *
      * @return CustomerSegmentInterface[]
@@ -303,7 +282,6 @@ interface SegmentManagerInterface
     /**
      * Called in pimcore's pre object update hook for CustomerSegment objects.
      *
-     * @param CustomerSegmentInterface $segment
      *
      * @return void
      */
@@ -312,7 +290,6 @@ interface SegmentManagerInterface
     /**
      * Called in pimcore's post object delete hook for CustomerSegment objects.
      *
-     * @param CustomerSegmentInterface $segment
      *
      * @return void
      */

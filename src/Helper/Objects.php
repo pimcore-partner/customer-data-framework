@@ -79,8 +79,6 @@ class Objects
      * - returns false if no data in array was changed
      * - returns array with added objects if object where added
      *
-     * @param array $array
-     * @param array $addObjects
      *
      * @return false|array
      */
@@ -100,6 +98,7 @@ class Objects
 
                 if ($addObject->getId() == $object->getId()) {
                     $found = true;
+
                     break;
                 }
             }
@@ -120,8 +119,6 @@ class Objects
      * - returns false if no data in array was changed
      * - returns array with removed objects if object where removed
      *
-     * @param array $array
-     * @param array $removeObjects
      *
      * @return false|array
      */
@@ -167,7 +164,6 @@ class Objects
     /**
      * Returns IDs of an array of objects
      *
-     * @param array $array
      *
      * @return array
      */
@@ -186,7 +182,6 @@ class Objects
      * Objects with metdata are only matched by object IDs (not by metadata or concrete instances).
      *
      * @param mixed $object
-     * @param array $objects
      *
      * @return bool;
      */

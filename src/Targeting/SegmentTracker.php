@@ -72,7 +72,6 @@ class SegmentTracker
     }
 
     /**
-     * @param VisitorInfo $visitorInfo
      * @param CustomerSegmentInterface[] $segments
      */
     public function trackSegments(VisitorInfo $visitorInfo, array $segments)
@@ -95,7 +94,6 @@ class SegmentTracker
     /**
      * Raw method to track ID to count assignments. Use trackSegment(s) if possible.
      *
-     * @param VisitorInfo $visitorInfo
      * @param array $assignments Segment ID as key, count as value
      */
     public function trackAssignments(VisitorInfo $visitorInfo, array $assignments)
@@ -127,9 +125,7 @@ class SegmentTracker
     /**
      * Read ID <-> count assignment mapping from storage
      *
-     * @param VisitorInfo $visitorInfo
      *
-     * @return array
      */
     public function getAssignments(VisitorInfo $visitorInfo): array
     {
@@ -144,11 +140,7 @@ class SegmentTracker
     /**
      * Returns assigned segments filtered for $allowedSegmentGroupReferences grouped by segment groups
      *
-     * @param VisitorInfo $visitorInfo
-     * @param array $allowedSegmentGroupReferences
-     * @param int $limitSegmentCountPerGroup
      *
-     * @return array
      */
     public function getFilteredAssignments(VisitorInfo $visitorInfo, array $allowedSegmentGroupReferences, int $limitSegmentCountPerGroup): array
     {
@@ -163,7 +155,7 @@ class SegmentTracker
                 if (in_array($reference, $allowedSegmentGroupReferences)) {
                     $segmentCollection[$reference][] = [
                         'segment' => $segment,
-                        'count' => $count
+                        'count' => $count,
                     ];
                 }
             }

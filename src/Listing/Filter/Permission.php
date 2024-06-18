@@ -29,7 +29,6 @@ class Permission extends AbstractFilter implements OnCreateQueryFilterInterface
     /**
      * Permission constructor.
      *
-     * @param User $user
      */
     public function __construct(User $user)
     {
@@ -56,13 +55,13 @@ class Permission extends AbstractFilter implements OnCreateQueryFilterInterface
             /** @var User\Role $role */
             $role = User\Role::getById($roleId);
             foreach ($role->getWorkspacesObject() as $workspace) {
-                /* @var User\Workspace\AbstractWorkspace $workspace */
+                // @var User\Workspace\AbstractWorkspace $workspace
                 $workspaces[$workspace->getCpath()] = $workspace;
             }
         }
         //  fetch workspaces of user directly
         foreach ($this->user->getWorkspacesObject() as $workspace) {
-            /* @var User\Workspace\AbstractWorkspace $workspace */
+            // @var User\Workspace\AbstractWorkspace $workspace
             $workspaces[$workspace->getCpath()] = $workspace;
         }
         krsort($workspaces);
@@ -73,7 +72,6 @@ class Permission extends AbstractFilter implements OnCreateQueryFilterInterface
     /**
      * Add user directory permissions to filter only for accessible customers
      *
-     * @param QueryBuilder $queryBuilder
      */
     protected function addPermissionFilters(QueryBuilder $queryBuilder)
     {

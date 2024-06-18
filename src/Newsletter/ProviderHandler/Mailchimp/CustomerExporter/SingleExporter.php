@@ -30,8 +30,6 @@ class SingleExporter extends AbstractExporter
     /**
      * Run the actual export
      *
-     * @param NewsletterQueueItemInterface $item
-     * @param Mailchimp $mailchimpProviderHandler
      *
      * @return void
      */
@@ -56,9 +54,6 @@ class SingleExporter extends AbstractExporter
     }
 
     /**
-     * @param MailchimpAwareCustomerInterface $customer
-     * @param NewsletterQueueItemInterface $item
-     * @param Mailchimp $mailchimpProviderHandler
      *
      * @return bool
      */
@@ -116,7 +111,7 @@ class SingleExporter extends AbstractExporter
                     $remoteId
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
 
@@ -144,7 +139,7 @@ class SingleExporter extends AbstractExporter
                     implode('; ', $apiClient->getLastRequest())
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
         }
@@ -153,8 +148,6 @@ class SingleExporter extends AbstractExporter
     }
 
     /**
-     * @param Mailchimp $mailchimpProviderHandler
-     * @param MailchimpAwareCustomerInterface $customer
      *
      * @return array|null
      */
@@ -195,7 +188,7 @@ class SingleExporter extends AbstractExporter
                         $remoteId
                     ),
                     [
-                        'relatedObject' => $customer
+                        'relatedObject' => $customer,
                     ]
                 );
             } elseif ($apiClient->getLastResponse()['headers']['http_code'] == 404) {
@@ -207,7 +200,7 @@ class SingleExporter extends AbstractExporter
                         $remoteId
                     ),
                     [
-                        'relatedObject' => $customer
+                        'relatedObject' => $customer,
                     ]
                 );
             } else {
@@ -221,7 +214,7 @@ class SingleExporter extends AbstractExporter
                         $apiClient->getLastResponse()['body']
                     ),
                     [
-                        'relatedObject' => $customer
+                        'relatedObject' => $customer,
                     ]
                 );
 
@@ -235,11 +228,6 @@ class SingleExporter extends AbstractExporter
         return $remoteId;
     }
 
-    /**
-     * @param MailchimpAwareCustomerInterface $customer
-     * @param NewsletterQueueItemInterface $item
-     * @param Mailchimp $mailchimpProviderHandler
-     */
     protected function delete(MailchimpAwareCustomerInterface $customer, NewsletterQueueItemInterface $item, Mailchimp $mailchimpProviderHandler)
     {
         $exportService = $mailchimpProviderHandler->getExportService();
@@ -286,7 +274,7 @@ class SingleExporter extends AbstractExporter
                     $remoteId
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
 
@@ -311,7 +299,7 @@ class SingleExporter extends AbstractExporter
                         $apiClient->getLastResponse()['body']
                     ),
                     [
-                        'relatedObject' => $customer
+                        'relatedObject' => $customer,
                     ]
                 );
             } else {

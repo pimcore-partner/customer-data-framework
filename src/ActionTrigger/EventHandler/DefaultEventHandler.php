@@ -26,6 +26,7 @@ use CustomerManagementFrameworkBundle\ActionTrigger\RuleEnvironmentInterface;
 use CustomerManagementFrameworkBundle\Model\ActionTrigger\Rule;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore;
 use Pimcore\Model\DataObject\Service;
@@ -114,15 +115,17 @@ class DefaultEventHandler implements EventHandlerInterface
                     sprintf('handleCustomerListEvent: found %s matching customers', $paginator->getTotalItemCount())
                 );
 
-                $totalPages = $paginator->getPaginationData()['totalCount'];
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    $paginator = $this->paginator->paginate($listing, $i, 100);
+                if ($paginator instanceof SlidingPaginationInterface) {
+                    $totalPages = $paginator->getPaginationData()['totalCount'];
+                    for ($i = 1; $i <= $totalPages; $i++) {
+                        $paginator = $this->paginator->paginate($listing, $i, 100);
 
-                    foreach ($paginator as $customer) {
-                        $this->handleActionsForCustomer($rule, $customer, $environment);
+                        foreach ($paginator as $customer) {
+                            $this->handleActionsForCustomer($rule, $customer, $environment);
+                        }
+
+                        Pimcore::collectGarbage();
                     }
-
-                    Pimcore::collectGarbage();
                 }
             }
         }
@@ -150,7 +153,6 @@ class DefaultEventHandler implements EventHandlerInterface
     }
 
     /**
-     * @param EventInterface $event
      * @param bool $checkConditions
      *
      * @return Rule[]
@@ -160,8 +162,8 @@ class DefaultEventHandler implements EventHandlerInterface
         $appliedRules = [];
 
         if (isset($this->getRulesGroupedByEvents()[$event->getName()]) && sizeof(
-                $this->getRulesGroupedByEvents()[$event->getName()]
-            )
+            $this->getRulesGroupedByEvents()[$event->getName()]
+        )
         ) {
             $rules = $this->rulesGroupedByEvents[$event->getName()];
 

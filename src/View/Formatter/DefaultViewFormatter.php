@@ -56,7 +56,6 @@ class DefaultViewFormatter implements ViewFormatterInterface
     }
 
     /**
-     * @param Data $fd
      *
      * @return string
      */
@@ -77,7 +76,6 @@ class DefaultViewFormatter implements ViewFormatterInterface
     }
 
     /**
-     * @param Data $fd
      * @param mixed $value
      *
      * @return string
@@ -171,7 +169,6 @@ class DefaultViewFormatter implements ViewFormatterInterface
     }
 
     /**
-     * @param CustomerSegmentInterface $segment
      *
      * @return string
      */

@@ -26,9 +26,6 @@ class DefaultCustomerView implements CustomerViewInterface
      */
     protected $viewFormatter;
 
-    /**
-     * @param ViewFormatterInterface $viewFormatter
-     */
     public function __construct(ViewFormatterInterface $viewFormatter)
     {
         $this->viewFormatter = $viewFormatter;
@@ -43,7 +40,6 @@ class DefaultCustomerView implements CustomerViewInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return string|null
      */
@@ -78,7 +74,6 @@ class DefaultCustomerView implements CustomerViewInterface
     /**
      * Determines if customer has a detail view or if pimcore object should be openend directly
      *
-     * @param CustomerInterface $customer
      *
      * @return bool
      */
@@ -88,7 +83,6 @@ class DefaultCustomerView implements CustomerViewInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return string|null
      */
@@ -98,7 +92,6 @@ class DefaultCustomerView implements CustomerViewInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return array
      */
@@ -139,9 +132,6 @@ class DefaultCustomerView implements CustomerViewInterface
         return new ObjectWrapper($object);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function translate($messageId, $parameters = [])
     {
         return $this->viewFormatter->translate($messageId, $parameters);

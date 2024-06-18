@@ -18,10 +18,15 @@ namespace CustomerManagementFrameworkBundle\Model\CustomerDuplicates;
 class PotentialDuplicateItem implements PotentialDuplicateItemInterface
 {
     private $id;
+
     private $duplicateCustomers;
+
     private $fieldCombinations;
+
     private $declined;
+
     private $modificationDate;
+
     private $creationDate;
 
     public function getId()

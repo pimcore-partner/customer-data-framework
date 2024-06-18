@@ -51,10 +51,6 @@ class CmfUrlUtilsExtension extends AbstractExtension
     /**
      * CmfUrlUtilsExtension constructor.
      *
-     * @param RouterInterface $router
-     * @param RequestStack $requestStack
-     * @param CustomerViewInterface $customerView
-     * @param LinkActivityDefinitionLinkGenerator $linkActivityUrlGenerator
      */
     public function __construct(RouterInterface $router, RequestStack $requestStack, CustomerViewInterface $customerView, LinkActivityDefinitionLinkGenerator $linkActivityUrlGenerator)
     {
@@ -213,7 +209,7 @@ class CmfUrlUtilsExtension extends AbstractExtension
         $userDetailUrl = null;
         if ($this->customerView->hasDetailView($customer)) {
             $userDetailUrl = $this->router->generate('customermanagementframework_admin_customers_detail', [
-                'id' => $customer->getId()
+                'id' => $customer->getId(),
             ]);
 
             $userDetailUrl = $this->getFormQueryString($userDetailUrl);

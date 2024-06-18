@@ -23,7 +23,9 @@ use Pimcore\Model\DataObject\Service;
 class Customer extends AbstractCondition
 {
     const OPTION_CUSTOMER_ID = 'customerId';
+
     const OPTION_CUSTOMER = 'customer';
+
     const OPTION_NOT = 'not';
 
     public function check(

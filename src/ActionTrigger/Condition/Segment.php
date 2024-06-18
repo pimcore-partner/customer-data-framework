@@ -22,7 +22,9 @@ use Pimcore\Model\DataObject\CustomerSegment;
 class Segment extends AbstractCondition
 {
     const OPTION_SEGMENT_ID = 'segmentId';
+
     const OPTION_SEGMENT = 'segment';
+
     const OPTION_NOT = 'not';
 
     public function check(

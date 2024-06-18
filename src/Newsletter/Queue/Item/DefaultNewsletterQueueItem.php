@@ -140,7 +140,7 @@ class DefaultNewsletterQueueItem implements NewsletterQueueItemInterface
             'customerId' => $this->customerId,
             'operation' => $this->operation,
             'email' => $this->email,
-            'modificationDate' => $this->modificationDate
+            'modificationDate' => $this->modificationDate,
         ]);
     }
 }

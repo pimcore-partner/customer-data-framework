@@ -23,9 +23,6 @@ interface SegmentMergerInterface
      * Could be used to add/remove segments to/from customers.
      * Take a look at the same method with the same name in the SegmentManagerInterface for further details.
      *
-     * @param CustomerInterface $customer
-     * @param array $addSegments
-     * @param array $deleteSegments
      * @param string|null $hintForNotes
      * @param int|true|null $segmentCreatedTimestamp
      * @param int|true|null $segmentApplicationCounter
@@ -44,7 +41,6 @@ interface SegmentMergerInterface
     /**
      * Needs to be called after segments are merged with mergeSegments() in order to persist the segments in the customer object
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */

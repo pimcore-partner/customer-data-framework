@@ -23,8 +23,11 @@ use Pimcore\Model\Document\Email;
 class SendMail extends AbstractAction
 {
     const OPTION_CONSIDER_PROFILING_CONSENT = 'considerProfilingConsent';
+
     const OPTION_EMAIL_DOCUMENT = 'emailDoc';
+
     const OPTION_SEND_TO_CUSTOMER = 'toCustomer';
+
     protected $name = 'SendMail';
 
     public function process(

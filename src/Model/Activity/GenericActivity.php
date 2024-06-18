@@ -77,7 +77,6 @@ class GenericActivity implements ActivityExternalIdInterface
     }
 
     /**
-     * @param array $data
      * @param bool $fromWebservice
      *
      * @return static
@@ -92,9 +91,6 @@ class GenericActivity implements ActivityExternalIdInterface
         return $this->data['type'];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function cmfToArray()
     {
         return $this->data['attributes'];

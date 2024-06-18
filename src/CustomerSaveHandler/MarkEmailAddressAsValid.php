@@ -36,7 +36,6 @@ class MarkEmailAddressAsValid extends AbstractCustomerSaveHandler
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

@@ -58,7 +58,6 @@ class DefaultCustomerProvider implements CustomerProviderInterface
      *
      * @param string $pimcoreClass
      * @param string $parentPath
-     * @param ObjectNamingSchemeInterface $namingScheme
      */
     public function __construct($pimcoreClass, $parentPath, ObjectNamingSchemeInterface $namingScheme, Factory $modelFactory)
     {
@@ -151,7 +150,6 @@ class DefaultCustomerProvider implements CustomerProviderInterface
     /**
      * Create a customer instance
      *
-     * @param array $data
      *
      * @return CustomerInterface
      */
@@ -181,8 +179,6 @@ class DefaultCustomerProvider implements CustomerProviderInterface
     }
 
     /**
-     * @param CustomerInterface $customer
-     * @param array $data
      *
      * @return CustomerInterface
      */
@@ -195,7 +191,6 @@ class DefaultCustomerProvider implements CustomerProviderInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return $this
      */
@@ -252,7 +247,6 @@ class DefaultCustomerProvider implements CustomerProviderInterface
     /**
      * Sets the correct parent folder and object key for the given customer.
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -289,7 +283,6 @@ class DefaultCustomerProvider implements CustomerProviderInterface
 
     /**
      * @param string $method
-     * @param array $arguments
      *
      * @return mixed
      */

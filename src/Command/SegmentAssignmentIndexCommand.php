@@ -27,7 +27,6 @@ class SegmentAssignmentIndexCommand extends AbstractCommand
     protected $indexer;
 
     /**
-     * @param IndexerInterface $indexer
      * @required
      */
     public function setIndexer(IndexerInterface $indexer): void
@@ -42,8 +41,6 @@ class SegmentAssignmentIndexCommand extends AbstractCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      *
      * @return int
      */

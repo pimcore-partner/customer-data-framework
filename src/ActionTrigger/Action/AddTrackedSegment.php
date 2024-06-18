@@ -24,7 +24,9 @@ use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 class AddTrackedSegment extends AbstractAction
 {
     const OPTION_REMOVE_OTHER_SEGMENTS_FROM_SEGMENT_GROUP = 'removeOtherSegmentsFromGroup';
+
     const OPTION_INCREASE_SEGMENT_APPLICATION_COUNTER = 'increaseSegmentApplicationCounter';
+
     const OPTION_CONSIDER_PROFILING_CONSENT = 'considerProfilingConsent';
 
     protected $name = 'AddTrackedSegment';

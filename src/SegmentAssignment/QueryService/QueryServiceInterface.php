@@ -26,14 +26,13 @@ use Pimcore\Model\Listing\AbstractListing;
 interface QueryServiceInterface
 {
     const MODE_CONJUNCTION = 'AND';
+
     const MODE_DISJUNCTION = 'OR';
 
     /**
      * adds a condition that narrows the result set down to elements that are assigned one or more/all of the passed $segmentIds
      * (based on $concatMode)
      *
-     * @param AbstractListing $listing
-     * @param array $segmentIds
      * @param string $concatMode
      *
      * @return mixed

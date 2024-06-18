@@ -27,7 +27,7 @@ class UrlActivityTracker implements EventSubscriberInterface
     protected $allreadyTracked = false;
 
     /**
-     * @inheritDoc
+     *
      *
      * @return array<string, string>
      */
@@ -41,7 +41,6 @@ class UrlActivityTracker implements EventSubscriberInterface
     /**
      * Checks for request params cmfa + cmfc and tracks activity if needed
      *
-     * @param RequestEvent $event
      */
     public function onKernelRequest(RequestEvent $event)
     {

@@ -21,6 +21,7 @@ use CustomerManagementFrameworkBundle\DataTransformer\DuplicateIndex\Standard;
 use CustomerManagementFrameworkBundle\Factory;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Db;
 use Pimcore\Logger;
@@ -34,8 +35,11 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
     use LoggerAware;
 
     const DUPLICATESINDEX_TABLE = 'plugin_cmf_duplicatesindex';
+
     const DUPLICATESINDEX_CUSTOMERS_TABLE = 'plugin_cmf_duplicatesindex_customers';
+
     const POTENTIAL_DUPLICATES_TABLE = 'plugin_cmf_potential_duplicates';
+
     const FALSE_POSITIVES_TABLE = 'plugin_cmf_duplicates_false_positives';
 
     /**
@@ -66,10 +70,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
     /**
      * DefaultMariaDbDuplicatesIndex constructor.
      *
-     * @param PaginatorInterface $paginator
      * @param bool $enableDuplicatesIndex
-     * @param array $duplicateCheckFields
-     * @param array $dataTransformers
      */
     public function __construct(
         PaginatorInterface $paginator,
@@ -107,18 +108,20 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
         $paginator = $this->paginator->paginate($customerList);
         $paginator->setItemNumberPerPage(200);
 
-        $totalPages = $paginator->getPaginationData()['pageCount'];
-        for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-            $logger->notice(sprintf('execute page %s of %s', $pageNumber, $totalPages));
-            $paginator = $this->paginator->paginate($customerList, $pageNumber, 200);
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $totalPages = $paginator->getPaginationData()['pageCount'];
+            for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                $logger->notice(sprintf('execute page %s of %s', $pageNumber, $totalPages));
+                $paginator = $this->paginator->paginate($customerList, $pageNumber, 200);
 
-            foreach ($paginator as $customer) {
-                $logger->notice(sprintf('update index for %s', (string)$customer));
+                foreach ($paginator as $customer) {
+                    $logger->notice(sprintf('update index for %s', (string)$customer));
 
-                $this->updateDuplicateIndexForCustomer($customer, true);
+                    $this->updateDuplicateIndexForCustomer($customer, true);
+                }
+
+                \Pimcore::collectGarbage();
             }
-
-            \Pimcore::collectGarbage();
         }
     }
 
@@ -317,9 +320,9 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
         $select
             ->from(self::FALSE_POSITIVES_TABLE)
             ->select('row1',
-                    'row2',
-                    'row1Details',
-                    'row2Details'
+                'row2',
+                'row1Details',
+                'row2Details'
             )
             ->addOrderBy('row1', 'asc');
 
@@ -519,6 +522,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
                 foreach ($base as $key => $b) {
                     if ($b == $lastEl) {
                         $found = true;
+
                         continue;
                         //last element found
                     }
@@ -592,6 +596,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
         foreach ($fieldCombinationConfig as $field => $options) {
             if ($options['similarity']) {
                 $applies = true;
+
                 break;
             }
         }
@@ -671,6 +676,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
 
                 if ($matched) {
                     $this->fieldCombinationConfig[$fieldCombinationCommaSeparated] = $fields;
+
                     break;
                 }
             }
@@ -683,6 +689,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
     {
         $db = Db::get();
         $db->beginTransaction();
+
         try {
             $db->executeQuery('delete from '.self::DUPLICATESINDEX_CUSTOMERS_TABLE.' where customer_id = ?', [$customerId]);
 
@@ -691,6 +698,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
                 foreach ($duplicateDataRow as $val) {
                     if (!trim($val)) {
                         $valid = false;
+
                         break;
                     }
                 }

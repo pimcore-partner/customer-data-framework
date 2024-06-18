@@ -24,9 +24,6 @@ use Pimcore\Model\Listing\AbstractListing;
 
 class TypeMapper implements TypeMapperInterface
 {
-    /**
-     * @inheritdoc
-     */
     public function getTypeStringByObject(ElementInterface $element): string
     {
         if ($element instanceof Document) {
@@ -44,9 +41,6 @@ class TypeMapper implements TypeMapperInterface
         return '';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getTypeStringBySubType(string $subType): string
     {
         if (in_array($subType, Document::getTypes())) {
@@ -64,9 +58,6 @@ class TypeMapper implements TypeMapperInterface
         return '';
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getTypeStringByListing(AbstractListing $listing): string
     {
         if ($listing instanceof Document\Listing) {

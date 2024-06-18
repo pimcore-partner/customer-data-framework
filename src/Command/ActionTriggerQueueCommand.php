@@ -32,7 +32,6 @@ class ActionTriggerQueueCommand extends AbstractCommand
     protected $actionTriggerQueue;
 
     /**
-     * @param QueueInterface $actionTriggerQueue
      * @required
      */
     public function setActionTriggerQueue(QueueInterface $actionTriggerQueue): void
@@ -47,8 +46,6 @@ class ActionTriggerQueueCommand extends AbstractCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      *
      * @return int
      */

@@ -21,6 +21,7 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 class ChangeFieldValue extends AbstractAction
 {
     const OPTION_FIELD = 'field';
+
     const OPTION_VALUE = 'value';
 
     public function process(

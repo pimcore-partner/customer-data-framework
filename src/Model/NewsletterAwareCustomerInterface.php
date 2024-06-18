@@ -24,7 +24,6 @@ interface NewsletterAwareCustomerInterface extends CustomerInterface
      * Otherwise the provider handler will delete the customer in the target system if it exists.
      * To ensure a consistent handling inactive or unpublished customers should never be exported.
      *
-     * @param NewsletterProviderHandlerInterface $newsletterProviderHandler
      *
      * @return bool
      */

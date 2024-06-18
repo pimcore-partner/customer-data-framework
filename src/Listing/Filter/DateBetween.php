@@ -29,8 +29,6 @@ class DateBetween extends AbstractFieldBetween
 
     /**
      * @param string $field
-     * @param \DateTime|null $from
-     * @param \DateTime|null $to
      */
     public function __construct($field, \DateTime $from = null, \DateTime $to = null)
     {
@@ -41,7 +39,6 @@ class DateBetween extends AbstractFieldBetween
     }
 
     /**
-     * @param \DateTime|null $from
      *
      * @return $this
      */
@@ -58,7 +55,6 @@ class DateBetween extends AbstractFieldBetween
     }
 
     /**
-     * @param \DateTime|null $to
      *
      * @return $this
      */

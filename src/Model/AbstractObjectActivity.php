@@ -48,9 +48,6 @@ abstract class AbstractObjectActivity extends Concrete implements PersistentActi
         return $this->getClassName();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function cmfToArray()
     {
         $result = ObjectToArray::getInstance()->toArray($this);

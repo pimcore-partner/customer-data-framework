@@ -17,14 +17,8 @@ namespace CustomerManagementFrameworkBundle\SegmentAssignment\StoredFunctions;
 
 use Pimcore\Db;
 
-/**
- * @inheritdoc
- */
 class DefaultStoredFunctions implements StoredFunctionsInterface
 {
-    /**
-     * @inheritdoc
-     */
     public function retrieve(string $elementId, string $elementType): array
     {
         $storedFunction = static::STORED_FUNCTIONS_MAPPING[$elementType];

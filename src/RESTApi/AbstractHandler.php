@@ -32,9 +32,6 @@ abstract class AbstractHandler implements HandlerInterface
      */
     protected $paginator;
 
-    /**
-     * @param PaginatorInterface $paginator
-     */
     public function __construct(PaginatorInterface $paginator)
     {
         $this->paginator = $paginator;
@@ -42,11 +39,9 @@ abstract class AbstractHandler implements HandlerInterface
 
     /**
      * @param mixed $listing
-     * @param Request $request
      * @param int $defaultPageSize
      * @param int $defaultPage
      *
-     * @return PaginationInterface
      */
     protected function handlePaginatorParams(
         $listing,
@@ -63,7 +58,6 @@ abstract class AbstractHandler implements HandlerInterface
     /**
      * Parse request body JSON
      *
-     * @param Request $request
      *
      * @return array
      */

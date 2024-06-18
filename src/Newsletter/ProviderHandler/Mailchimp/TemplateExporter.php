@@ -95,7 +95,7 @@ class TemplateExporter
 
             $result = $apiClient->patch("templates/$remoteId", [
                 'name' => $templateName,
-                'html' => $html
+                'html' => $html,
             ]);
         } else {
             $this->getLogger()->info(
@@ -108,7 +108,7 @@ class TemplateExporter
 
             $result = $apiClient->post('templates', [
                 'name' => $templateName,
-                'html' => $html
+                'html' => $html,
             ]);
         }
 
@@ -125,7 +125,7 @@ class TemplateExporter
                     $apiClient->getLastResponse()['body']
                 ),
                 [
-                    'relatedObject' => $document
+                    'relatedObject' => $document,
                 ]
             );
 
@@ -134,9 +134,7 @@ class TemplateExporter
     }
 
     /**
-     * @param Document\PageSnippet $document
      *
-     * @return Mailchimp
      *
      * @throws \Exception
      */

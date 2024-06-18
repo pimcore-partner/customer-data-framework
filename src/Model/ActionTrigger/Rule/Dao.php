@@ -104,6 +104,7 @@ class Dao extends Model\Dao\AbstractDao
 
         if ($this->model->getId()) {
             $this->db->beginTransaction();
+
             try {
                 $this->saveActions();
 
@@ -121,6 +122,7 @@ class Dao extends Model\Dao\AbstractDao
             $creationDate = time();
             $data['creationDate'] = $creationDate;
             $this->db->beginTransaction();
+
             try {
                 $data = Helper::quoteDataIdentifiers($this->db, $data);
 
@@ -161,12 +163,14 @@ class Dao extends Model\Dao\AbstractDao
     public function delete()
     {
         $this->db->beginTransaction();
+
         try {
             $this->db->executeQuery('DELETE FROM ' . self::TABLE_NAME . ' WHERE id = ?', [$this->model->getId()]);
 
             $this->db->commit();
         } catch (\Exception $e) {
             $this->db->rollBack();
+
             throw $e;
         }
     }

@@ -38,121 +38,81 @@ interface CustomerInterface extends ElementInterface
      */
     public function getPublished();
 
-    /**
-     * @return bool|null
-     */
     public function getActive(): ?bool;
 
     /**
-     * @param bool|null $active
      *
      * @return $this
      */
     public function setActive(?bool $active);
 
-    /**
-     * @return string|null
-     */
     public function getGender(): ?string;
 
     /**
-     * @param string|null $gender
      *
      * @return $this
      */
     public function setGender(?string $gender);
 
-    /**
-     * @return string|null
-     */
     public function getFirstname(): ?string;
 
     /**
-     * @param string|null $firstname
      *
      * @return $this
      */
     public function setFirstname(?string $firstname);
 
-    /**
-     * @return string|null
-     */
     public function getLastname(): ?string;
 
     /**
-     * @param string|null $lastname
      *
      * @return $this
      */
     public function setLastname(?string $lastname);
 
-    /**
-     * @return string|null
-     */
     public function getStreet(): ?string;
 
     /**
-     * @param string|null $street
      *
      * @return $this
      */
     public function setStreet(?string $street);
 
-    /**
-     * @return string|null
-     */
     public function getZip(): ?string;
 
     /**
-     * @param string|null $zip
      *
      * @return $this
      */
     public function setZip(?string $zip);
 
-    /**
-     * @return string|null
-     */
     public function getCity(): ?string;
 
     /**
-     * @param string|null $city
      *
      * @return $this
      */
     public function setCity(?string $city);
 
-    /**
-     * @return string|null
-     */
     public function getCountryCode(): ?string;
 
     /**
-     * @param string|null $countryCode
      *
      * @return $this
      */
     public function setCountryCode(?string $countryCode);
 
-    /**
-     * @return string|null
-     */
     public function getEmail(): ?string;
 
     /**
-     * @param string|null $email
      *
      * @return $this
      */
     public function setEmail(?string $email);
 
-    /**
-     * @return string|null
-     */
     public function getPhone(): ?string;
 
     /**
-     * @param string|null $phone
      *
      * @return $this
      */
@@ -169,7 +129,6 @@ interface CustomerInterface extends ElementInterface
     public function getManualSegments(): array;
 
     /**
-     * @param array|null $segments
      *
      * @return $this
      */
@@ -181,7 +140,6 @@ interface CustomerInterface extends ElementInterface
     public function getCalculatedSegments(): array;
 
     /**
-     * @param array|null $segments
      *
      * @return $this
      */
@@ -192,13 +150,9 @@ interface CustomerInterface extends ElementInterface
      */
     public function getAllSegments();
 
-    /**
-     * @return string|null
-     */
     public function getIdEncoded(): ?string;
 
     /**
-     * @param string|null $idEncoded
      *
      * @return void
      */
@@ -224,7 +178,6 @@ interface CustomerInterface extends ElementInterface
     public function saveDirty($disableVersions = true);
 
     /**
-     * @param SaveOptions $saveOptions
      * @param bool $disableVersions
      *
      * @return mixed

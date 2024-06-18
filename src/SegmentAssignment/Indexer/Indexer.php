@@ -57,13 +57,6 @@ class Indexer implements IndexerInterface
      */
     private $db = null;
 
-    /**
-     * @param string $segmentAssignmentTable
-     * @param string $segmentAssignmentIndexTable
-     * @param string $segmentAssignmentQueueTable
-     * @param StoredFunctionsInterface $storedFunctions
-     * @param QueueBuilderInterface $queueBuilder
-     */
     public function __construct(string $segmentAssignmentTable, string $segmentAssignmentIndexTable, string $segmentAssignmentQueueTable, StoredFunctionsInterface $storedFunctions, QueueBuilderInterface $queueBuilder)
     {
         $this->setSegmentAssignmentTable($segmentAssignmentTable);
@@ -73,81 +66,51 @@ class Indexer implements IndexerInterface
         $this->setQueueBuilder($queueBuilder);
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentTable(): string
     {
         return $this->segmentAssignmentTable;
     }
 
-    /**
-     * @param string $segmentAssignmentTable
-     */
     public function setSegmentAssignmentTable(string $segmentAssignmentTable)
     {
         $this->segmentAssignmentTable = $segmentAssignmentTable;
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentIndexTable(): string
     {
         return $this->segmentAssignmentIndexTable;
     }
 
-    /**
-     * @param string $segmentAssignmentIndexTable
-     */
     public function setSegmentAssignmentIndexTable(string $segmentAssignmentIndexTable)
     {
         $this->segmentAssignmentIndexTable = $segmentAssignmentIndexTable;
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentQueueTable(): string
     {
         return $this->segmentAssignmentQueueTable;
     }
 
-    /**
-     * @param string $segmentAssignmentQueueTable
-     */
     public function setSegmentAssignmentQueueTable(string $segmentAssignmentQueueTable)
     {
         $this->segmentAssignmentQueueTable = $segmentAssignmentQueueTable;
     }
 
-    /**
-     * @return StoredFunctionsInterface
-     */
     public function getStoredFunctions(): StoredFunctionsInterface
     {
         return $this->storedFunctions;
     }
 
-    /**
-     * @param StoredFunctionsInterface $storedFunctions
-     */
     public function setStoredFunctions(StoredFunctionsInterface $storedFunctions)
     {
         $this->storedFunctions = $storedFunctions;
     }
 
-    /**
-     * @return QueueBuilderInterface
-     */
     public function getQueueBuilder(): QueueBuilderInterface
     {
         return $this->queueBuilder;
     }
 
-    /**
-     * @param QueueBuilderInterface $queueBuilder
-     */
     public function setQueueBuilder(QueueBuilderInterface $queueBuilder)
     {
         $this->queueBuilder = $queueBuilder;
@@ -175,9 +138,6 @@ class Indexer implements IndexerInterface
         $this->db = $db;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function processQueue(): bool
     {
         $this->buildQueue(); // first enrich the queue table with all elements that are `inPreparation` and their children
@@ -205,7 +165,6 @@ class Indexer implements IndexerInterface
      * inserts one row for each segment assigned to that element
      * and finally dequeues the element
      *
-     * @param array $element
      */
     private function processElement(array $element)
     {
@@ -224,7 +183,7 @@ class Indexer implements IndexerInterface
             1 => $this->getSegmentAssignmentIndexTable(),
             2 => $this->getSegmentAssignmentQueueTable(),
             3 => $this->getSegmentAssignmentTable(),
-            4 => $values
+            4 => $values,
         ];
 
         $statement = vsprintf(
@@ -240,7 +199,7 @@ class Indexer implements IndexerInterface
             [
                 'elementId' => $elementId,
                 'elementType' => $elementType,
-                'segmentIds' => join(',', $segmentIds)
+                'segmentIds' => join(',', $segmentIds),
             ]);
 
         try {

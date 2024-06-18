@@ -22,14 +22,12 @@ use Pimcore\Model\DataObject\Data\ObjectMetadata;
 interface SegmentExtractorInterface
 {
     /**
-     * @param CustomerInterface $customer
      *
      * @return CustomerSegmentInterface[]
      */
     public function getCalculatedSegmentsFromCustomer(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return CustomerSegmentInterface[]
      */
@@ -48,17 +46,10 @@ interface SegmentExtractorInterface
     /**
      * returns an array with all segment application counters of all assiged segments of the customer
      *
-     * @param CustomerInterface $customer
      *
      * @return int[] array key = segmentId, array value = segment application counter
      */
     public function getAllSegmentApplicationCounters(CustomerInterface $customer): array;
 
-    /**
-     * @param CustomerInterface $customer
-     * @param CustomerSegmentInterface $customerSegment
-     *
-     * @return int
-     */
     public function getSegmentApplicationCounter(CustomerInterface $customer, CustomerSegmentInterface $customerSegment): int;
 }

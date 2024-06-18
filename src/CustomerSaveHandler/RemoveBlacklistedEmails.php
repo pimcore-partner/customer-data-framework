@@ -25,7 +25,6 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 class RemoveBlacklistedEmails extends AbstractCustomerSaveHandler
 {
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

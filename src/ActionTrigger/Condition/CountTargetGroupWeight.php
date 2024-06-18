@@ -22,7 +22,9 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 class CountTargetGroupWeight extends AbstractMatchCondition
 {
     const OPTION_OPERATOR = 'operator';
+
     const OPTION_COUNT = 'count';
+
     const OPTION_TARGET_GROUP = 'targetGroup';
 
     public function check(

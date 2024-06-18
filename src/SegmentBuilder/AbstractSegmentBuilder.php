@@ -26,7 +26,6 @@ abstract class AbstractSegmentBuilder implements SegmentBuilderInterface
     protected $paginator;
 
     /**
-     * @param PaginatorInterface $paginator
      * @required
      */
     public function setPaginator(PaginatorInterface $paginator): void

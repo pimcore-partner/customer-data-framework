@@ -22,7 +22,6 @@ interface ListingFilterInterface extends FilterInterface
     /**
      * Apply filter to listing
      *
-     * @param CoreListing\Concrete $listing
      */
     public function applyToListing(CoreListing\Concrete $listing);
 }

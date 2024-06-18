@@ -22,6 +22,7 @@ use Pimcore\Model\DataObject\Listing as CoreListing;
 abstract class AbstractFieldBetween extends AbstractFilter implements OnCreateQueryFilterInterface
 {
     const TYPE_FROM = 'from';
+
     const TYPE_TO = 'to';
 
     /**

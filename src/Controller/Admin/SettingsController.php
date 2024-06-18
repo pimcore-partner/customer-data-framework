@@ -80,7 +80,7 @@ class SettingsController extends UserAwareController
                     'lastname' => $user->getLastname(),
                     'email' => $user->getEmail(),
                     'apiKey' => $apiKeys[$user->getId()] ?? '',
-                    'image' => '/admin/user/get-image?id=' . $user->getId()
+                    'image' => '/admin/user/get-image?id=' . $user->getId(),
                 ];
             }
 

@@ -24,9 +24,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ActivitiesController extends CrudHandlerController
 {
-    /**
-     * @return ActivitiesHandler
-     */
     protected function getHandler(): ActivitiesHandler
     {
         return \Pimcore::getContainer()->get('cmf.rest.activities_handler');

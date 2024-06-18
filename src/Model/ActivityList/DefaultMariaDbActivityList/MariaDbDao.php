@@ -121,7 +121,6 @@ class MariaDbDao implements DaoInterface
     }
 
     /**
-     * @param QueryBuilder $select
      *
      * @return $this
      */

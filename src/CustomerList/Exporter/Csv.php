@@ -85,7 +85,6 @@ class Csv extends AbstractExporter
     }
 
     /**
-     * @param array $exportData
      *
      * @return $this
      */
@@ -99,7 +98,6 @@ class Csv extends AbstractExporter
     }
 
     /**
-     * @param array $row
      *
      * @return $this
      */

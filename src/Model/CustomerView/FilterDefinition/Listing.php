@@ -58,7 +58,6 @@ class Listing extends Model\Listing\AbstractListing
     /**
      * @param string $key
      *
-     * @return bool
      */
     public function isValidOrderKey(/* string */ $key): bool
     {
@@ -75,9 +74,6 @@ class Listing extends Model\Listing\AbstractListing
         return $dao->load();
     }
 
-    /**
-     * @param array $userIds
-     */
     public function setUserIdsCondition(array $userIds)
     {
         // check if no user ids provided

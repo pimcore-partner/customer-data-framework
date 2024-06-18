@@ -37,17 +37,11 @@ class CustomerSegments implements DataProviderInterface, DataProviderDependentIn
         $this->segmentExtractor = $segmentExtractor;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         return [Customer::PROVIDER_KEY];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function load(VisitorInfo $visitorInfo): void
     {
         if ($visitorInfo->has(self::PROVIDER_KEY)) {

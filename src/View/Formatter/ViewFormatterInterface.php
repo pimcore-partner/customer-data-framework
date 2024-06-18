@@ -22,14 +22,12 @@ use Pimcore\Model\DataObject\ClassDefinition\Data;
 interface ViewFormatterInterface extends TranslatorInterface
 {
     /**
-     * @param Data $fd
      *
      * @return string
      */
     public function getLabelByFieldDefinition(Data $fd);
 
     /**
-     * @param ClassDefinition $class
      * @param string $fieldName
      *
      * @return string
@@ -58,7 +56,6 @@ interface ViewFormatterInterface extends TranslatorInterface
     public function formatDatetimeValue($value);
 
     /**
-     * @param Data $fd
      * @param mixed $value
      *
      * @return string

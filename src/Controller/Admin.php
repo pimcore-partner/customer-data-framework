@@ -49,9 +49,6 @@ class Admin extends UserAwareController implements KernelControllerEventInterfac
         $this->paginator = $paginator;
     }
 
-    /**
-     * @param ControllerEvent $event
-     */
     public function onKernelControllerEvent(ControllerEvent $event): void
     {
         $this->initJsConfig();
@@ -70,9 +67,6 @@ class Admin extends UserAwareController implements KernelControllerEventInterfac
         }
     }
 
-    /**
-     * @return JsConfigService
-     */
     protected function getJsConfigService(): JsConfigService
     {
         return $this->jsConfigService;
@@ -81,7 +75,6 @@ class Admin extends UserAwareController implements KernelControllerEventInterfac
     /**
      * Features to enable
      *
-     * @return array
      */
     protected function getJsConfigFeatures(): array
     {

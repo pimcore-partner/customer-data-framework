@@ -20,9 +20,6 @@ use Pimcore\Logger;
 use Pimcore\Model\DataObject\Service;
 use Throwable;
 
-/**
- * @inheritdoc
- */
 class DefaultQueueBuilder implements QueueBuilderInterface
 {
     /**
@@ -41,41 +38,26 @@ class DefaultQueueBuilder implements QueueBuilderInterface
         $this->setDb($db);
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentQueueTable(): string
     {
         return $this->segmentAssignmentQueueTable;
     }
 
-    /**
-     * @param string $segmentAssignmentQueueTable
-     */
     public function setSegmentAssignmentQueueTable(string $segmentAssignmentQueueTable)
     {
         $this->segmentAssignmentQueueTable = $segmentAssignmentQueueTable;
     }
 
-    /**
-     * @return Connection
-     */
     public function getDb(): Connection
     {
         return $this->db;
     }
 
-    /**
-     * @param Connection $db
-     */
     public function setDb(Connection $db)
     {
         $this->db = $db;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function enqueue(string $elementId, string $type): bool
     {
         try {
@@ -95,9 +77,6 @@ class DefaultQueueBuilder implements QueueBuilderInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function enqueueChildren(string $elementId, string $type): bool
     {
         try {
@@ -125,7 +104,7 @@ class DefaultQueueBuilder implements QueueBuilderInterface
             $this->getDb()->executeQuery($enqueueStatement,
                 [
                     'elementType' => $type,
-                    'elementId' => (int) $elementId
+                    'elementId' => (int) $elementId,
                 ]);
 
             $this->getDb()->commit();

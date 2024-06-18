@@ -19,6 +19,7 @@ use CustomerManagementFrameworkBundle\DataTransformer\Date\TimestampToAge;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Model\Tool\TmpStore;
 
 class AgeSegmentBuilder extends AbstractSegmentBuilder
@@ -26,8 +27,11 @@ class AgeSegmentBuilder extends AbstractSegmentBuilder
     use LoggerAware;
 
     private $groupName;
+
     private $segmentGroup;
+
     private $ageGroups;
+
     private $birthDayField;
 
     public function __construct($groupName = 'Age', $ageGroups = [], $birthDayField = 'birthDate')
@@ -54,7 +58,6 @@ class AgeSegmentBuilder extends AbstractSegmentBuilder
     /**
      * prepare data and configurations which could be reused for all calculateSegments() calls
      *
-     * @param SegmentManagerInterface $segmentManager
      *
      * @return void
      */
@@ -66,8 +69,6 @@ class AgeSegmentBuilder extends AbstractSegmentBuilder
     /**
      * build segment(s) for given customer
      *
-     * @param CustomerInterface $customer
-     * @param SegmentManagerInterface $segmentManager
      *
      * @return void
      */
@@ -143,13 +144,15 @@ class AgeSegmentBuilder extends AbstractSegmentBuilder
 
         $paginator = $this->paginator->paginate($list, 1, 100);
 
-        $pageCount = $paginator->getPaginationData()['pageCount'];
-        for ($i = 1; $i <= $pageCount; $i++) {
-            $paginator = $this->paginator->paginate($list, $i, 100);
+        if ($paginator instanceof SlidingPaginationInterface) {
+            $pageCount = $paginator->getPaginationData()['pageCount'];
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $paginator = $this->paginator->paginate($list, $i, 100);
 
-            foreach ($paginator as $customer) {
-                $this->calculateSegments($customer, $segmentManager);
-                $segmentManager->saveMergedSegments($customer);
+                foreach ($paginator as $customer) {
+                    $this->calculateSegments($customer, $segmentManager);
+                    $segmentManager->saveMergedSegments($customer);
+                }
             }
         }
     }

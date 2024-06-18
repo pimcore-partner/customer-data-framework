@@ -37,7 +37,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class ApplyTargetGroupsFromSegments implements ActionHandlerInterface, DataProviderDependentInterface
 {
     const APPLY_TYPE_CLEANUP_AND_MERGE = 'cleanup_and_merge';
+
     const APPLY_TYPE_CLEANUP_AND_OVERWRITE = 'cleanup_and_overwrite';
+
     const APPLY_TYPE_ONLY_MERGE = 'only_merge';
 
     /**
@@ -66,17 +68,11 @@ class ApplyTargetGroupsFromSegments implements ActionHandlerInterface, DataProvi
         $this->storage = $storage;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         return [Customer::PROVIDER_KEY];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function apply(VisitorInfo $visitorInfo, array $action, Rule $rule = null): void
     {
         $this->dataLoader->loadDataFromProviders($visitorInfo, [Customer::PROVIDER_KEY]);
@@ -112,12 +108,15 @@ class ApplyTargetGroupsFromSegments implements ActionHandlerInterface, DataProvi
         switch ($action['applyType']) {
             case self::APPLY_TYPE_CLEANUP_AND_OVERWRITE:
                 $storageData = $this->cleanupAndOverwrite($visitorInfo, $storageData, $targetGroupsToConsider, $targetGroupInitSet);
+
                 break;
             case self::APPLY_TYPE_CLEANUP_AND_MERGE:
                 $storageData = $this->cleanupAndMerge($visitorInfo, $storageData, $targetGroupsToConsider, $targetGroupInitSet);
+
                 break;
             case self::APPLY_TYPE_ONLY_MERGE:
                 $storageData = $this->onlyMerge($visitorInfo, $storageData, $targetGroupsToConsider, $targetGroupInitSet);
+
                 break;
             default:
                 throw  new \Exception("Invalid apply type '" . $action['applyType'] . "'");

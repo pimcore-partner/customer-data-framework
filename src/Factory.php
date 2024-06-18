@@ -38,7 +38,6 @@ class Factory
     /**
      * @param string $className
      * @param string|null $needsToBeSubclassOf
-     * @param array $constructorParams
      *
      * @return object
      *

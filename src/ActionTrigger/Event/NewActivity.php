@@ -39,9 +39,6 @@ class NewActivity extends AbstractSingleCustomerEvent
         return $this->activity;
     }
 
-    /**
-     * @param ActivityInterface $activity
-     */
     public function setActivity(ActivityInterface $activity)
     {
         $this->activity = $activity;

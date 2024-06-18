@@ -27,7 +27,6 @@ interface CustomerViewInterface extends TranslatorInterface
     public function getViewFormatter();
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return string|null
      */
@@ -56,21 +55,18 @@ interface CustomerViewInterface extends TranslatorInterface
     /**
      * Determines if customer has a detail view or if pimcore object should be openend directly
      *
-     * @param CustomerInterface $customer
      *
      * @return bool
      */
     public function hasDetailView(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return string|null
      */
     public function getDetailviewTemplate(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return array
      */

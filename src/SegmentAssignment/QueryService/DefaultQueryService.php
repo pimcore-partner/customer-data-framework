@@ -19,9 +19,6 @@ use CustomerManagementFrameworkBundle\SegmentAssignment\TypeMapper\TypeMapperInt
 use Pimcore\Model\DataObject\Service;
 use Pimcore\Model\Listing\AbstractListing;
 
-/**
- * @inheritdoc
- */
 class DefaultQueryService implements QueryServiceInterface
 {
     /**
@@ -40,41 +37,26 @@ class DefaultQueryService implements QueryServiceInterface
         $this->setTypeMapper($typeMapper);
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentIndexTable(): string
     {
         return $this->segmentAssignmentIndexTable;
     }
 
-    /**
-     * @param string $segmentAssignmentIndexTable
-     */
     public function setSegmentAssignmentIndexTable(string $segmentAssignmentIndexTable)
     {
         $this->segmentAssignmentIndexTable = $segmentAssignmentIndexTable;
     }
 
-    /**
-     * @return TypeMapperInterface
-     */
     public function getTypeMapper(): TypeMapperInterface
     {
         return $this->typeMapper;
     }
 
-    /**
-     * @param TypeMapperInterface $typeMapper
-     */
     public function setTypeMapper(TypeMapperInterface $typeMapper)
     {
         $this->typeMapper = $typeMapper;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function bySegmentIds(AbstractListing $listing, array $segmentIds, $concatMode = self::MODE_DISJUNCTION)
     {
         if ([] === $segmentIds) {

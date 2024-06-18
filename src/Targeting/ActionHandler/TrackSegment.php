@@ -53,17 +53,11 @@ class TrackSegment implements ActionHandlerInterface, DataProviderDependentInter
         $this->segmentTracker = $segmentTracker;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         return [Customer::PROVIDER_KEY];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function apply(VisitorInfo $visitorInfo, array $action, Rule $rule = null): void
     {
         $segmentOption = $action['segment'];

@@ -43,11 +43,6 @@ class CustomerObjectUserProvider implements UserProviderInterface
         $this->usernameField = $usernameField;
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @return UserInterface
-     */
     public function loadUserByIdentifier(string $identifier): UserInterface
     {
         $list = $this->customerProvider->getList();
@@ -67,7 +62,7 @@ class CustomerObjectUserProvider implements UserProviderInterface
     /**
      * @deprecated use loadUserByIdentifier() instead.
      *
-     * @inheritdoc
+     *
      */
     public function loadUserByUsername($username)
     {
@@ -75,7 +70,7 @@ class CustomerObjectUserProvider implements UserProviderInterface
     }
 
     /**
-     * @inheritdoc
+     *
      *
      * @return UserInterface
      */
@@ -96,7 +91,7 @@ class CustomerObjectUserProvider implements UserProviderInterface
     }
 
     /**
-     * @inheritdoc
+     *
      *
      * @return bool
      */

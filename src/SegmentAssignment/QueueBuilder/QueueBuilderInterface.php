@@ -25,20 +25,14 @@ interface QueueBuilderInterface
     /**
      * adds a single element to the segment assignment queue
      *
-     * @param string $elementId
-     * @param string $type
      *
-     * @return bool
      */
     public function enqueue(string $elementId, string $type): bool;
 
     /**
      * adds an element's children to the segment assignment queue
      *
-     * @param string $elementId
-     * @param string $type
      *
-     * @return bool
      */
     public function enqueueChildren(string $elementId, string $type): bool;
 }

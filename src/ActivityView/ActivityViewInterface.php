@@ -20,21 +20,18 @@ use CustomerManagementFrameworkBundle\Model\ActivityStoreEntry\ActivityStoreEntr
 interface ActivityViewInterface
 {
     /**
-     * @param ActivityStoreEntryInterface $activityEntry
      *
      * @return array|false
      */
     public function getOverviewAdditionalData(ActivityStoreEntryInterface $activityEntry);
 
     /**
-     * @param ActivityStoreEntryInterface $activityEntry
      *
      * @return array
      */
     public function getDetailviewData(ActivityStoreEntryInterface $activityEntry);
 
     /**
-     * @param ActivityStoreEntryInterface $activityEntry
      *
      * @return string|false
      */
@@ -42,8 +39,6 @@ interface ActivityViewInterface
 
     /**
      * @param string $implementationClass
-     * @param array $attributes
-     * @param array $visibleKeys
      *
      * @return array
      */

@@ -40,11 +40,6 @@ class Installer extends SettingsStoreAwareInstaller
         parent::install();
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return bool
-     */
     public function needsReloadAfterInstall(): bool
     {
         return true;
@@ -219,11 +214,11 @@ class Installer extends SettingsStoreAwareInstaller
 
         $sqlFiles = [
             __DIR__ . '/Resources/sql/filterDefinition/' => [
-                'datamodel.sql'
+                'datamodel.sql',
             ],
             __DIR__ . '/Resources/sql/activityMetadata/' => [
-                'datamodel.sql'
-            ]
+                'datamodel.sql',
+            ],
         ];
 
         $storedFunctions = [

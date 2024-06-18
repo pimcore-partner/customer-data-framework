@@ -21,7 +21,9 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 class CustomerField extends AbstractCondition
 {
     const OPTION_FIELDNAME = 'fieldname';
+
     const OPTION_FIELDVALUE = 'fieldvalue';
+
     const OPTION_NOT = 'not';
 
     public function check(

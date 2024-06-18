@@ -21,49 +21,42 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 interface CustomerSaveManagerInterface
 {
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function preAdd(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function postAdd(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function preUpdate(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function postUpdate(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function preDelete(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function postDelete(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      * @param bool $withDuplicatesCheck
      *
      * @return bool
@@ -82,14 +75,9 @@ interface CustomerSaveManagerInterface
      */
     public function getSaveOptions($clone = false);
 
-    /**
-     * @param SaveOptions $saveOptions
-     */
     public function setSaveOptions(SaveOptions $saveOptions);
 
     /**
-     * @param CustomerInterface $customer
-     * @param SaveOptions $options
      * @param bool $disableVersions
      *
      * @return mixed
@@ -99,7 +87,6 @@ interface CustomerSaveManagerInterface
     /**
      * Dirty / quick save customer w/o invoking any hooks, save-handlers, version and alike
      *
-     * @param CustomerInterface $customer
      *
      * @return mixed
      */
@@ -116,7 +103,6 @@ interface CustomerSaveManagerInterface
     public function setSaveHandlers(array $saveHandlers);
 
     /**
-     * @param CustomerSaveHandlerInterface $saveHandler
      *
      * @return void
      */

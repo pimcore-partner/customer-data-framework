@@ -20,7 +20,6 @@ interface ActivityUrlTrackerInterface
     /**
      * @param string $customerIdEncoded
      * @param string $activityCode
-     * @param array $params
      *
      * @return void
      */

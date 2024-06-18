@@ -37,7 +37,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Setter for the originalCustomer property
      *
-     * @param CustomerInterface|null $originalCustomer
      *
      * @return void
      */
@@ -46,7 +45,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in preAdd and preUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -55,7 +53,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in postAdd and postUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -64,7 +61,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in preAdd hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -73,7 +69,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in postAdd hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -82,7 +77,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in preUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -91,7 +85,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in postUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -100,7 +93,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in preDelete hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -109,7 +101,6 @@ interface CustomerSaveHandlerInterface
     /**
      * Called in postDelete hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */

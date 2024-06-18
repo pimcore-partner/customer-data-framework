@@ -45,8 +45,11 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     use LoggerAware;
 
     const STATUS_SUBSCRIBED = 'subscribed';
+
     const STATUS_UNSUBSCRIBED = 'unsubscribed';
+
     const STATUS_PENDING = 'pending';
+
     const STATUS_CLEANED = 'cleaned';
 
     /**
@@ -109,13 +112,7 @@ class Mailchimp implements NewsletterProviderHandlerInterface
      *
      * @param string $shortcut
      * @param string $listId
-     * @param array $statusMapping
-     * @param array $reverseStatusMapping
-     * @param array $mergeFieldMapping
      * @param MailchimpDataTransformerInterface[] $fieldTransformers
-     * @param SegmentExporter $segmentExporter
-     * @param SegmentManagerInterface $segmentManager
-     * @param MailChimpExportService $exportService
      *
      * @throws \Exception
      */
@@ -156,7 +153,7 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     {
         $items = $this->getUpdateNeededItems($items, $forceUpdate);
 
-        list($emailChangedItems, $regularItems) = $this->determineEmailChangedItems($items);
+        [$emailChangedItems, $regularItems] = $this->determineEmailChangedItems($items);
 
         //Customers where the email address changed need to be handled by the single exporter as the batch exporter does not allow such operations.
         if (sizeof($emailChangedItems)) {
@@ -218,16 +215,19 @@ class Mailchimp implements NewsletterProviderHandlerInterface
         foreach ($items as $item) {
             if ($item->getOperation() != NewsletterQueueInterface::OPERATION_UPDATE) {
                 $regularItems[] = $item;
+
                 continue;
             }
 
             if (!$item->getCustomer()) {
                 $regularItems[] = $item;
+
                 continue;
             }
 
             if ($item->getCustomer()->getEmail() != $item->getEmail()) {
                 $emailChangedItems[] = $item;
+
                 continue;
             }
 
@@ -341,7 +341,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     /**
      * Directly Subscribes/exports a customer with mailchimp status "subscribed" via the Mailchimp API.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool success
      */
@@ -353,7 +352,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     /**
      * Directly Subscribes/exports a customer with mailchimp status "pending" via the Mailchimp API.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool success
      */
@@ -365,7 +363,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     /**
      * Directly Subscribes/exports a customer with given mailchimp status "subscribed" via the Mailchimp API.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool success
      */
@@ -379,6 +376,7 @@ class Mailchimp implements NewsletterProviderHandlerInterface
 
             return false;
         }
+
         try {
             $this->setNewsletterStatus($customer, $newsletterStatus);
 
@@ -559,7 +557,7 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     {
         $mergeFieldsMapping = sizeof($this->mergeFieldMapping) ? $this->mergeFieldMapping : [
             'firstname' => 'FNAME',
-            'lastname' => 'LNAME'
+            'lastname' => 'LNAME',
         ];
 
         $mergeFields = [];
@@ -579,7 +577,7 @@ class Mailchimp implements NewsletterProviderHandlerInterface
 
         $result = [
             'email_address' => $emailCleaner->transform($customer->getEmail()),
-            'merge_fields' => $mergeFields
+            'merge_fields' => $mergeFields,
         ];
 
         if ($language = $customer->getCustomerLanguage()) {
@@ -596,7 +594,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
     }
 
     /**
-     * @param MailchimpAwareCustomerInterface $customer
      *
      * @return array
      */
@@ -785,7 +782,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
 
     /**
      * @param string $field
-     * @param MailchimpAwareCustomerInterface $customer
      *
      * @return array|null
      */
@@ -893,9 +889,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
         return $customer;
     }
 
-    /**
-     * @return MailChimpExportService
-     */
     public function getExportService(): MailChimpExportService
     {
         return $this->exportService;

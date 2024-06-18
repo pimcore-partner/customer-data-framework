@@ -24,37 +24,25 @@ use Pimcore\Bundle\PersonalizationBundle\Targeting\Model\VisitorInfo;
 
 class CustomerIsLoggedIn extends AbstractVariableCondition implements DataProviderDependentInterface
 {
-    /**
-     * @inheritDoc
-     */
     public static function fromConfig(array $config): self
     {
         return new self();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         $providers = [
-            Customer::PROVIDER_KEY
+            Customer::PROVIDER_KEY,
         ];
 
         return $providers;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function canMatch(): bool
     {
         return true;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function match(VisitorInfo $visitorInfo): bool
     {
         $customer = $visitorInfo->get(Customer::PROVIDER_KEY);

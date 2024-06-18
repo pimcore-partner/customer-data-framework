@@ -40,7 +40,6 @@ class ExportCustomersFilterParams
     private $modificationTimestamp;
 
     /**
-     * @param Request $request
      *
      * @return static
      */
@@ -109,17 +108,11 @@ class ExportCustomersFilterParams
         }
     }
 
-    /**
-     * @return int
-     */
     public function getModificationTimestamp(): int
     {
         return $this->modificationTimestamp;
     }
 
-    /**
-     * @param int $modificationTimestamp
-     */
     public function setModificationTimestamp(int $modificationTimestamp): void
     {
         $this->modificationTimestamp = $modificationTimestamp;

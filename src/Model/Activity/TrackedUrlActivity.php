@@ -23,6 +23,7 @@ use Pimcore\Model\DataObject\LinkActivityDefinition;
 class TrackedUrlActivity extends AbstractActivity
 {
     protected $customer;
+
     private $activityDefinition;
 
     public function __construct(CustomerInterface $customer, LinkActivityDefinition $activityDefinition)
@@ -36,9 +37,6 @@ class TrackedUrlActivity extends AbstractActivity
         return $this->activityDefinition->getAttributeType();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function cmfToArray()
     {
         $attributes = [
@@ -67,7 +65,6 @@ class TrackedUrlActivity extends AbstractActivity
     }
 
     /**
-     * @param array $data
      * @param bool $fromWebservice
      *
      * @return static|false

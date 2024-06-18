@@ -52,7 +52,7 @@ class DefaultQueue implements QueueInterface
                 'actionId' => $action->getId(),
                 'creationDate' => $time,
                 'modificationDate' => $time,
-                'environment' => serialize($environment)
+                'environment' => serialize($environment),
             ]
         );
     }

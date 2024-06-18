@@ -23,7 +23,6 @@ interface PimcoreElementRemovalListenerInterface
      * performs cleaning up when Pimcore elements are deleted,
      * namely removes segment assignments from assignment, queue and index tables
      *
-     * @param ElementEventInterface $event
      *
      * @return void
      */

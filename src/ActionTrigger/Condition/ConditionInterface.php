@@ -24,14 +24,10 @@ interface ConditionInterface
     /**
      * ConditionInterface constructor.
      *
-     * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger);
 
     /**
-     * @param ConditionDefinitionInterface $conditionDefinition
-     * @param CustomerInterface $customer
-     * @param RuleEnvironmentInterface $environment
      *
      * @return bool
      */
@@ -42,7 +38,6 @@ interface ConditionInterface
     );
 
     /**
-     * @param ConditionDefinitionInterface $conditionDefinition
      *
      * @return string
      */
@@ -56,7 +51,6 @@ interface ConditionInterface
     public static function createConditionDefinitionFromEditmode($setting);
 
     /**
-     * @param ConditionDefinitionInterface $conditionDefinition
      *
      * @return array
      */

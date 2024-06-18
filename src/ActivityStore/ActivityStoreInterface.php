@@ -30,15 +30,12 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 interface ActivityStoreInterface
 {
     /**
-     * @param ActivityInterface $activity
      *
      * @return ActivityStoreEntryInterface
      */
     public function insertActivityIntoStore(ActivityInterface $activity);
 
     /**
-     * @param ActivityInterface $activity
-     * @param ActivityStoreEntryInterface|null $entry
      *
      * @return ActivityStoreEntryInterface
      */
@@ -46,7 +43,6 @@ interface ActivityStoreInterface
 
     /**
      *
-     * @param ActivityStoreEntryInterface $entry
      * @param bool $updateAttributes
      *
      * @return void
@@ -54,14 +50,12 @@ interface ActivityStoreInterface
     public function updateActivityStoreEntry(ActivityStoreEntryInterface $entry, $updateAttributes = false);
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return ActivityStoreEntryInterface|null
      */
     public function getEntryForActivity(ActivityInterface $activity);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return array
      */
@@ -73,7 +67,6 @@ interface ActivityStoreInterface
     public function getActivityList();
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return bool
      */
@@ -87,7 +80,6 @@ interface ActivityStoreInterface
     public function getEntryById($id);
 
     /**
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return void
      */
@@ -96,7 +88,6 @@ interface ActivityStoreInterface
     /**
      * Deletes all activities for $customer in the store.
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -105,7 +96,6 @@ interface ActivityStoreInterface
     /**
      * @param int $pageSize
      * @param int $page
-     * @param ExportActivitiesFilterParams $params
      *
      * @return PaginationInterface
      */
@@ -120,7 +110,6 @@ interface ActivityStoreInterface
     public function getDeletionsData($type, $deletionsSinceTimestamp);
 
     /**
-     * @param CustomerInterface $customer
      * @param string|null $activityType
      *
      * @return int
@@ -143,7 +132,6 @@ interface ActivityStoreInterface
     public function getAvailableActivityTypes();
 
     /**
-     * @param array $data
      *
      * @return ActivityStoreEntryInterface
      */
@@ -152,7 +140,6 @@ interface ActivityStoreInterface
     /**
      * Metadata items of entries are lazy loaded. This method loads the metadata items from the store.
      *
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return void
      */

@@ -45,11 +45,6 @@ class NewsletterSyncCommand extends AbstractCommand
      */
     protected $customerProvider;
 
-    /**
-     * @param NewsletterManagerInterface $newsletterManager
-     * @param NewsletterQueueInterface $newsletterQueue
-     * @param CustomerProviderInterface $customerProvider
-     */
     public function __construct(NewsletterManagerInterface $newsletterManager, NewsletterQueueInterface $newsletterQueue, CustomerProviderInterface $customerProvider)
     {
         parent::__construct();
@@ -72,10 +67,6 @@ class NewsletterSyncCommand extends AbstractCommand
             ->addOption('process-queue-item', null, InputOption::VALUE_REQUIRED, 'process single queue item (provide json data of queue item)');
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption('enqueue-all-customers')) {

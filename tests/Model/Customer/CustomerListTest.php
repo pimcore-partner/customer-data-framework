@@ -1,7 +1,19 @@
 <?php
 
-namespace CustomerManagementFrameworkBundle\Tests\Model\Customer;
+/**
+ * Pimcore
+ *
+ * This source file is available under two different licenses:
+ * - GNU General Public License version 3 (GPLv3)
+ * - Pimcore Commercial License (PCL)
+ * Full copyright and license information is available in
+ * LICENSE.md which is distributed with this source code.
+ *
+ *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
+ *  @license    http://www.pimcore.org/license     GPLv3 and PCL
+ */
 
+namespace CustomerManagementFrameworkBundle\Tests\Model\Customer;
 
 use Carbon\Carbon;
 use CustomerManagementFrameworkBundle\CustomerList\Filter\CustomerSegment;
@@ -21,7 +33,6 @@ use Pimcore\Tests\Support\Util\TestHelper;
 
 class CustomerListTest extends ModelTestCase
 {
-
     protected $segmentDummyData = [
         ['name' => 'ga-s1', 'group' => 'ga'],
         ['name' => 'ga-s2', 'group' => 'ga'],
@@ -29,7 +40,7 @@ class CustomerListTest extends ModelTestCase
         ['name' => 'ga-s4', 'group' => 'ga'],
         ['name' => 'gb-s1', 'group' => 'gb'],
         ['name' => 'gb-s2', 'group' => 'gb'],
-        ['name' => 'gb-s3', 'group' => 'gb']
+        ['name' => 'gb-s3', 'group' => 'gb'],
     ];
 
     protected $customerDummyData = [
@@ -43,8 +54,8 @@ class CustomerListTest extends ModelTestCase
             'date' => '1980-11-05',
             'segments' => [
                 'manual' => ['ga-s1', 'ga-s2', 'gb-s1'],
-                'calculated' => ['gb-s2']
-            ]
+                'calculated' => ['gb-s2'],
+            ],
         ], [
             'firstname' => 'Jane',
             'lastname' => 'Doe',
@@ -55,8 +66,8 @@ class CustomerListTest extends ModelTestCase
             'date' => '1980-01-01',
             'segments' => [
                 'manual' => ['ga-s1', 'ga-s2', 'gb-s1'],
-                'calculated' => []
-            ]
+                'calculated' => [],
+            ],
         ], [
             'firstname' => 'John',
             'lastname' => 'Doe',
@@ -67,8 +78,8 @@ class CustomerListTest extends ModelTestCase
             'date' => '1980-05-05',
             'segments' => [
                 'manual' => ['ga-s3', 'ga-s4'],
-                'calculated' => []
-            ]
+                'calculated' => [],
+            ],
         ], [
             'firstname' => 'Sam',
             'lastname' => 'Jackman Pet',
@@ -79,8 +90,8 @@ class CustomerListTest extends ModelTestCase
             'date' => '1980-05-06',
             'segments' => [
                 'manual' => ['ga-s3', 'ga-s4'],
-                'calculated' => ['gb-s3']
-            ]
+                'calculated' => ['gb-s3'],
+            ],
         ], [
             'firstname' => 'Sohpie',
             'lastname' => 'Fischer Hugo',
@@ -91,9 +102,9 @@ class CustomerListTest extends ModelTestCase
             'date' => '1980-06-05',
             'segments' => [
                 'manual' => ['ga-s1', 'ga-s2', 'ga-s3', 'ga-s4'],
-                'calculated' => []
-            ]
-        ]
+                'calculated' => [],
+            ],
+        ],
     ];
 
     public function setUp(): void
@@ -179,7 +190,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(1, $modifiedListing->getCount());
 
-
         //test one filter
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -189,7 +199,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(count($this->customerDummyData) - 1, $modifiedListing->getCount());
-
 
         //test two filters
         $listing = new Customer\Listing();
@@ -216,7 +225,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(0, $modifiedListing->getCount());
 
-
         //test filters array
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -232,7 +240,6 @@ class CustomerListTest extends ModelTestCase
 
     }
 
-
     public function testFloatBetweenFilter()
     {
         //test one filter
@@ -245,7 +252,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(count($this->customerDummyData), $modifiedListing->getCount());
-
 
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -281,31 +287,31 @@ class CustomerListTest extends ModelTestCase
         $this->assertEquals(2, $modifiedListing->getCount());
 
         //TODO only makes sense with or filters ... do not work yet.
-//        $listing = new Customer\Listing();
-//        $handler = new FilterHandler($listing);
-//
-//        $betweenFilter = new FloatBetween($idField, $this->customerDummyData[0][$idField], $this->customerDummyData[1][$idField]);
-//        $handler->addFilter($betweenFilter);
-//
-//        $betweenFilter = new FloatBetween($idField, $this->customerDummyData[1][$idField], $this->customerDummyData[2][$idField]);
-//        $handler->addFilter($betweenFilter);
-//
-//        $modifiedListing = $handler->getListing();
-//        $this->assertEquals(3, $modifiedListing->getCount());
-//
-//
-//        //test filters array
-//        $listing = new Customer\Listing();
-//        $handler = new FilterHandler($listing);
-//
-//        $betweenFilter = [];
-//        $betweenFilter[] = new FloatBetween($idField, $this->customerDummyData[0][$idField], $this->customerDummyData[1][$idField]);
-//        $betweenFilter[] = new FloatBetween($idField, $this->customerDummyData[1][$idField], $this->customerDummyData[2][$idField]);
-//
-//        $handler->addFilters($betweenFilter);
-//
-//        $modifiedListing = $handler->getListing();
-//        $this->assertEquals(3, $modifiedListing->getCount());
+        //        $listing = new Customer\Listing();
+        //        $handler = new FilterHandler($listing);
+        //
+        //        $betweenFilter = new FloatBetween($idField, $this->customerDummyData[0][$idField], $this->customerDummyData[1][$idField]);
+        //        $handler->addFilter($betweenFilter);
+        //
+        //        $betweenFilter = new FloatBetween($idField, $this->customerDummyData[1][$idField], $this->customerDummyData[2][$idField]);
+        //        $handler->addFilter($betweenFilter);
+        //
+        //        $modifiedListing = $handler->getListing();
+        //        $this->assertEquals(3, $modifiedListing->getCount());
+        //
+        //
+        //        //test filters array
+        //        $listing = new Customer\Listing();
+        //        $handler = new FilterHandler($listing);
+        //
+        //        $betweenFilter = [];
+        //        $betweenFilter[] = new FloatBetween($idField, $this->customerDummyData[0][$idField], $this->customerDummyData[1][$idField]);
+        //        $betweenFilter[] = new FloatBetween($idField, $this->customerDummyData[1][$idField], $this->customerDummyData[2][$idField]);
+        //
+        //        $handler->addFilters($betweenFilter);
+        //
+        //        $modifiedListing = $handler->getListing();
+        //        $this->assertEquals(3, $modifiedListing->getCount());
 
     }
 
@@ -321,7 +327,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(count($this->customerDummyData), $modifiedListing->getCount());
 
-
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
@@ -330,7 +335,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(2, $modifiedListing->getCount());
-
 
         //test two filters
         $listing = new Customer\Listing();
@@ -341,7 +345,6 @@ class CustomerListTest extends ModelTestCase
 
         $dateFilter = new DateBetween('birthdate', Carbon::createFromFormat('Y-m-d', '1980-01-01'), Carbon::createFromFormat('Y-m-d', '1980-08-31'));
         $handler->addFilter($dateFilter);
-
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(2, $modifiedListing->getCount());
@@ -380,7 +383,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(3, $modifiedListing->getCount());
 
-
         //test two segments - 2
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -409,7 +411,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(4, $modifiedListing->getCount());
     }
-
 
     public function testSearchFilter()
     {
@@ -445,7 +446,8 @@ class CustomerListTest extends ModelTestCase
 
     }
 
-    public function testSingleSearchQueryFilter() {
+    public function testSingleSearchQueryFilter()
+    {
 
         //test one filter
         $listing = new Customer\Listing();
@@ -465,7 +467,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(2, $modifiedListing->getCount());
-
 
         // ------------
         $listing = new Customer\Listing();
@@ -505,7 +506,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(0, $modifiedListing->getCount());
 
-
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
@@ -514,7 +514,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(1, $modifiedListing->getCount());
-
 
         // ------------
         $listing = new Customer\Listing();
@@ -526,7 +525,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(4, $modifiedListing->getCount());
 
-
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
@@ -535,8 +533,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(4, $modifiedListing->getCount());
-
-
 
         // ------------
         $listing = new Customer\Listing();
@@ -547,7 +543,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(5, $modifiedListing->getCount());
-
 
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -619,7 +614,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(0, $modifiedListing->getCount());
 
-
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
@@ -637,7 +631,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(1, $modifiedListing->getCount());
-
 
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -658,7 +651,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(2, $modifiedListing->getCount());
-
 
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -697,47 +689,45 @@ class CustomerListTest extends ModelTestCase
         $handler = new FilterHandler($listing);
 
         $searchFilter = new SearchQuery(['email'], '*pimcore* AND !"sam.jackman@pimcore.fun"');
-        $handler->addFilter ($searchFilter);
+        $handler->addFilter($searchFilter);
 
-        $modifiedListing = $handler->getListing ();
-        $this->assertEquals (4, $modifiedListing->getCount ());
-
+        $modifiedListing = $handler->getListing();
+        $this->assertEquals(4, $modifiedListing->getCount());
 
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
         $searchFilter = new SearchQuery(['firstname', 'lastname', 'email'], '*pimcore* AND !"sam.jackman@pimcore.fun"');
-        $handler->addFilter ($searchFilter);
+        $handler->addFilter($searchFilter);
 
-        $modifiedListing = $handler->getListing ();
-        $this->assertEquals (4, $modifiedListing->getCount ());
-
+        $modifiedListing = $handler->getListing();
+        $this->assertEquals(4, $modifiedListing->getCount());
 
         // ------------
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
         $searchFilter = new SearchQuery(['email'], '(*pimcore* AND !"sam.jackman@pimcore.fun") OR *fun');
-        $handler->addFilter ($searchFilter);
+        $handler->addFilter($searchFilter);
 
-        $modifiedListing = $handler->getListing ();
-        $this->assertEquals (5, $modifiedListing->getCount ());
-
+        $modifiedListing = $handler->getListing();
+        $this->assertEquals(5, $modifiedListing->getCount());
 
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
 
         $searchFilter = new SearchQuery(['firstname', 'lastname', 'email'], '(*pimcore* AND !"sam.jackman@pimcore.fun") OR *fun');
-        $handler->addFilter ($searchFilter);
+        $handler->addFilter($searchFilter);
 
-        $modifiedListing = $handler->getListing ();
-        $this->assertEquals (5, $modifiedListing->getCount ());
+        $modifiedListing = $handler->getListing();
+        $this->assertEquals(5, $modifiedListing->getCount());
 
         // -- Tests for Exact Search(Field should match exactly) with *
 
     }
 
-    public function testBoolCombinatorFilter() {
+    public function testBoolCombinatorFilter()
+    {
         //test one filter
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -747,7 +737,6 @@ class CustomerListTest extends ModelTestCase
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(1, $modifiedListing->getCount());
-
 
         //test two OR filters
         $listing = new Customer\Listing();
@@ -798,7 +787,6 @@ class CustomerListTest extends ModelTestCase
         $modifiedListing = $handler->getListing();
         $this->assertEquals(0, $modifiedListing->getCount());
 
-
         // --------------------
         $listing = new Customer\Listing();
         $handler = new FilterHandler($listing);
@@ -807,10 +795,8 @@ class CustomerListTest extends ModelTestCase
         $searchFilter2 = new SearchQuery(['firstname'], 'pet*');
         $handler->addFilter(new BoolCombinator([$searchFilter1, $searchFilter2], 'OR'));
 
-
         $modifiedListing = $handler->getListing();
         $this->assertEquals(2, $modifiedListing->getCount());
-
 
         // --------------------
         $listing = new Customer\Listing();
@@ -853,7 +839,6 @@ class CustomerListTest extends ModelTestCase
         $searchFilter1 = new SearchQuery(['lastname'], '"hugo"');
         $searchFilter2 = new SearchQuery(['firstname'], '"peter"');
         $handler->addFilter(new BoolCombinator([$searchFilter1, $searchFilter2], 'OR'));
-
 
         $modifiedListing = $handler->getListing();
         $this->assertEquals(1, $modifiedListing->getCount());

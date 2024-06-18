@@ -28,7 +28,6 @@ use Pimcore\Model\Element\ValidationException;
 interface CustomerSaveValidatorInterface
 {
     /**
-     * @param CustomerInterface $customer
      *
      * @return bool
      *

@@ -48,7 +48,6 @@ interface NewsletterProviderHandlerInterface
     /**
      * Subscribe customer to newsletter (for example via web form). Returns true if it was successful.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool
      */
@@ -57,7 +56,6 @@ interface NewsletterProviderHandlerInterface
     /**
      * Unsubscribe customer from newsletter (for example via web form). Returns true if it was successful.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool
      */

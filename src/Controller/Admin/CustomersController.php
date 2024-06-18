@@ -27,6 +27,7 @@ use CustomerManagementFrameworkBundle\Helper\Objects;
 use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 use CustomerManagementFrameworkBundle\Model\CustomerSegmentInterface;
 use CustomerManagementFrameworkBundle\Model\CustomerView\FilterDefinition;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Db;
 use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\Concrete;
@@ -96,9 +97,9 @@ class CustomersController extends Admin
         if ($request->isXmlHttpRequest()) {
             return $this->render($customerView->getOverviewWrapperTemplate(), [
                 'paginator' => $paginator,
-                'paginationVariables' => $paginator->getPaginationData(),
+                'paginationVariables' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData() : [],
                 'customerView' => $customerView,
-                'idField' => Service::getVersionDependentDatabaseColumnName('id')
+                'idField' => Service::getVersionDependentDatabaseColumnName('id'),
             ]);
         } else {
             return $this->render(
@@ -108,7 +109,7 @@ class CustomersController extends Admin
                     'filters' => $filters,
                     'errors' => $errors,
                     'paginator' => $paginator,
-                    'paginationVariables' => $paginator->getPaginationData(),
+                    'paginationVariables' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData() : [],
                     'customerView' => $customerView,
                     'searchBarFields' => $this->getSearchHelper()->getConfiguredSearchBarFields(),
                     'request' => $request,
@@ -116,7 +117,7 @@ class CustomersController extends Admin
                     'filterDefinition' => $this->getFilterDefinition($request),
                     'accessToTempCustomerFolder' => boolval($this->hasUserAccessToTempCustomerFolder()),
                     'hideAdvancedFilterSettings' => boolval($request->get('segmentId')),
-                    'idField' => Service::getVersionDependentDatabaseColumnName('id')
+                    'idField' => Service::getVersionDependentDatabaseColumnName('id'),
                 ]
             );
         }
@@ -496,6 +497,7 @@ class CustomersController extends Admin
         $FilterDefinitionListing = new FilterDefinition\Listing();
         // build user ids condition for filter definition
         $FilterDefinitionListing->setUserIdsCondition($this->getUserIds());
+
         // return loaded filter definitions array
         return $FilterDefinitionListing->load();
     }
@@ -529,6 +531,7 @@ class CustomersController extends Admin
             // user is not allowed to use FilterDefinition
             return $DefaultFilterDefinition;
         }
+
         // return FilterDefinition definition
         return $filterDefinition;
     }
@@ -568,6 +571,7 @@ class CustomersController extends Admin
             // filter of user more important than filter definition
             $filters = array_merge($filterDefinitionCustomer, $filters);
         }
+
         // return merged filters array
         return $filters;
     }

@@ -115,7 +115,7 @@ class DefaultObjectNamingScheme implements ObjectNamingSchemeInterface
             [
                 str_replace('//', '/', $this->parentPath.'/%'),
                 str_replace('//', '/', $archiveDir .'/%'),
-                $timestamp
+                $timestamp,
             ]
         );
 
@@ -128,7 +128,6 @@ class DefaultObjectNamingScheme implements ObjectNamingSchemeInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return string
      */
@@ -143,7 +142,6 @@ class DefaultObjectNamingScheme implements ObjectNamingSchemeInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string $namingScheme
      *
      * @return array

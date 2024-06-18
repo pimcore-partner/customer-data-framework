@@ -51,7 +51,6 @@ interface ActivityStoreEntryInterface
     public function getCustomerId();
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -87,7 +86,6 @@ interface ActivityStoreEntryInterface
     public function getRelatedItem();
 
     /**
-     * @param ActivityInterface $item
      *
      * @return void
      */
@@ -151,13 +149,9 @@ interface ActivityStoreEntryInterface
      */
     public function getData();
 
-    /**
-     * @return array
-     */
     public function getMetadata(): array;
 
     /**
-     * @param array $metadata
      *
      * @return void
      */

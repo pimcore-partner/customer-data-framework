@@ -38,8 +38,6 @@ class UpdateFromMailchimpProcessor
      * This updates the instance only but applies no save of the customer!
      * Returns true if any status changed during the method.
      *
-     * @param Mailchimp $mailchimpHandler
-     * @param MailchimpAwareCustomerInterface $customer
      * @param string $mailchimpStatus
      *
      * @return bool
@@ -61,9 +59,6 @@ class UpdateFromMailchimpProcessor
     }
 
     /**
-     * @param Mailchimp $mailchimpHandler
-     * @param MailchimpAwareCustomerInterface $customer
-     * @param array $mergeFieldData
      *
      * @return bool
      */
@@ -114,9 +109,6 @@ class UpdateFromMailchimpProcessor
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     */
     public function setUser(User $user)
     {
         $this->user = $user;

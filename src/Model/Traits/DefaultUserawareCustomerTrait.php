@@ -27,7 +27,6 @@ trait DefaultUserawareCustomerTrait
     /**
      * By default email is used as username
      *
-     * @return string
      */
     public function getUserIdentifier(): string
     {

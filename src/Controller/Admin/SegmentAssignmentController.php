@@ -62,7 +62,7 @@ class SegmentAssignmentController extends UserAwareController
         $parentId = $db->fetchOne($parentIdStatement, [
             'parentIdField' => $parentIdField,
             'idField' => $idField,
-            'value' => $id
+            'value' => $id,
         ]);
 
         $segments = $segmentManager->getSegmentsForElementId($parentId, $type);

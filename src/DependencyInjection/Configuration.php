@@ -243,7 +243,7 @@ class Configuration implements ConfigurationInterface
                     'countryCode',
                     'idEncoded',
                 ],
-                'exportSegmentsAsColumns' => true
+                'exportSegmentsAsColumns' => true,
             ],
 
             'xlsx' => [
@@ -264,7 +264,7 @@ class Configuration implements ConfigurationInterface
                     'countryCode',
                     'idEncoded',
                 ],
-                'exportSegmentsAsColumns' => true
+                'exportSegmentsAsColumns' => true,
             ],
         ];
 
@@ -275,13 +275,13 @@ class Configuration implements ConfigurationInterface
 
         $defaultFilterPropertiesSearch = [
             'email' => [
-                'email'
+                'email',
             ],
             'firstname' => [
-                'firstname'
+                'firstname',
             ],
             'lastname' => [
-                'lastname'
+                'lastname',
             ],
             'search' => [
                 Service::getVersionDependentDatabaseColumnName('id'),
@@ -290,8 +290,8 @@ class Configuration implements ConfigurationInterface
                 'lastname',
                 'email',
                 'zip',
-                'city'
-            ]
+                'city',
+            ],
         ];
 
         $customerList
@@ -346,7 +346,7 @@ class Configuration implements ConfigurationInterface
             ['email'],
             ['firstname', 'lastname'],
             ['street'],
-            ['zip', 'city']
+            ['zip', 'city'],
         ];
 
         $customerList

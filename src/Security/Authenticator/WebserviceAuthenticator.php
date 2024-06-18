@@ -40,11 +40,9 @@ class WebserviceAuthenticator extends AbstractAuthenticator implements Interacti
     use LoggerAwareTrait;
 
     const SETTINGS_STORE_KEY = 'api_keys';
+
     const SETTINGS_STORE_SCOPE = 'cmf';
 
-    /**
-     * {@inheritdoc}
-     */
     public function supports(Request $request): ?bool
     {
         return true;
@@ -54,9 +52,7 @@ class WebserviceAuthenticator extends AbstractAuthenticator implements Interacti
      * Get the authentication credentials from the request as any an associate array.
      * Check credentials in the passport through CustomCredentials
      *
-     * @param Request $request
      *
-     * @return Passport
      */
     public function authenticate(Request $request): Passport
     {
@@ -113,9 +109,6 @@ class WebserviceAuthenticator extends AbstractAuthenticator implements Interacti
         return null;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         $this->logger->warning('Failed to authenticate for webservice request {path}', [
@@ -125,9 +118,6 @@ class WebserviceAuthenticator extends AbstractAuthenticator implements Interacti
         throw $this->createAccessDeniedException($exception);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         $this->logger->debug('Successfully authenticated user {user} for webservice request {path}', [
@@ -138,9 +128,6 @@ class WebserviceAuthenticator extends AbstractAuthenticator implements Interacti
         return null;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function isInteractive(): bool
     {
         return true;

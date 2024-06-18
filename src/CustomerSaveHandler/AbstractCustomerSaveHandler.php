@@ -58,7 +58,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * setter for the originalCustomer property
      *
-     * @param CustomerInterface|null $originalCustomer
      *
      * @return void
      */
@@ -70,7 +69,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in preAdd and preUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -81,7 +79,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in postAdd and postUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -92,7 +89,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in preAdd hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -103,7 +99,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in postAdd hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -114,7 +109,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in preUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -125,7 +119,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in postUpdate hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -136,7 +129,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in preDelete hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -147,7 +139,6 @@ abstract class AbstractCustomerSaveHandler implements CustomerSaveHandlerInterfa
     /**
      * called in postDelete hook of customer objects
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */

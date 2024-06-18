@@ -33,9 +33,6 @@ class TemplateExportResolveProviderHandlerEvent extends Event
      */
     private $document;
 
-    /**
-     * @param Document\PageSnippet $document
-     */
     public function __construct(Document\PageSnippet $document)
     {
         $this->document = $document;
@@ -46,25 +43,16 @@ class TemplateExportResolveProviderHandlerEvent extends Event
         return self::NAME;
     }
 
-    /**
-     * @return Mailchimp|null
-     */
     public function getProviderHandler(): ?Mailchimp
     {
         return $this->providerHandler;
     }
 
-    /**
-     * @return Document\PageSnippet
-     */
     public function getDocument(): Document\PageSnippet
     {
         return $this->document;
     }
 
-    /**
-     * @param Mailchimp $providerHandler
-     */
     public function setProviderHandler(Mailchimp $providerHandler)
     {
         $this->providerHandler = $providerHandler;

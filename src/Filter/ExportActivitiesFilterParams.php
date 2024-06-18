@@ -25,7 +25,6 @@ class ExportActivitiesFilterParams
     private $type;
 
     /**
-     * @param Request $request
      *
      * @return static
      */

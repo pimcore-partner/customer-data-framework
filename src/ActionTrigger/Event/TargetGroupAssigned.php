@@ -26,9 +26,11 @@ use Pimcore\Bundle\PersonalizationBundle\Targeting\Model\VisitorInfo;
 class TargetGroupAssigned extends AbstractSingleCustomerEvent implements RuleEnvironmentAwareEventInterface
 {
     const EVENT_NAME = 'plugin.cmf.target-group-assigned';
+
     const STORAGE_KEY = 'target_group_assigned';
 
     const ASSIGNMENT_TYPE_DOCUMENT = 'documents';
+
     const ASSIGNMENT_TYPE_TARGETING_RULE = 'targetingRules';
 
     /**
@@ -57,25 +59,16 @@ class TargetGroupAssigned extends AbstractSingleCustomerEvent implements RuleEnv
         return $event;
     }
 
-    /**
-     * @return string
-     */
     public function getAssignmentType(): string
     {
         return $this->assignmentType;
     }
 
-    /**
-     * @return TargetGroup
-     */
     public function getTargetGroup(): TargetGroup
     {
         return $this->targetGroup;
     }
 
-    /**
-     * @return VisitorInfo
-     */
     public function getVisitorInfo(): VisitorInfo
     {
         return $this->visitorInfo;
@@ -107,7 +100,7 @@ class TargetGroupAssigned extends AbstractSingleCustomerEvent implements RuleEnv
 
             $environment->set(self::STORAGE_KEY, [
                 'targetGroupId' => $this->targetGroup->getId(),
-                'targetGroupWeight' => $assignment->getCount()
+                'targetGroupWeight' => $assignment->getCount(),
             ]);
         }
     }

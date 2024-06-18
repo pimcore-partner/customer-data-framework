@@ -25,7 +25,6 @@ class DeletionsHandler extends AbstractHandler
     /**
      * GET /deletions
      *
-     * @param Request $request
      */
     public function listRecords(Request $request)
     {

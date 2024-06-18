@@ -47,7 +47,6 @@ class NormalizeZip extends AbstractCustomerSaveHandler
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

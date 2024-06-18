@@ -48,7 +48,6 @@ class ExporterManager implements ExporterManagerInterface
 
     /**
      * @param string $key
-     * @param Listing\Concrete|null $listing
      *
      * @return ExporterInterface
      */
@@ -72,7 +71,6 @@ class ExporterManager implements ExporterManagerInterface
     }
 
     /**
-     * @param Request $request
      *
      * @return array
      *
@@ -95,7 +93,6 @@ class ExporterManager implements ExporterManagerInterface
 
     /**
      * @param string $jobId
-     * @param array $data
      */
     public function saveExportTmpData($jobId, array $data)
     {

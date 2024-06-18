@@ -30,16 +30,12 @@ class DefaultActivityView implements ActivityViewInterface
      */
     protected $viewFormatter;
 
-    /**
-     * @param ViewFormatterInterface $viewFormatter
-     */
     public function __construct(ViewFormatterInterface $viewFormatter)
     {
         $this->viewFormatter = $viewFormatter;
     }
 
     /**
-     * @param ActivityStoreEntryInterface $activityEntry
      *
      * @return array|false
      */
@@ -56,7 +52,6 @@ class DefaultActivityView implements ActivityViewInterface
     }
 
     /**
-     * @param ActivityStoreEntryInterface $activityEntry
      *
      * @return array
      */
@@ -75,7 +70,6 @@ class DefaultActivityView implements ActivityViewInterface
     }
 
     /**
-     * @param ActivityStoreEntryInterface $activityEntry
      *
      * @return string|false
      */
@@ -93,8 +87,6 @@ class DefaultActivityView implements ActivityViewInterface
 
     /**
      * @param string $implementationClass
-     * @param array $attributes
-     * @param array $visibleKeys
      *
      * @return array
      */
@@ -119,11 +111,13 @@ class DefaultActivityView implements ActivityViewInterface
         foreach ($attributes as $key => $value) {
             if (!is_scalar($value)) {
                 unset($attributes[$key]);
+
                 continue;
             }
 
             if ($class && $fd = $class->getFieldDefinition($key)) {
                 $result[$vf->getLabelByFieldDefinition($fd)] = $vf->formatValueByFieldDefinition($fd, $value);
+
                 continue;
             } elseif (isset($dataTypes[$key])) {
                 if ($dataTypes[$key] == ActivityInterface::DATATYPE_BOOL) {
@@ -172,8 +166,6 @@ class DefaultActivityView implements ActivityViewInterface
     }
 
     /**
-     * @param array $attributes
-     * @param array $visibleKeys
      *
      * @return array
      */

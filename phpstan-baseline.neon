@@ -1,26 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/ActionTrigger/EventHandler/DefaultEventHandler.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/Controller/Admin/ActivitiesController.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 2
-			path: src/Controller/Admin/CustomersController.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/Controller/Admin/DuplicatesController.php
-
-		-
 			message: "#^Parameter \\#1 \\$segments of class CustomerManagementFrameworkBundle\\\\CustomerList\\\\Filter\\\\CustomerSegment constructor expects array\\<Pimcore\\\\Model\\\\DataObject\\\\CustomerSegment\\>, array\\<int\\<0, max\\>, CustomerManagementFrameworkBundle\\\\Model\\\\CustomerSegmentInterface\\> given\\.$#"
 			reportUnmatched: false
 			count: 2
@@ -36,11 +16,6 @@ parameters:
 			message: "#^Call to function is_object\\(\\) with string will always evaluate to false\\.$#"
 			count: 1
 			path: src/CustomerView/DefaultCustomerView.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/DuplicatesIndex/DefaultMariaDbDuplicatesIndex.php
 
 		-
 			message: "#^Result of && is always false\\.$#"
@@ -108,39 +83,9 @@ parameters:
 			path: src/Newsletter/ProviderHandler/Mailchimp/CliSyncProcessor.php
 
 		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 2
-			path: src/Newsletter/Queue/DefaultNewsletterQueue.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/RESTApi/CustomersHandler.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/RESTApi/SegmentGroupsHandler.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/RESTApi/SegmentsHandler.php
-
-		-
 			message: "#^Call to an undefined method CustomerManagementFrameworkBundle\\\\RESTApi\\\\SegmentsOfCustomerHandler\\:\\:createRoute\\(\\)\\.$#"
 			count: 1
 			path: src/RESTApi/SegmentsOfCustomerHandler.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/SegmentBuilder/AgeSegmentBuilder.php
-
-		-
-			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
-			count: 1
-			path: src/SegmentManager/SegmentBuilderExecutor/DefaultSegmentBuilderExecutor.php
 
 		-
 			message: "#^If condition is always false\\.$#"

@@ -59,9 +59,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
         $this->metadataFiller = $metadataFiller;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function mergeSegments(
         CustomerInterface $customer,
         array $addSegments,
@@ -70,8 +67,8 @@ class DefaultSegmentMerger implements SegmentMergerInterface
         $segmentCreatedTimestamp = null,
         $segmentApplicationCounter = null
     ) {
-        list($addManualSegments, $addCalculatedSegments) = $this->devideIntoManualAndCalculatedSegments($addSegments);
-        list($deleteManualSegments, $deleteCalculatedSegments) = $this->devideIntoManualAndCalculatedSegments($deleteSegments);
+        [$addManualSegments, $addCalculatedSegments] = $this->devideIntoManualAndCalculatedSegments($addSegments);
+        [$deleteManualSegments, $deleteCalculatedSegments] = $this->devideIntoManualAndCalculatedSegments($deleteSegments);
 
         if (sizeof($addCalculatedSegments) || sizeof($deleteCalculatedSegments)) {
             $this->mergeSegmentsHelper(
@@ -119,9 +116,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
-     * @param array $addSegments
-     * @param array $deleteSegments
      * @param bool $calculated
      * @param string $hintForNotes
      * @param int|true|null $segmentCreatedTimestamp
@@ -281,7 +275,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param bool $calculated
      *
      * @return \CustomerManagementFrameworkBundle\Model\CustomerSegmentInterface[]|\Pimcore\Model\DataObject\Data\ObjectMetadata[]
@@ -296,7 +289,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param \CustomerManagementFrameworkBundle\Model\CustomerSegmentInterface[]|\Pimcore\Model\DataObject\Data\ObjectMetadata[] $segments
      * @param bool $calculated
      */
@@ -309,9 +301,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function saveMergedSegments(CustomerInterface $customer)
     {
         if (isset($this->mergedSegmentsCustomerSaveQueue[$customer->getId()])) {
@@ -335,8 +324,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
     /**
      * Remembers customers + notes which need to be saved by saveMergedSegments()
      *
-     * @param CustomerInterface $customer
-     * @param array $notes
      */
     protected function addToMergedSegmentsCustomerSaveQueue(CustomerInterface $customer, array $notes)
     {
@@ -355,7 +342,6 @@ class DefaultSegmentMerger implements SegmentMergerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param array $segments
      * @param string $title
      * @param string $hintForNotes

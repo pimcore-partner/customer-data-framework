@@ -20,7 +20,6 @@ interface IndexerInterface
     /**
      * indexes all elements in currently stored in the queue table
      *
-     * @return bool
      */
     public function processQueue(): bool;
 }

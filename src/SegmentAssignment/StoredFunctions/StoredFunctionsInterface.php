@@ -29,7 +29,9 @@ use CustomerManagementFrameworkBundle\SegmentAssignment\TypeMapper\TypeMapperInt
 interface StoredFunctionsInterface
 {
     const STORED_FUNCTION_DOCUMENT = 'PLUGIN_CMF_COLLECT_DOCUMENT_SEGMENT_ASSIGNMENTS';
+
     const STORED_FUNCTION_ASSET = 'PLUGIN_CMF_COLLECT_ASSET_SEGMENT_ASSIGNMENTS';
+
     const STORED_FUNCTION_OBJECT = 'PLUGIN_CMF_COLLECT_OBJECT_SEGMENT_ASSIGNMENTS';
 
     /**
@@ -38,15 +40,13 @@ interface StoredFunctionsInterface
     const STORED_FUNCTIONS_MAPPING = [
         TypeMapperInterface::TYPE_DOCUMENT => self::STORED_FUNCTION_DOCUMENT,
         TypeMapperInterface::TYPE_ASSET => self::STORED_FUNCTION_ASSET,
-        TypeMapperInterface::TYPE_OBJECT => self::STORED_FUNCTION_OBJECT
+        TypeMapperInterface::TYPE_OBJECT => self::STORED_FUNCTION_OBJECT,
     ];
 
     /**
      * retrieves an array of segment ids assigned to the given $elementId of $elementType
      * and all those it inherits along the element tree
      *
-     * @param string $elementId
-     * @param string $elementType
      *
      * @return string[]
      */

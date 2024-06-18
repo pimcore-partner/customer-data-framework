@@ -30,38 +30,26 @@ class CustomerSegmentsHaveChanged extends AbstractVariableCondition implements D
     {
     }
 
-    /**
-     * @inheritDoc
-     */
     public static function fromConfig(array $config): self
     {
         return new self();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         $providers = [
             Customer::PROVIDER_KEY,
-            CustomerSegments::PROVIDER_KEY
+            CustomerSegments::PROVIDER_KEY,
         ];
 
         return $providers;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function canMatch(): bool
     {
         return true;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function match(VisitorInfo $visitorInfo): bool
     {
         $customer = $visitorInfo->get(Customer::PROVIDER_KEY);

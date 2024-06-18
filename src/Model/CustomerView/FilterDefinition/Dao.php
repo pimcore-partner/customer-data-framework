@@ -42,13 +42,21 @@ class Dao extends AbstractDao
     const TABLE_NAME = 'plugin_cmf_customer_filter_definition';
 
     const ATTRIBUTE_ID = 'id';
+
     const ATTRIBUTE_OWNER_ID = 'ownerId';
+
     const ATTRIBUTE_NAME = 'name';
+
     const ATTRIBUTE_DEFINITION = 'definition';
+
     const ATTRIBUTE_ALLOWED_USER_IDS = 'allowedUserIds';
+
     const ATTRIBUTE_READ_ONLY = 'readOnly';
+
     const ATTRIBUTE_SHORTCUT_AVAILABLE = 'shortcutAvailable';
+
     const ATTRIBUTE_CREATION_DATE = 'creationDate';
+
     const ATTRIBUTE_MODIFICATION_DATE = 'modificationDate';
 
     /**
@@ -66,7 +74,6 @@ class Dao extends AbstractDao
     }
 
     /**
-     * @param string $name
      *
      * @throws \Exception Throws exception if object with id not found
      */
@@ -146,6 +153,7 @@ class Dao extends AbstractDao
             ]);
         } catch (\Exception $e) {
             Logger::alert('Could not delete filter definition. Not found in database.', ['id' => $this->model->getId()]);
+
             throw $e;
         }
 

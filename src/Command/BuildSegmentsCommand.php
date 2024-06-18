@@ -79,8 +79,6 @@ class BuildSegmentsCommand extends AbstractCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      *
      * @return int
      */

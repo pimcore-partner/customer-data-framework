@@ -113,6 +113,7 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
             foreach ($this->getSaveHandlers() as $saveHandler) {
                 if ($saveHandler->isOriginalCustomerNeeded()) {
                     $originalCustomerNeeded = true;
+
                     break;
                 }
             }
@@ -128,7 +129,7 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
             $originalCustomer = null;
         }
 
-        if ($originalCustomerNeeded) {
+        if ($originalCustomerNeeded && $customer->getId()) {
             $originalCustomer = $this->customerProvider->getById($customer->getId(), true);
         }
 
@@ -260,7 +261,6 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string $operation
      */
     protected function handleNewsletterQueue(CustomerInterface $customer, $operation)
@@ -327,7 +327,6 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
 
     /**
      * @param CustomerSaveHandlerInterface[] $saveHandlers
-     * @param CustomerInterface $customer
      */
     protected function reinitSaveHandlers(array $saveHandlers, CustomerInterface $customer)
     {
@@ -341,7 +340,6 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return mixed
      */
@@ -382,8 +380,6 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
     }
 
     /**
-     * @param CustomerInterface $customer
-     * @param SaveOptions $options
      * @param bool $disableVersions
      *
      * @return mixed
@@ -441,7 +437,6 @@ class DefaultCustomerSaveManager implements CustomerSaveManagerInterface
     /**
      * Restore options
      *
-     * @param SaveOptions $options
      */
     protected function applySaveOptions(SaveOptions $options)
     {

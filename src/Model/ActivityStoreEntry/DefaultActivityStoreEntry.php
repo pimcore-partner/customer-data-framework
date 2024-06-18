@@ -158,9 +158,6 @@ class DefaultActivityStoreEntry implements ActivityStoreEntryInterface
         return $this->customerId;
     }
 
-    /**
-     * @param CustomerInterface $customer
-     */
     public function setCustomer(CustomerInterface $customer)
     {
         $this->customer = $customer;
@@ -221,9 +218,6 @@ class DefaultActivityStoreEntry implements ActivityStoreEntryInterface
         return $this->relatedItem;
     }
 
-    /**
-     * @param ActivityInterface $relatedItem
-     */
     public function setRelatedItem(ActivityInterface $relatedItem)
     {
         $this->relatedItem = $relatedItem;
@@ -301,9 +295,6 @@ class DefaultActivityStoreEntry implements ActivityStoreEntryInterface
         return $this->attributes;
     }
 
-    /**
-     * @param array $attributes
-     */
     public function setAttributes(array $attributes)
     {
         $this->attributes = $attributes;

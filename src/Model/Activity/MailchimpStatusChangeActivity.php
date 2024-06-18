@@ -43,7 +43,6 @@ class MailchimpStatusChangeActivity extends AbstractActivity
     /**
      * MailchimpStatusChangeActivity constructor.
      *
-     * @param CustomerInterface $customer
      * @param string $status
      * @param int $activityDate
      */
@@ -64,9 +63,6 @@ class MailchimpStatusChangeActivity extends AbstractActivity
         return self::TYPE;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function cmfToArray()
     {
         $attributes = $this->additionalAttributes;
@@ -86,7 +82,6 @@ class MailchimpStatusChangeActivity extends AbstractActivity
     }
 
     /**
-     * @param array $data
      * @param bool $fromWebservice
      *
      * @return false

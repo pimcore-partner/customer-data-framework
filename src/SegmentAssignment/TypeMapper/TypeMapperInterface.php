@@ -28,33 +28,29 @@ use Pimcore\Model\Listing\AbstractListing;
 interface TypeMapperInterface
 {
     const TYPE_DOCUMENT = 'document';
+
     const TYPE_ASSET = 'asset';
+
     const TYPE_OBJECT = 'object';
 
     /**
      * returns a type string (e.g. 'document'|'asset'|'object') for the provided element
      *
-     * @param ElementInterface $element
      *
-     * @return string
      */
     public function getTypeStringByObject(ElementInterface $element): string;
 
     /**
      * returns a type string (e.g. 'document'|'asset'|'object') for the provided sub type
      *
-     * @param string $subType
      *
-     * @return string
      */
     public function getTypeStringBySubType(string $subType): string;
 
     /**
      * returns a type string (e.g. 'document'|'asset'|'object') based on the type of Listing provided
      *
-     * @param AbstractListing $listing
      *
-     * @return string
      */
     public function getTypeStringByListing(AbstractListing $listing): string;
 }

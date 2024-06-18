@@ -58,7 +58,7 @@ class TargetingToolbarListener implements EventSubscriberInterface
     public static function getSubscribedEvents()//: array
     {
         return [
-            TargetingEvents::RENDER_TOOLBAR => 'onRenderToolbar'
+            TargetingEvents::RENDER_TOOLBAR => 'onRenderToolbar',
         ];
     }
 

@@ -48,9 +48,6 @@ class JsConfigService
      */
     protected $scriptTag = true;
 
-    /**
-     * @param array $config
-     */
     public function __construct(array $config = [])
     {
         $this->config = $config;
@@ -60,9 +57,7 @@ class JsConfigService
      * Returns the service instance. If a var name is set, it changes
      * the current variable to the given var before returning the instance.
      *
-     * @param string|null $varName
      *
-     * @return self
      */
     public function __invoke(string $varName = null): self
     {
@@ -76,9 +71,7 @@ class JsConfigService
     /**
      * Get helper instance scoped to given variable name
      *
-     * @param string $varName
      *
-     * @return self
      */
     public function jsConfig(string $varName = self::DEFAULT_VAR_NAME): self
     {
@@ -97,7 +90,6 @@ class JsConfigService
      *
      * @param mixed $key
      * @param mixed $value
-     * @param null|string $varName
      */
     public function add($key, $value = '', string $varName = null)
     {
@@ -120,9 +112,6 @@ class JsConfigService
         }
     }
 
-    /**
-     * @param bool $scriptTag
-     */
     public function generateScriptTag(bool $scriptTag): void
     {
         $this->scriptTag = $scriptTag;

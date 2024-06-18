@@ -36,51 +36,32 @@ class PimcoreElementRemovalListener implements PimcoreElementRemovalListenerInte
      */
     private $typeMapper = null;
 
-    /**
-     * @param SegmentAssignerInterface $segmentAssigner
-     * @param TypeMapperInterface $typeMapper
-     */
     public function __construct(SegmentAssignerInterface $segmentAssigner, TypeMapperInterface $typeMapper)
     {
         $this->setSegmentAssigner($segmentAssigner);
         $this->setTypeMapper($typeMapper);
     }
 
-    /**
-     * @return SegmentAssignerInterface
-     */
     public function getSegmentAssigner(): SegmentAssignerInterface
     {
         return $this->segmentAssigner;
     }
 
-    /**
-     * @param SegmentAssignerInterface $segmentAssigner
-     */
     public function setSegmentAssigner(SegmentAssignerInterface $segmentAssigner)
     {
         $this->segmentAssigner = $segmentAssigner;
     }
 
-    /**
-     * @return TypeMapperInterface
-     */
     public function getTypeMapper(): TypeMapperInterface
     {
         return $this->typeMapper;
     }
 
-    /**
-     * @param TypeMapperInterface $typeMapper
-     */
     public function setTypeMapper(TypeMapperInterface $typeMapper)
     {
         $this->typeMapper = $typeMapper;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function onPostDelete(ElementEventInterface $event)
     {
         $id = $event->getElement()->getId();

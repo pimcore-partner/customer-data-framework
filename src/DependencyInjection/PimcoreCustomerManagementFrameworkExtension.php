@@ -34,9 +34,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 class PimcoreCustomerManagementFrameworkExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function prepend(ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(

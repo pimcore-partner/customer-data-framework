@@ -23,12 +23,11 @@ use CustomerManagementFrameworkBundle\Model\CustomerSegmentInterface;
 class CountTrackedSegment extends AbstractMatchCondition
 {
     const OPTION_OPERATOR = 'operator';
+
     const OPTION_COUNT = 'count';
+
     const OPTION_SEGMENTS = 'segments';
 
-    /**
-     * @inheritdoc
-     */
     public function check(
         ConditionDefinitionInterface $conditionDefinition,
         CustomerInterface $customer,
@@ -60,9 +59,6 @@ class CountTrackedSegment extends AbstractMatchCondition
         return $this->matchCondition($trackedCount, $options[self::OPTION_OPERATOR], (int)$options[self::OPTION_COUNT]);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getDbCondition(ConditionDefinitionInterface $conditionDefinition)
     {
         //return a condition that does not match any customer since this condition can only be used
@@ -70,9 +66,6 @@ class CountTrackedSegment extends AbstractMatchCondition
         return '1=2';
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function createConditionDefinitionFromEditmode($setting)
     {
         $segmentDataArray = $setting->options->segments;
@@ -89,9 +82,6 @@ class CountTrackedSegment extends AbstractMatchCondition
         return new \CustomerManagementFrameworkBundle\Model\ActionTrigger\ConditionDefinition($setting);
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function getDataForEditmode(ConditionDefinitionInterface $conditionDefinition)
     {
         $segmentManager = \Pimcore::getContainer()->get('cmf.segment_manager');
@@ -105,7 +95,7 @@ class CountTrackedSegment extends AbstractMatchCondition
             if ($segment) {
                 $dataSegments[] = [
                     $segment->getId(),
-                    $segment->getFullPath()
+                    $segment->getFullPath(),
                 ];
             }
         }

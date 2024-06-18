@@ -20,7 +20,6 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 interface ObjectNamingSchemeInterface
 {
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

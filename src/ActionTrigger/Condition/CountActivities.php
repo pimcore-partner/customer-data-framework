@@ -23,7 +23,9 @@ use Pimcore\Model\DataObject\Service;
 class CountActivities extends AbstractMatchCondition
 {
     const OPTION_TYPE = 'type';
+
     const OPTION_COUNT = 'count';
+
     const OPTION_OPERATOR = 'operator';
 
     public function check(

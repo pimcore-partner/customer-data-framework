@@ -24,9 +24,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SegmentGroupsController extends CrudHandlerController
 {
-    /**
-     * @return SegmentGroupsHandler
-     */
     protected function getHandler(): SegmentGroupsHandler
     {
         return \Pimcore::getContainer()->get('cmf.rest.segment_groups_handler');

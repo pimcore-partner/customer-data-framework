@@ -28,7 +28,6 @@ class CronTriggerCommand extends AbstractCommand
     protected $actionTriggerListener;
 
     /**
-     * @param EventHandlerInterface $actionTriggerListener
      * @required
      */
     public function setActionTriggerListener(EventHandlerInterface $actionTriggerListener): void
@@ -43,8 +42,6 @@ class CronTriggerCommand extends AbstractCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      *
      * @return int
      */

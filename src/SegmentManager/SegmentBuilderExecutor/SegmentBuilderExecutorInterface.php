@@ -20,7 +20,6 @@ use CustomerManagementFrameworkBundle\Model\CustomerInterface;
 interface SegmentBuilderExecutorInterface
 {
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -48,7 +47,6 @@ interface SegmentBuilderExecutorInterface
     );
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

@@ -77,10 +77,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
     /**
      * @param string|\Pimcore\Model\DataObject\Folder $segmentFolderCalculated
      * @param string|\Pimcore\Model\DataObject\Folder $segmentFolderManual
-     * @param CustomerSaveManagerInterface $customerSaveManager
-     * @param CustomerProviderInterface $customerProvider
-     * @param TypeMapperInterface $typeMapper
-     * @param StoredFunctionsInterface $storedFunctions
      */
     public function __construct($segmentFolderCalculated, $segmentFolderManual, CustomerSaveManagerInterface $customerSaveManager, CustomerProviderInterface $customerProvider, TypeMapperInterface $typeMapper, StoredFunctionsInterface $storedFunctions)
     {
@@ -94,57 +90,36 @@ class DefaultSegmentManager implements SegmentManagerInterface
         $this->setStoredFunctions($storedFunctions);
     }
 
-    /**
-     * @return TypeMapperInterface
-     */
     public function getTypeMapper(): TypeMapperInterface
     {
         return $this->typeMapper;
     }
 
-    /**
-     * @param TypeMapperInterface $typeMapper
-     */
     public function setTypeMapper(TypeMapperInterface $typeMapper)
     {
         $this->typeMapper = $typeMapper;
     }
 
-    /**
-     * @return StoredFunctionsInterface
-     */
     public function getStoredFunctions(): StoredFunctionsInterface
     {
         return $this->storedFunctions;
     }
 
-    /**
-     * @param StoredFunctionsInterface $storedFunctions
-     */
     public function setStoredFunctions(StoredFunctionsInterface $storedFunctions)
     {
         $this->storedFunctions = $storedFunctions;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentById($id)
     {
         return CustomerSegment::getById($id);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentGroupById($id)
     {
         return CustomerSegmentGroup::getById($id);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentsForElement(ElementInterface $element): array
     {
         $id = (string) $element->getId();
@@ -153,9 +128,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $this->getSegmentsForElementId($id, $type);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentsForElementId(string $id, string $type): array
     {
         $segmentIds = $this->getStoredFunctions()->retrieve($id, $type);
@@ -167,9 +139,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return array_filter($segments);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getCustomersBySegmentIds(array $segmentIds, $conditionMode = self::CONDITION_AND)
     {
         $list = $this->customerProvider->getList();
@@ -188,9 +157,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $list;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegments(array $params = [])
     {
         /**
@@ -202,9 +168,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $list;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentGroups()
     {
         /**
@@ -216,9 +179,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $list;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentsFolder($calculated = true)
     {
         $folder = $calculated ? $this->segmentFolderCalculated : $this->segmentFolderManual;
@@ -253,9 +213,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentByReference($segmentReference, CustomerSegmentGroup $segmentGroup = null, $calculated = null)
     {
         $list = $this->getSegments()
@@ -283,9 +240,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $list->current();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function createSegment(
         $segmentName,
         $segmentGroup,
@@ -340,9 +294,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $segment;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function createCalculatedSegment($segmentReference, $segmentGroup, $segmentName = null, $subFolder = null)
     {
         return $this->createSegment(
@@ -354,9 +305,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         );
     }
 
-    /**
-     * @inheritdoc
-     */
     public function createSegmentGroup(
         $segmentGroupName,
         $segmentGroupReference = null,
@@ -387,9 +335,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $segmentGroup;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function updateSegmentGroup(CustomerSegmentGroup $segmentGroup, array $values = [])
     {
         $currentCalculatedState = $segmentGroup->getCalculated();
@@ -414,9 +359,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         $segmentGroup->save();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function updateSegment(CustomerSegmentInterface $segment, array $values = [])
     {
         $segment->setValues($values);
@@ -441,9 +383,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         $segment->save();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentGroupByReference($segmentGroupReference, $calculated)
     {
         if (is_null($segmentGroupReference)) {
@@ -466,9 +405,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $list->current();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentsFromSegmentGroup(CustomerSegmentGroup $segmentGroup, array $ignoreSegments = [])
     {
         $list = $this->getSegments()
@@ -487,18 +423,12 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $result ?: [];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function preSegmentUpdate(CustomerSegmentInterface $segment)
     {
         $this->checkAndUpdateTargetGroupConnection($segment);
         $this->updateGroupRelation($segment);
     }
 
-    /**
-     * @param CustomerSegmentInterface $segment
-     */
     protected function checkAndUpdateTargetGroupConnection(CustomerSegmentInterface $segment)
     {
         //check connection to target groups
@@ -512,9 +442,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function postSegmentDelete(CustomerSegmentInterface $segment)
     {
         if ($segment->getUseAsTargetGroup() && ($targetGroupId = $segment->getTargetGroup())) {
@@ -522,9 +449,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         }
     }
 
-    /**
-     * @param CustomerSegmentInterface $segment
-     */
     protected function updateGroupRelation(CustomerSegmentInterface $segment)
     {
         if ($segment instanceof Concrete) {
@@ -543,9 +467,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function customerHasSegment(CustomerInterface $customer, CustomerSegmentInterface $segment)
     {
         foreach ($customer->getAllSegments() as $s) {
@@ -557,33 +478,21 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return false;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getCalculatedSegmentsFromCustomer(CustomerInterface $customer)
     {
         return $this->getSegmentExtractor()->getCalculatedSegmentsFromCustomer($customer);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getManualSegmentsFromCustomer(CustomerInterface $customer)
     {
         return $this->getSegmentExtractor()->getManualSegmentsFromCustomer($customer);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentExtractor(): SegmentExtractorInterface
     {
         return \Pimcore::getContainer()->get(SegmentExtractorInterface::class);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getCustomersSegmentsFromGroup(CustomerInterface $customer, $group)
     {
         if (!$group instanceof CustomerSegmentGroup) {
@@ -608,9 +517,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         return $result;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function mergeSegments(
         CustomerInterface $customer,
         array $addSegments,
@@ -629,9 +535,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         );
     }
 
-    /**
-     * @inheritdoc
-     */
     public function saveMergedSegments(CustomerInterface $customer)
     {
         \Pimcore::getContainer()->get('cmf.segment_manager.segment_merger')->saveMergedSegments($customer);
@@ -642,9 +545,6 @@ class DefaultSegmentManager implements SegmentManagerInterface
         $this->segmentBuilders[] = $segmentBuilder;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentBuilders()
     {
         return $this->segmentBuilders;

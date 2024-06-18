@@ -30,8 +30,6 @@ interface SegmentAssignerInterface
     /**
      * Assigns segments to an element
      *
-     * @param ElementInterface $element
-     * @param bool $breaksInheritance
      * @param CustomerSegmentInterface[]|int[] $segments
      *
      * @return bool true on success, false on failure
@@ -41,9 +39,6 @@ interface SegmentAssignerInterface
     /**
      * Assigns segments to an element id using the segments' ids
      *
-     * @param string $elementId
-     * @param string $type
-     * @param bool $breaksInheritance
      * @param string[] $segmentIds
      *
      * @return bool true on success, false on failure
@@ -53,10 +48,7 @@ interface SegmentAssignerInterface
     /**
      * removes all references to the given element from assignment, queue and index tables
      *
-     * @param string $elementId
-     * @param string $type
      *
-     * @return bool
      */
     public function removeElementById(string $elementId, string $type): bool;
 }

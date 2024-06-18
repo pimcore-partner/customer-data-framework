@@ -49,7 +49,6 @@ interface PotentialDuplicateItemInterface
     public function getFieldCombinations();
 
     /**
-     * @param array $fieldCombinations
      *
      * @return void
      */

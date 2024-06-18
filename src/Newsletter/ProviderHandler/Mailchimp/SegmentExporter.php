@@ -38,7 +38,6 @@ class SegmentExporter
     /**
      * Export a segment group
      *
-     * @param CustomerSegmentGroup $group
      * @param bool $forceCreate
      *
      * @return null|string
@@ -67,7 +66,7 @@ class SegmentExporter
                     $group->getName()
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
         }
@@ -81,7 +80,7 @@ class SegmentExporter
                     $group->getName()
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
 
@@ -109,7 +108,7 @@ class SegmentExporter
                         $remoteGroupId
                     ),
                     [
-                        'relatedObject' => $group
+                        'relatedObject' => $group,
                     ]
                 );
 
@@ -125,7 +124,7 @@ class SegmentExporter
                     $remoteGroupId
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
 
@@ -148,7 +147,7 @@ class SegmentExporter
                     $remoteGroupId
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
 
@@ -167,7 +166,7 @@ class SegmentExporter
                     $apiClient->getLastResponse()['body']
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
 
@@ -180,7 +179,7 @@ class SegmentExporter
                         $group->getName()
                     ),
                     [
-                        'relatedObject' => $group
+                        'relatedObject' => $group,
                     ]
                 );
 
@@ -196,8 +195,6 @@ class SegmentExporter
     /**
      * Export a segment
      *
-     * @param CustomerSegment $segment
-     * @param Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler
      * @param string $remoteGroupId
      * @param bool $forceCreate
      * @param bool $forceUpdate
@@ -224,7 +221,7 @@ class SegmentExporter
                     $segment->getName()
                 ),
                 [
-                    'relatedObject' => $segment
+                    'relatedObject' => $segment,
                 ]
             );
         }
@@ -237,7 +234,7 @@ class SegmentExporter
                     $segment->getName()
                 ),
                 [
-                    'relatedObject' => $segment
+                    'relatedObject' => $segment,
                 ]
             );
             $result = $apiClient->post(
@@ -264,7 +261,7 @@ class SegmentExporter
                         $remoteSegmentId
                     ),
                     [
-                        'relatedObject' => $segment
+                        'relatedObject' => $segment,
                     ]
                 );
 
@@ -280,7 +277,7 @@ class SegmentExporter
                     $remoteSegmentId
                 ),
                 [
-                    'relatedObject' => $segment
+                    'relatedObject' => $segment,
                 ]
             );
             $result = $apiClient->patch(
@@ -301,7 +298,7 @@ class SegmentExporter
                     $remoteGroupId
                 ),
                 [
-                    'relatedObject' => $segment
+                    'relatedObject' => $segment,
                 ]
             );
             // add note
@@ -319,7 +316,7 @@ class SegmentExporter
                     $apiClient->getLastResponse()['body']
                 ),
                 [
-                    'relatedObject' => $segment
+                    'relatedObject' => $segment,
                 ]
             );
             // we tried to edit a resource which doesn't exist (anymore) - fall back to create
@@ -332,7 +329,7 @@ class SegmentExporter
                         $segment->getName()
                     ),
                     [
-                        'relatedObject' => $segment
+                        'relatedObject' => $segment,
                     ]
                 );
 
@@ -348,8 +345,6 @@ class SegmentExporter
     /**
      * deletes all segments from given $remoteGroupId in mailchimp which are not within the given $existingSegmentIds array
      *
-     * @param array $existingSegmentIds
-     * @param Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler
      * @param string $remoteGroupId
      */
     public function deleteNonExistingSegmentsFromGroup(array $existingSegmentIds, Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler, $remoteGroupId)
@@ -400,8 +395,6 @@ class SegmentExporter
     /**
      * deletes all groups in mailchimp which are not within the given $existingGroupIds array
      *
-     * @param array $existingGroupIds
-     * @param Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler
      */
     public function deleteNonExistingGroups(array $existingGroupIds, Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler)
     {
@@ -434,7 +427,6 @@ class SegmentExporter
 
     /**
      * @param string $remoteGroupId
-     * @param Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler
      */
     private function deleteGroupByRemoteId($remoteGroupId, Newsletter\ProviderHandler\Mailchimp $mailchimpProviderHandler)
     {
@@ -452,7 +444,7 @@ class SegmentExporter
                     $remoteGroupId
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
         } else {
@@ -481,7 +473,7 @@ class SegmentExporter
                     $apiClient->getLastResponse()['body']
                 ),
                 [
-                    'relatedObject' => $group
+                    'relatedObject' => $group,
                 ]
             );
         }

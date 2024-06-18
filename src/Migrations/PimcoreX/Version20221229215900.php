@@ -25,9 +25,6 @@ class Version20221229215900 extends BundleAwareMigration
         return 'PimcoreCustomerManagementFrameworkBundle';
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema): void
     {
         $deletionsTable = $schema->getTable('plugin_cmf_deletions');
@@ -41,9 +38,6 @@ class Version20221229215900 extends BundleAwareMigration
         $this->addSql('SET foreign_key_checks = 1');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema): void
     {
         $deletionsTable = $schema->getTable('plugin_cmf_deletions');

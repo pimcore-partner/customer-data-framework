@@ -32,7 +32,6 @@ class DefaultNewsletterManager implements NewsletterManagerInterface
     /**
      * Subscribe customer from newsletter (for example via web form). Returns true if it was successful.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool
      *
@@ -44,6 +43,7 @@ class DefaultNewsletterManager implements NewsletterManagerInterface
         foreach ($this->newsletterProviderHandlers as $newsletterProviderHandler) {
             if (!$newsletterProviderHandler->subscribeCustomer($customer)) {
                 $success = false;
+
                 break;
             }
         }
@@ -58,7 +58,6 @@ class DefaultNewsletterManager implements NewsletterManagerInterface
     /**
      * Unsubscribe customer from newsletter (for example via web form). Returns true if it was successful.
      *
-     * @param NewsletterAwareCustomerInterface $customer
      *
      * @return bool
      *
@@ -70,6 +69,7 @@ class DefaultNewsletterManager implements NewsletterManagerInterface
         foreach ($this->newsletterProviderHandlers as $newsletterProviderHandler) {
             if (!$newsletterProviderHandler->unsubscribeCustomer($customer)) {
                 $success = false;
+
                 break;
             }
         }
@@ -109,7 +109,6 @@ class DefaultNewsletterManager implements NewsletterManagerInterface
     }
 
     /**
-     * @param NewsletterProviderHandlerInterface $newsletterProviderHandler
      *
      * @return void
      */

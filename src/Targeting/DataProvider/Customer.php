@@ -36,9 +36,6 @@ class Customer implements DataProviderInterface
         $this->tokenStorage = $tokenStorage;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function load(VisitorInfo $visitorInfo): void
     {
         if ($visitorInfo->has(self::PROVIDER_KEY)) {

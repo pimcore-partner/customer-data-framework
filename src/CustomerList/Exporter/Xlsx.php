@@ -102,7 +102,6 @@ class Xlsx extends AbstractExporter
     }
 
     /**
-     * @param array $exportData
      *
      * @return $this
      */
@@ -119,7 +118,6 @@ class Xlsx extends AbstractExporter
     }
 
     /**
-     * @param array $row
      *
      * @return $this
      */

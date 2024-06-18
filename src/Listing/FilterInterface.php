@@ -18,5 +18,6 @@ namespace CustomerManagementFrameworkBundle\Listing;
 interface FilterInterface
 {
     const OPERATOR_AND = 'AND';
+
     const OPERATOR_OR = 'OR';
 }

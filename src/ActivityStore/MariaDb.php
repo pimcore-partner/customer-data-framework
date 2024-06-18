@@ -41,7 +41,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return ActivityStoreEntryInterface
      */
@@ -64,8 +63,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param ActivityInterface $activity
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return ActivityStoreEntryInterface
      *
@@ -169,7 +166,7 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
                     $insertData = [
                         'activityId' => $entry->getId(),
                         'key' => $key,
-                        'data' => $data
+                        'data' => $data,
                     ];
 
                     $insertData = Helper::quoteDataIdentifiers($db, $insertData);
@@ -189,7 +186,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return ActivityStoreEntryInterface|null
      */
@@ -224,7 +220,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return array
      */
@@ -257,7 +252,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     /**
      * @param int $pageSize
      * @param int $page
-     * @param ExportActivitiesFilterParams $params
      *
      * @return PaginationInterface
      */
@@ -310,8 +304,8 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
         $db = Db::get();
 
         $sql = 'select * from '.self::DELETIONS_TABLE.' where entityType = '.$db->quote(
-                $entityType
-            ).' and creationDate >= '.$db->quote($deletionsSinceTimestamp);
+            $entityType
+        ).' and creationDate >= '.$db->quote($deletionsSinceTimestamp);
 
         $data = $db->fetchAllAssociative($sql);
 
@@ -326,7 +320,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return bool
      */
@@ -342,7 +335,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return void
      */
@@ -374,9 +366,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
         }
     }
 
-    /**
-     * @param CustomerInterface $customer
-     */
     public function deleteCustomer(CustomerInterface $customer)
     {
         $db = Db::get();
@@ -406,7 +395,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string|null $activityType
      *
      * @return int
@@ -445,8 +433,8 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
         $operator = in_array($operator, ['<', '>', '=']) ? $operator : '=';
 
         $sql = 'select customerId from '.self::ACTIVITIES_TABLE.$where.' group by customerId having count(*) '.$operator.intval(
-                $count
-            );
+            $count
+        );
 
         return $db->fetchFirstColumn($sql);
     }
@@ -490,7 +478,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param array $data
      *
      * @return ActivityStoreEntryInterface
      */
@@ -509,9 +496,6 @@ class MariaDb extends SqlActivityStore implements ActivityStoreInterface
         return $entry;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function lazyLoadMetadataOfEntry(ActivityStoreEntryInterface $entry)
     {
         if (!$entry->getId()) {

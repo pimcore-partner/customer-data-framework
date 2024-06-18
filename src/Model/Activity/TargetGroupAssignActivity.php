@@ -47,8 +47,6 @@ class TargetGroupAssignActivity extends AbstractActivity
     /**
      * TargetGroupAssignActivity constructor.
      *
-     * @param CustomerInterface $customer
-     * @param TargetGroup $targetGroup
      * @param int $weight
      * @param int $totalWeight
      * @param int|null $activityDate
@@ -76,17 +74,11 @@ class TargetGroupAssignActivity extends AbstractActivity
         return self::TYPE;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function cmfToArray()
     {
         return ['targetGroup' => $this->targetGroup->getId(), 'targetGroupName' => $this->targetGroup->getName(), 'weight' => $this->weight, 'totalWeight' => $this->totalWeight];
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function cmfGetOverviewData(ActivityStoreEntryInterface $entry)
     {
         return $entry->getAttributes();

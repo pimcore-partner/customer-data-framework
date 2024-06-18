@@ -29,13 +29,12 @@ use Pimcore\Model\User;
 class SearchHelper
 {
     private $segmentManager;
+
     private $customerProvider;
 
     /**
      * SearchHelper constructor.
      *
-     * @param SegmentManagerInterface $segmentManager
-     * @param CustomerProviderInterface $customerProvider
      */
     public function __construct(SegmentManagerInterface $segmentManager, CustomerProviderInterface $customerProvider)
     {
@@ -46,7 +45,6 @@ class SearchHelper
     /**
      * Fetch segment manager
      *
-     * @return SegmentManagerInterface
      */
     public function getSegmentManager(): SegmentManagerInterface
     {
@@ -56,7 +54,6 @@ class SearchHelper
     /**
      * Fetch the CustomerProvider
      *
-     * @return CustomerProviderInterface
      */
     public function getCustomerProvider(): CustomerProviderInterface
     {
@@ -84,9 +81,6 @@ class SearchHelper
     }
 
     /**
-     * @param Concrete $listing
-     * @param array $filters
-     * @param User $adminUser
      *
      * @throws \Exception
      */

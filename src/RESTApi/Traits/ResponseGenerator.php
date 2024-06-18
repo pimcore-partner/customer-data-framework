@@ -22,7 +22,6 @@ trait ResponseGenerator
     /**
      * Create a JSON response with normalized body containing timestamp
      *
-     * @param array|null $data
      * @param int $code
      *
      * @return Response

@@ -20,6 +20,7 @@ use CustomerManagementFrameworkBundle\RESTApi\Exception\ResourceNotFoundExceptio
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResourceUrlGenerator;
 use CustomerManagementFrameworkBundle\RESTApi\Traits\ResponseGenerator;
 use CustomerManagementFrameworkBundle\Traits\LoggerAware;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Pimcore\Model\DataObject\Concrete;
 use Pimcore\Model\DataObject\CustomerSegment;
 use Pimcore\Model\DataObject\CustomerSegmentGroup;
@@ -35,7 +36,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * GET /segments
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -59,7 +59,7 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
         return new Response(
             [
                 'page' => $paginator->getCurrentPageNumber(),
-                'totalPages' => $paginator->getPaginationData()['pageCount'],
+                'totalPages' => $paginator instanceof SlidingPaginationInterface ? $paginator->getPaginationData()['pageCount'] : 0,
                 'timestamp' => $timestamp,
                 'data' => $result,
             ]
@@ -69,7 +69,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * GET /segments/{id}
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -83,7 +82,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * POST /segments
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -121,9 +119,9 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
         }
 
         if ($data['reference'] && \Pimcore::getContainer()->get('cmf.segment_manager')->getSegmentByReference(
-                $data['reference'],
-                $segmentGroup
-            )
+            $data['reference'],
+            $segmentGroup
+        )
         ) {
             return new Response(
                 [
@@ -158,7 +156,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
      *
      * TODO support partial updates as we do now or demand whole object in PUT? Use PATCH for partial requests?
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -197,7 +194,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * DELETE /segments/{id}
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -247,7 +243,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
     /**
      * Create customer segment response with hydrated segment data
      *
-     * @param CustomerSegmentInterface $segment
      *
      * @return Response
      */
@@ -261,7 +256,6 @@ class SegmentsHandler extends AbstractHandler implements CrudHandlerInterface
     }
 
     /**
-     * @param CustomerSegmentInterface $customerSegment
      *
      * @return array
      */

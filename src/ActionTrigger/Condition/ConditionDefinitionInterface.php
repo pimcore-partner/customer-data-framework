@@ -40,7 +40,6 @@ interface ConditionDefinitionInterface
     public function getOptions();
 
     /**
-     * @param array $options
      *
      * @return void
      */

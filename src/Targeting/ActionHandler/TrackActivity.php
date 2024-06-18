@@ -51,17 +51,11 @@ class TrackActivity implements ActionHandlerInterface, DataProviderDependentInte
         $this->consentChecker = $consentChecker;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         return [Customer::PROVIDER_KEY];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function apply(VisitorInfo $visitorInfo, array $action, Rule $rule = null): void
     {
         //get customer
@@ -82,7 +76,7 @@ class TrackActivity implements ActionHandlerInterface, DataProviderDependentInte
 
         $activity = new GenericActivity([
             'type' => $activityType,
-            'attributes' => []
+            'attributes' => [],
         ]);
         $activity->setCustomer($customer);
 

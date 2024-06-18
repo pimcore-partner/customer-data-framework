@@ -23,7 +23,9 @@ use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 class StateSegmentBuilder extends AbstractSegmentBuilder
 {
     private $countryTransformers;
+
     private $groupName;
+
     private $segmentGroup;
 
     public function __construct($groupName = 'State', array $countryTransformers = [])
@@ -40,7 +42,6 @@ class StateSegmentBuilder extends AbstractSegmentBuilder
     /**
      * prepare data and configurations which could be reused for all calculateSegments() calls
      *
-     * @param SegmentManagerInterface $segmentManager
      */
     public function prepare(SegmentManagerInterface $segmentManager)
     {
@@ -58,8 +59,6 @@ class StateSegmentBuilder extends AbstractSegmentBuilder
     /**
      * build segment(s) for given customer
      *
-     * @param CustomerInterface $customer
-     * @param SegmentManagerInterface $segmentManager
      */
     public function calculateSegments(CustomerInterface $customer, SegmentManagerInterface $segmentManager)
     {

@@ -81,7 +81,6 @@ trait CustomerTrait
     }
 
     /**
-     * @param SaveOptions $saveOptions
      * @param bool $disableVersions
      *
      * @return mixed
@@ -108,7 +107,6 @@ trait CustomerTrait
      * If this method returns true the customer will be exported by the provider handler with the given shortcut.
      * Otherwise the provider handler will delete the customer in the target system if it exists.
      *
-     * @param NewsletterProviderHandlerInterface $newsletterProviderHandler
      *
      * @return bool
      */

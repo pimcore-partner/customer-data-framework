@@ -35,14 +35,12 @@ interface ExporterManagerInterface
 
     /**
      * @param string $key
-     * @param Listing\Concrete|null $listing
      *
      * @return ExporterInterface
      */
     public function buildExporter($key, Listing\Concrete $listing = null);
 
     /**
-     * @param Request $request
      *
      * @return array
      *
@@ -52,7 +50,6 @@ interface ExporterManagerInterface
 
     /**
      * @param string $jobId
-     * @param array $data
      *
      * @return void
      */

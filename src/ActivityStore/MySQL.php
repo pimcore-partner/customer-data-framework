@@ -56,7 +56,6 @@ class MySQL extends SqlActivityStore implements ActivityStoreInterface
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return ActivityStoreEntryInterface|null
      *
@@ -166,9 +165,6 @@ class MySQL extends SqlActivityStore implements ActivityStoreInterface
         return $paginator;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function lazyLoadMetadataOfEntry(ActivityStoreEntryInterface $entry)
     {
         if (!$entry->getId()) {

@@ -21,9 +21,6 @@ use Pimcore\Model\DataObject\Data\ObjectMetadata;
 
 class DefaultSegmentExtractor implements SegmentExtractorInterface
 {
-    /**
-     * @inheritdoc
-     */
     public function getCalculatedSegmentsFromCustomer(CustomerInterface $customer)
     {
         return $this->extractSegmentsFromPimcoreFieldData($customer->getCalculatedSegments());
@@ -34,9 +31,6 @@ class DefaultSegmentExtractor implements SegmentExtractorInterface
         return $this->extractSegmentsFromPimcoreFieldData($customer->getManualSegments());
     }
 
-    /**
-     * @inheritdoc
-     */
     public function extractSegmentsFromPimcoreFieldData($segments): array
     {
         if (!is_array($segments) || empty($segments)) {
@@ -54,9 +48,6 @@ class DefaultSegmentExtractor implements SegmentExtractorInterface
         return $result;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getAllSegmentApplicationCounters(CustomerInterface $customer): array
     {
         $segments = [];
@@ -66,9 +57,6 @@ class DefaultSegmentExtractor implements SegmentExtractorInterface
         return $segments;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSegmentApplicationCounter(CustomerInterface $customer, CustomerSegmentInterface $customerSegment): int
     {
         $allCounters = $this->getAllSegmentApplicationCounters($customer);

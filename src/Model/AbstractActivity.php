@@ -60,7 +60,6 @@ abstract class AbstractActivity implements ActivityInterface
     }
 
     /**
-     * @param array $data
      * @param bool $fromWebservice
      *
      * @return bool
@@ -81,7 +80,6 @@ abstract class AbstractActivity implements ActivityInterface
     }
 
     /**
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return array
      */
@@ -91,7 +89,6 @@ abstract class AbstractActivity implements ActivityInterface
     }
 
     /**
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return bool
      */

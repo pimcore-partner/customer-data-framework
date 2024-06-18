@@ -24,10 +24,10 @@ use Pimcore\Db;
 
 class SegmentAddressSource implements AddressSourceAdapterInterface
 {
-    /* @var SegmentManagerInterface */
+    // @var SegmentManagerInterface
     private $segmentManager = null;
 
-    /* @var SendingParamContainer[] */
+    // @var SendingParamContainer[]
     private $sendingParamContainers = [];
 
     /**
@@ -49,33 +49,21 @@ class SegmentAddressSource implements AddressSourceAdapterInterface
         );
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getMailAddressesForBatchSending(): array
     {
         return $this->sendingParamContainers;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getParamsForTestSending($emailAddress): SendingParamContainer
     {
         return new SendingParamContainer($emailAddress, ['emailAddress' => $emailAddress]);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getTotalRecordCount(): int
     {
         return count($this->sendingParamContainers);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getParamsForSingleSending($limit, $offset): array
     {
         return array_slice($this->sendingParamContainers, $offset, $limit);
@@ -88,7 +76,6 @@ class SegmentAddressSource implements AddressSourceAdapterInterface
      * @uses SegmentManagerInterface
      *
      * @param string[]|int[] $segmentIds
-     * @param string $operator
      * @param string[] $filterFlags
      *
      * @return SendingParamContainer[]

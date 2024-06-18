@@ -21,8 +21,11 @@ use CustomerManagementFrameworkBundle\Model\ActivityStoreEntry\ActivityStoreEntr
 interface ActivityInterface
 {
     const DATATYPE_STRING = 'string';
+
     const DATATYPE_INTEGER = 'integer';
+
     const DATATYPE_DOUBLE = 'double';
+
     const DATATYPE_BOOL = 'bool';
 
     /**
@@ -63,7 +66,6 @@ interface ActivityInterface
     /**
      * Updates the data of the activity instance but doesn't save it.
      *
-     * @param array $data
      *
      * @throws \Exception
      */
@@ -72,7 +74,6 @@ interface ActivityInterface
     /**
      * Create an activity object instance from an array of data.
      *
-     * @param array $data
      * @param bool $fromWebservice
      *
      * @return static|false
@@ -105,7 +106,6 @@ interface ActivityInterface
     /**
      * Returns an associative array with data which should be shown additional to the type and activity date within the ActivityView overview list.
      *
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return array|false
      */
@@ -114,7 +114,6 @@ interface ActivityInterface
     /**
      * Returns an associative array with data which should be shown ActivityView detail page.
      *
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return array
      */
@@ -123,7 +122,6 @@ interface ActivityInterface
     /**
      * Optional: Returns a template file which should be used for the ActivityView detail page. With this it's possible to implement completely individual detail pages for each activity type.
      *
-     * @param ActivityStoreEntryInterface $entry
      *
      * @return string|bool
      */

@@ -41,7 +41,6 @@ class RulesController extends UserAwareController implements KernelControllerEve
     /**
      * get saved action trigger rules
      *
-     * @param Request $request
      * @Route("/list")
      */
     public function listAction(Request $request): JsonResponse

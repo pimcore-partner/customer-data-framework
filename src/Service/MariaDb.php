@@ -20,8 +20,11 @@ use Pimcore\Db;
 class MariaDb
 {
     const DYNAMIC_COLUMN_DATA_TYPE_CHAR = 'char';
+
     const DYNAMIC_COLUMN_DATA_TYPE_DOUBLE = 'double';
+
     const DYNAMIC_COLUMN_DATA_TYPE_INTEGER = 'integer';
+
     const DYNAMIC_COLUMN_DATA_TYPE_BOOLEAN = 'boolean';
 
     private function __construct()
@@ -53,7 +56,6 @@ class MariaDb
     /**
      * Generates insert SQL statement for MariaDBs dynamic column feature.
      *
-     * @param array $data
      *
      * @return string
      */
@@ -117,7 +119,6 @@ class MariaDb
      * Insert $data into table $tableName. Returns last inserted ID.
      *
      * @param string $tableName
-     * @param array $data
      *
      * @return int
      */
@@ -176,7 +177,6 @@ class MariaDb
     /**
      * quotes each single item of given array
      *
-     * @param array $data
      *
      * @return array
      */

@@ -27,7 +27,6 @@ class DuplicatesIndexCommand extends AbstractCommand
     protected $duplicatesIndex;
 
     /**
-     * @param DuplicatesIndexInterface $duplicatesIndex
      * @required
      */
     public function setDuplicatesIndex(DuplicatesIndexInterface $duplicatesIndex): void
@@ -45,8 +44,6 @@ class DuplicatesIndexCommand extends AbstractCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      *
      * @return int
      */

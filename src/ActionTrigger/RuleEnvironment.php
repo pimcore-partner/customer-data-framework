@@ -47,9 +47,6 @@ class RuleEnvironment implements RuleEnvironmentInterface
         return new \ArrayIterator($this->data);
     }
 
-    /**
-     * @return bool
-     */
     public function offsetExists($offset): bool
     {
         return isset($this->data[$offset]);

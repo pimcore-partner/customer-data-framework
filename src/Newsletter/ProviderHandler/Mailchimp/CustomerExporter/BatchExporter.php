@@ -54,7 +54,6 @@ class BatchExporter extends AbstractExporter
      * Run the actual export
      *
      * @param NewsletterQueueItemInterface[] $items
-     * @param Mailchimp $mailchimpProviderHandler
      *
      */
     public function export(array $items, Mailchimp $mailchimpProviderHandler)
@@ -140,12 +139,6 @@ class BatchExporter extends AbstractExporter
         $this->handleBatchStatus($batchStatus, $items, $mailchimpProviderHandler);
     }
 
-    /**
-     * @param Batch $batch
-     * @param CustomerInterface $customer
-     * @param array $entry
-     * @param Mailchimp $mailchimpProviderHandler
-     */
     protected function createBatchUpdateOperation(Batch $batch, CustomerInterface $customer, array $entry, Mailchimp $mailchimpProviderHandler)
     {
         $exportService = $mailchimpProviderHandler->getExportService();
@@ -189,11 +182,6 @@ class BatchExporter extends AbstractExporter
         );
     }
 
-    /**
-     * @param Batch $batch
-     * @param NewsletterQueueItemInterface $item
-     * @param Mailchimp $mailchimpProviderHandler
-     */
     protected function createBatchDeleteOperation(Batch $batch, NewsletterQueueItemInterface $item, Mailchimp $mailchimpProviderHandler)
     {
         if ($mailchimpProviderHandler->doesOtherSubscribedCustomerWithEmailExist($item->getEmail(), $item->getCustomerId())) {
@@ -234,7 +222,6 @@ class BatchExporter extends AbstractExporter
     /**
      * Check batch status and back off exponentially after errors
      *
-     * @param Batch $batch
      * @param int $iteration
      *
      * @return array|bool
@@ -312,7 +299,6 @@ class BatchExporter extends AbstractExporter
     /**
      * Update exported records from batch request with export notes and handle errored records
      *
-     * @param array $result
      * @param NewsletterQueueItemInterface[] $items
      * @param Mailchimp $mailchimpProviderHandler
      */
@@ -393,7 +379,7 @@ class BatchExporter extends AbstractExporter
                     $remoteId
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
         } elseif ($customer) {
@@ -412,7 +398,7 @@ class BatchExporter extends AbstractExporter
                     $remoteId
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
         }
@@ -454,7 +440,7 @@ class BatchExporter extends AbstractExporter
                     $message
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
         } else {
@@ -467,7 +453,7 @@ class BatchExporter extends AbstractExporter
                     $message
                 ),
                 [
-                    'relatedObject' => $customer
+                    'relatedObject' => $customer,
                 ]
             );
         }

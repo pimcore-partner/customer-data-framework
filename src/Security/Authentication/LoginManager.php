@@ -84,9 +84,6 @@ class LoginManager implements LoginManagerInterface
         $this->container = $container;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function login(UserInterface $user, Request $request = null, Response $response = null)
     {
         if (null === $request) {

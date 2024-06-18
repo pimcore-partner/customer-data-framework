@@ -205,7 +205,6 @@ trait LegacyTrait
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param bool $disableVersions
      *
      * @return mixed

@@ -53,6 +53,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter($filterDefinition->getId());
         }
+
         // try to delete the FilterDefinition
         try {
             $filterDefinition->delete();
@@ -81,6 +82,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter(0, $errors);
         }
+
         try {
             $filterDefinition->save();
         } catch (\Exception $e) {
@@ -89,6 +91,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter(0, $errors);
         }
+
         // redirect to filter view with new FilterDefinition selected
         return $this->getRedirectToFilter($filterDefinition->getId());
     }
@@ -125,6 +128,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter(0, $errors);
         }
+
         try {
             $filterDefinition->save();
         } catch (\Exception $e) {
@@ -133,6 +137,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter(0, $errors);
         }
+
         // redirect to filter view with new FilterDefinition selected
         return $this->getRedirectToFilter($filterDefinition->getId());
     }
@@ -161,6 +166,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter(0, $errors);
         }
+
         // try to update the FilterDefinition
         try {
             // add new allowed user ids
@@ -173,6 +179,7 @@ class FilterDefinitionController extends Admin
 
             return $this->getRedirectToFilter();
         }
+
         // redirect to filter view with new FilterDefinition selected
         return $this->getRedirectToFilter($filterDefinition->getId());
     }

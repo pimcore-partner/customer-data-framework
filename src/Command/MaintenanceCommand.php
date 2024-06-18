@@ -27,7 +27,6 @@ class MaintenanceCommand extends AbstractCommand
     protected $maintenanceWorker;
 
     /**
-     * @param MaintenanceWorker $maintenanceWorker
      * @required
      */
     public function setMaintenanceWorker(MaintenanceWorker $maintenanceWorker): void
@@ -45,9 +44,6 @@ class MaintenanceCommand extends AbstractCommand
      * executes the configured MaintenanceWorker service
      *
      * @see MaintenanceWorker
-     *
-     * @param InputInterface $input
-     * @param OutputInterface $output
      *
      * @return int
      */

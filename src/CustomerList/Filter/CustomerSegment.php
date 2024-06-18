@@ -63,7 +63,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
 
     /**
      * @param DataObject\CustomerSegment[] $segments
-     * @param DataObject\CustomerSegmentGroup|null $segmentGroup
      * @param string $type
      */
     public function __construct(array $segments, DataObject\CustomerSegmentGroup $segmentGroup = null, $type = self::OPERATOR_AND)
@@ -86,7 +85,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
     }
 
     /**
-     * @param array $relationNames
      *
      * @return $this
      */
@@ -101,7 +99,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
      * Build an unique identifier for this filter which acts as join name. Needed in case multiple segment filters for the
      * same segment group are applied.
      *
-     * @param DataObject\CustomerSegmentGroup $segmentGroup
      *
      * @return string
      */
@@ -115,7 +112,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
     }
 
     /**
-     * @param DataObject\CustomerSegment $segment
      *
      * @return $this
      */
@@ -148,8 +144,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
     /**
      * Add a single join with a IN() conditions. If any of the segment IDs matches, the row will be returned
      *
-     * @param CoreListing\Concrete $listing
-     * @param QueryBuilder $queryBuilder
      */
     protected function applyOrQuery(CoreListing\Concrete $listing, QueryBuilder $queryBuilder)
     {
@@ -172,8 +166,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
     /**
      * Add one join per ID we want to search. If any of the joins does not match, the query will fail
      *
-     * @param CoreListing\Concrete $listing
-     * @param QueryBuilder $queryBuilder
      */
     protected function applyAndQuery(CoreListing\Concrete $listing, QueryBuilder $queryBuilder)
     {
@@ -193,8 +185,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
     /**
      * Add the actual INNER JOIN acting as filter
      *
-     * @param CoreListing\Concrete $listing
-     * @param QueryBuilder $queryBuilder
      * @param string $joinName
      * @param int|array $conditionValue
      */

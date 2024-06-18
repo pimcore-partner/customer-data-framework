@@ -49,7 +49,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
      * Returns a list of duplicates for the given customer.
      * Which fields should be used for matching duplicates could be defined in the config of the CMF plugin.
      *
-     * @param CustomerInterface $customer
      * @param int $limit
      *
      * @return \Pimcore\Model\DataObject\Listing\Concrete|null
@@ -75,7 +74,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
      * Returns a list of duplicates/customers which are matching the given data.
      * Which fields should be used for matching duplicates could be defined in the config of the CMF plugin.
      *
-     * @param array $data
      * @param int $limit
      *
      * @return \Pimcore\Model\DataObject\Listing\Concrete|null
@@ -116,8 +114,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
     /**
      * Returns a list of duplicates for the given customer. Duplicates are matched by the fields given in $fields.
      *
-     * @param CustomerInterface $customer
-     * @param array $fields
      * @param int $limit
      *
      * @return \Pimcore\Model\DataObject\Listing\Concrete|null
@@ -167,7 +163,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
     /**
      * Update the duplicate index for the given customer.
      *
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -178,7 +173,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
     }
 
     /**
-     * @param Concrete $list
      * @param string $field
      * @param mixed $value
      *
@@ -221,13 +215,13 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
         }
 
         $type = gettype($value) == 'object' ? get_class($value) : gettype($value);
+
         throw new \Exception(
             sprintf('duplicate check for type of field %s not implemented (type of value: %s)', $field, $type)
         );
     }
 
     /**
-     * @param Concrete $list
      * @param string $field
      * @param string $value
      */
@@ -242,7 +236,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
     }
 
     /**
-     * @param Concrete $list
      * @param string $field
      * @param \DateTime $value
      */
@@ -252,7 +245,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
     }
 
     /**
-     * @param Concrete $list
      * @param string $field
      * @param ElementInterface $value
      */
@@ -262,7 +254,6 @@ class DefaultCustomerDuplicatesService implements CustomerDuplicatesServiceInter
     }
 
     /**
-     * @param Concrete $list
      * @param string $field
      * @param ElementInterface[] $value
      */

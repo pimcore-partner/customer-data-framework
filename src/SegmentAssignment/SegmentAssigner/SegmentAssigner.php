@@ -48,9 +48,6 @@ class SegmentAssigner implements SegmentAssignerInterface
      */
     private $segmentAssignmentIndexTable = '';
 
-    /**
-     * @inheritDoc
-     */
     public function __construct(string $segmentAssignmentTable, string $segmentAssignmentQueueTable, string $segmentAssignmentIndexTable, Connection $db, TypeMapperInterface $typeMapper)
     {
         $this->setSegmentAssignmentTable($segmentAssignmentTable);
@@ -60,89 +57,56 @@ class SegmentAssigner implements SegmentAssignerInterface
         $this->setTypeMapper($typeMapper);
     }
 
-    /**
-     * @return Connection
-     */
     public function getDb(): Connection
     {
         return $this->db;
     }
 
-    /**
-     * @param Connection $db
-     */
     public function setDb(Connection $db)
     {
         $this->db = $db;
     }
 
-    /**
-     * @return TypeMapperInterface
-     */
     public function getTypeMapper(): TypeMapperInterface
     {
         return $this->typeMapper;
     }
 
-    /**
-     * @param TypeMapperInterface $typeMapper
-     */
     public function setTypeMapper(TypeMapperInterface $typeMapper)
     {
         $this->typeMapper = $typeMapper;
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentTable(): string
     {
         return $this->segmentAssignmentTable;
     }
 
-    /**
-     * @param string $segmentAssignmentTable
-     */
     public function setSegmentAssignmentTable(string $segmentAssignmentTable)
     {
         $this->segmentAssignmentTable = $segmentAssignmentTable;
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentQueueTable(): string
     {
         return $this->segmentAssignmentQueueTable;
     }
 
-    /**
-     * @param string $segmentAssignmentQueueTable
-     */
     public function setSegmentAssignmentQueueTable(string $segmentAssignmentQueueTable)
     {
         $this->segmentAssignmentQueueTable = $segmentAssignmentQueueTable;
     }
 
-    /**
-     * @return string
-     */
     public function getSegmentAssignmentIndexTable(): string
     {
         return $this->segmentAssignmentIndexTable;
     }
 
-    /**
-     * @param string $segmentAssignmentIndexTable
-     */
     public function setSegmentAssignmentIndexTable(string $segmentAssignmentIndexTable)
     {
         $this->segmentAssignmentIndexTable = $segmentAssignmentIndexTable;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function assign(ElementInterface $element, bool $breaksInheritance, array $segments): bool
     {
         $segmentIds = array_map(static function ($segment) {
@@ -152,9 +116,6 @@ class SegmentAssigner implements SegmentAssignerInterface
         return $this->assignById((string) $element->getId(), $this->getTypeMapper()->getTypeStringByObject($element), $breaksInheritance, $segmentIds);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function assignById(string $elementId, string $type, bool $breaksInheritance, array $segmentIds): bool
     {
         try {
@@ -168,7 +129,7 @@ class SegmentAssigner implements SegmentAssignerInterface
                 'elementId' => $elementId,
                 'elementType' => $type,
                 'segmentIds' => join(',', $segmentIds),
-                'breaksInheritance' => (int)$breaksInheritance
+                'breaksInheritance' => (int)$breaksInheritance,
             ]);
 
             $this->db->commit();
@@ -181,9 +142,6 @@ class SegmentAssigner implements SegmentAssignerInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function removeElementById(string $elementId, string $type): bool
     {
         $db = $this->getDb();
@@ -208,7 +166,7 @@ class SegmentAssigner implements SegmentAssignerInterface
                 $this->getDb()->executeQuery($statement,
                     [
                         'elementId' => $elementId,
-                        'elementType' => $type
+                        'elementType' => $type,
                     ]
                 );
             }

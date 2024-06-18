@@ -99,8 +99,6 @@ abstract class AbstractFieldValue extends AbstractFilter implements OnCreateQuer
      *
      * @param string $field
      * @param mixed $value
-     * @param CoreListing\Concrete $listing
-     * @param QueryBuilder $queryBuilder
      * @param string $operator
      */
     protected function applyFieldCondition(

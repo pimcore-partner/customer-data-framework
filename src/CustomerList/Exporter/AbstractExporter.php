@@ -52,12 +52,13 @@ abstract class AbstractExporter implements ExporterInterface
     protected $segmentColumnOrder = [];
 
     const COLUMNS = 'columns';
+
     const ROWS = 'rows';
+
     const SEGMENT_IDS = 'segmentIds';
 
     /**
      * @param string $name
-     * @param array $properties
      * @param bool $exportSegmentsAsColumns
      */
     public function __construct($name, array $properties, $exportSegmentsAsColumns)
@@ -91,9 +92,6 @@ abstract class AbstractExporter implements ExporterInterface
         return $this->properties;
     }
 
-    /**
-     * @param array $properties
-     */
     public function setProperties(array $properties)
     {
         $this->properties = $properties;
@@ -107,9 +105,6 @@ abstract class AbstractExporter implements ExporterInterface
         return $this->listing;
     }
 
-    /**
-     * @param Concrete $listing
-     */
     public function setListing(Concrete $listing)
     {
         $this->listing = $listing;
@@ -157,7 +152,7 @@ abstract class AbstractExporter implements ExporterInterface
 
         return [
             self::ROWS => $rows,
-            self::SEGMENT_IDS => array_unique($allSegmentIds)
+            self::SEGMENT_IDS => array_unique($allSegmentIds),
         ];
     }
 
@@ -178,7 +173,6 @@ abstract class AbstractExporter implements ExporterInterface
     }
 
     /**
-     * @param array $exportData
      *
      * @return array
      */
@@ -221,7 +215,6 @@ abstract class AbstractExporter implements ExporterInterface
     }
 
     /**
-     * @param array $exportData
      *
      * @return array
      */

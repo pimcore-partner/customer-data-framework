@@ -125,7 +125,6 @@ class MySqlDao implements DaoInterface
     }
 
     /**
-     * @param QueryBuilder $select
      *
      * @return $this
      */

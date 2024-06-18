@@ -35,17 +35,11 @@ class MaintenanceWorker
         $this->setServiceConfiguration($serviceConfiguration);
     }
 
-    /**
-     * @return array
-     */
     public function getServiceConfiguration(): array
     {
         return $this->serviceConfiguration;
     }
 
-    /**
-     * @param array $serviceConfiguration
-     */
     public function setServiceConfiguration(array $serviceConfiguration)
     {
         $this->serviceConfiguration = $serviceConfiguration;

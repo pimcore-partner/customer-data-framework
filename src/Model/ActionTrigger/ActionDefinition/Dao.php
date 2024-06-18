@@ -68,12 +68,14 @@ class Dao extends Model\Dao\AbstractDao
     public function delete()
     {
         $this->db->beginTransaction();
+
         try {
             $this->db->executeQuery('DELETE FROM ' . self::TABLE_NAME . ' WHERE id = ?', [$this->model->getId()]);
 
             $this->db->commit();
         } catch (\Exception $e) {
             $this->db->rollBack();
+
             throw $e;
         }
     }

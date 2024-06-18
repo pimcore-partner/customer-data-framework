@@ -43,7 +43,6 @@ class SearchQuery extends AbstractFilter implements OnCreateQueryFilterInterface
     protected $query;
 
     /**
-     * @param array $fields
      * @param string $query
      */
     public function __construct(array $fields, $query)
@@ -68,7 +67,7 @@ class SearchQuery extends AbstractFilter implements OnCreateQueryFilterInterface
         $parserQueryBuilder = new Doctrine(
             $this->fields,
             [
-                'stripWildcards' => false // allow LIKE wildcards
+                'stripWildcards' => false, // allow LIKE wildcards
             ]
         );
 
@@ -91,7 +90,6 @@ class SearchQuery extends AbstractFilter implements OnCreateQueryFilterInterface
     }
 
     /**
-     * @param \Exception $e
      *
      * @throws SearchQueryException
      */

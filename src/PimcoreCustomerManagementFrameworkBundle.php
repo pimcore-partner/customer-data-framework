@@ -59,7 +59,7 @@ class PimcoreCustomerManagementFrameworkBundle extends AbstractPimcoreBundle imp
             '/bundles/pimcorecustomermanagementframework/js/pimcore/targeting/actions.js',
             '/bundles/pimcorecustomermanagementframework/js/pimcore/targeting/conditions.js',
             '/bundles/pimcorecustomermanagementframework/js/SegmentAddressSource.js',
-            '/bundles/pimcorecustomermanagementframework/js/WebserviceConfigurationView.js'
+            '/bundles/pimcorecustomermanagementframework/js/WebserviceConfigurationView.js',
         ];
     }
 

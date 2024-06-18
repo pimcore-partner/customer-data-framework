@@ -33,7 +33,6 @@ class BoolCombinator extends AbstractFilter implements OnCreateQueryFilterInterf
 
     /**
      * @param OnCreateQueryFilterInterface[] $filters
-     * @param string $operator
      */
     public function __construct(array $filters, string $operator = 'AND')
     {

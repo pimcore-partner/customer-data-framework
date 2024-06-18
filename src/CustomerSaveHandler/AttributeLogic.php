@@ -57,16 +57,12 @@ class AttributeLogic extends AbstractCustomerSaveHandler
         $this->fieldMapping = $fieldMapping;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function isOriginalCustomerNeeded()
     {
         return true;
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
@@ -88,7 +84,6 @@ class AttributeLogic extends AbstractCustomerSaveHandler
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string $from
      * @param string $to
      * @param bool $overwriteIfNotEmpty
@@ -124,7 +119,6 @@ class AttributeLogic extends AbstractCustomerSaveHandler
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string $from
      * @param string $to
      */

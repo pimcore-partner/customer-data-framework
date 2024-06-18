@@ -31,9 +31,6 @@ class DefaultCustomerDuplicatesView implements CustomerDuplicatesViewInterface
      */
     protected $viewFormatter;
 
-    /**
-     * @param ViewFormatterInterface $viewFormatter
-     */
     public function __construct(array $listFields, ViewFormatterInterface $viewFormatter)
     {
         $this->listFields = $listFields;

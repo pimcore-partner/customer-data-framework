@@ -28,28 +28,24 @@ interface DuplicatesIndexInterface
     public function recreateIndex();
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function updateDuplicateIndexForCustomer(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */
     public function deleteCustomerFromDuplicateIndex(CustomerInterface $customer);
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return bool
      */
     public function isRelevantForDuplicateIndex(CustomerInterface $customer);
 
     /**
-     * @param OutputInterface $output
      *
      * @return void
      */
@@ -71,7 +67,6 @@ interface DuplicatesIndexInterface
      * @param int $page
      * @param int $pageSize
      * @param bool $declined
-     * @param Concrete|null $filterCustomerList
      *
      * @return PaginationInterface
      */

@@ -34,7 +34,9 @@ abstract class SqlActivityStore
     use PrimaryKeyTrait;
 
     const ACTIVITIES_TABLE = 'plugin_cmf_activities';
+
     const ACTIVITIES_METADATA_TABLE = 'plugin_cmf_activities_metadata';
+
     const DELETIONS_TABLE = 'plugin_cmf_deletions';
 
     /**
@@ -42,9 +44,6 @@ abstract class SqlActivityStore
      */
     protected $paginator;
 
-    /**
-     * @param PaginatorInterface $paginator
-     */
     public function __construct(PaginatorInterface $paginator)
     {
         $this->paginator = $paginator;
@@ -69,7 +68,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return mixed any data which the activity repository / service can save
      */
@@ -140,7 +138,7 @@ abstract class SqlActivityStore
                     $insertData = [
                         'activityId' => $entry->getId(),
                         'key' => $key,
-                        'data' => $data
+                        'data' => $data,
                     ];
 
                     $insertData = Helper::quoteDataIdentifiers($db, $insertData);
@@ -170,8 +168,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param ActivityInterface                $activity
-     * @param ActivityStoreEntryInterface|null $entry
      *
      * @return null|ActivityStoreEntryInterface
      *
@@ -193,7 +189,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param ActivityStoreEntryInterface $entry
      * @param bool                        $updateAttributes
      *
      * @throws \Exception
@@ -221,7 +216,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param array $data
      *
      * @return ActivityStoreEntryInterface
      *
@@ -265,9 +259,6 @@ abstract class SqlActivityStore
         return $db->fetchFirstColumn($sql);
     }
 
-    /**
-     * @param CustomerInterface $customer
-     */
     public function deleteCustomer(CustomerInterface $customer)
     {
         $db = Db::get();
@@ -278,6 +269,7 @@ abstract class SqlActivityStore
     {
         $db = Db::get();
         $db->beginTransaction();
+
         try {
             $db->executeQuery('DELETE FROM '.self::ACTIVITIES_TABLE.' WHERE id = ?', [$entry->getId()]);
 
@@ -302,7 +294,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return bool
      *
@@ -324,8 +315,8 @@ abstract class SqlActivityStore
         $db = Db::get();
 
         $sql = 'select * from '.self::DELETIONS_TABLE.' where entityType = '.$db->quote(
-                $entityType
-            ).' and creationDate >= '.$db->quote($deletionsSinceTimestamp);
+            $entityType
+        ).' and creationDate >= '.$db->quote($deletionsSinceTimestamp);
 
         $data = $db->fetchAllAssociative($sql);
 
@@ -340,7 +331,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string|null $activityType
      *
      * @return int
@@ -361,7 +351,6 @@ abstract class SqlActivityStore
     }
 
     /**
-     * @param ActivityInterface $activity
      *
      * @return ActivityStoreEntryInterface|null
      */

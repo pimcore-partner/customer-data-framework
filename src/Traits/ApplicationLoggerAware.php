@@ -66,7 +66,6 @@ trait ApplicationLoggerAware
     }
 
     /**
-     * @param LoggerInterface $logger
      *
      * @return $this
      */

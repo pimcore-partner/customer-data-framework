@@ -23,9 +23,6 @@ use Pimcore\Model\DataObject\Data\ObjectMetadata;
 class MetadataFiller
 {
     /**
-     * @param CustomerInterface $customer
-     * @param array $addSegments
-     * @param array $addSegments
      * @param bool $calculated
      * @param int|true|null $segmentCreatedTimestamp
      * @param int|true|null $segmentApplicationCounter

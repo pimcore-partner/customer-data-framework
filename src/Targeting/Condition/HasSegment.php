@@ -40,10 +40,6 @@ class HasSegment extends AbstractVariableCondition implements DataProviderDepend
      */
     private $options = [];
 
-    /**
-     * @param int|null $segmentId
-     * @param array $options
-     */
     public function __construct(int $segmentId = null, array $options = [])
     {
         $this->segmentId = $segmentId;
@@ -60,7 +56,7 @@ class HasSegment extends AbstractVariableCondition implements DataProviderDepend
             'operator' => '>=',
             'value' => 1,
             'considerCustomerSegments' => true,
-            'considerTrackedSegments' => true
+            'considerTrackedSegments' => true,
         ]);
 
         $resolver->setAllowedTypes('operator', 'string');
@@ -75,9 +71,6 @@ class HasSegment extends AbstractVariableCondition implements DataProviderDepend
         $resolver->setAllowedTypes('considerTrackedSegments', 'bool');
     }
 
-    /**
-     * @inheritDoc
-     */
     public static function fromConfig(array $config): self
     {
         $segmentId = null;
@@ -97,14 +90,11 @@ class HasSegment extends AbstractVariableCondition implements DataProviderDepend
                 'operator' => $config['condition_operator'] ?? '>=',
                 'value' => $config['value'] ?? 1,
                 'considerCustomerSegments' => $config['considerCustomerSegments'] ?? true,
-                'considerTrackedSegments' => $config['considerTrackedSegments'] ?? true
+                'considerTrackedSegments' => $config['considerTrackedSegments'] ?? true,
             ]
         );
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDataProviderKeys(): array
     {
         $providers = [];
@@ -120,17 +110,11 @@ class HasSegment extends AbstractVariableCondition implements DataProviderDepend
         return $providers;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function canMatch(): bool
     {
         return null !== $this->segmentId;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function match(VisitorInfo $visitorInfo): bool
     {
         $segments = $this->loadSegments($visitorInfo);

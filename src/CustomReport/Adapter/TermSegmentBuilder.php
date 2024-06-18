@@ -108,8 +108,9 @@ class TermSegmentBuilder extends Sql
                     switch ($operator) {
                         case 'like':
                             $condition[] = $db->quoteIdentifier($filter['property']).' LIKE '.$db->quote(
-                                    '%'.$value.'%'
-                                );
+                                '%'.$value.'%'
+                            );
+
                             break;
                         case 'lt':
                         case 'gt':
@@ -122,11 +123,13 @@ class TermSegmentBuilder extends Sql
                             ];
 
                             $condition[] = $db->quoteIdentifier(
-                                    $filter['property']
-                                ).' '.$compMapping[$operator].' '.$db->quote($value);
+                                $filter['property']
+                            ).' '.$compMapping[$operator].' '.$db->quote($value);
+
                             break;
                         case '=':
                             $condition[] = $db->quoteIdentifier($filter['property']).' = '.$db->quote($value);
+
                             break;
                     }
                 }

@@ -21,18 +21,27 @@ use CustomerManagementFrameworkBundle\SegmentManager\SegmentManagerInterface;
 class GenderSegmentBuilder extends AbstractSegmentBuilder
 {
     const MALE = 'male';
+
     const FEMALE = 'female';
+
     const NOT_SET = 'not-set';
 
     private $maleSegment;
+
     private $femaleSegment;
+
     private $notsetSegment;
+
     private $segmentGroup;
 
     private $segmentGroupName;
+
     private $maleSegmentName;
+
     private $femaleSegmentName;
+
     private $notsetSegmentName;
+
     private $valueMapping;
 
     public function __construct(
@@ -55,7 +64,6 @@ class GenderSegmentBuilder extends AbstractSegmentBuilder
     /**
      * prepare data and configurations which could be reused for all calculateSegments() calls
      *
-     * @param SegmentManagerInterface $segmentManager
      *
      * @return void
      */
@@ -82,8 +90,6 @@ class GenderSegmentBuilder extends AbstractSegmentBuilder
     /**
      * build segment(s) for given customer
      *
-     * @param CustomerInterface $customer
-     * @param SegmentManagerInterface $segmentManager
      *
      * @return void
      */

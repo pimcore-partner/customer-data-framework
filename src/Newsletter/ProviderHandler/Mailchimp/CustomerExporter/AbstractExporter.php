@@ -40,9 +40,6 @@ abstract class AbstractExporter
      */
     protected $newsletterQueue;
 
-    /**
-     * @param NewsletterQueueInterface $newsletterQueue
-     */
     public function __construct(NewsletterQueueInterface $newsletterQueue)
     {
         $this->newsletterQueue = $newsletterQueue;
@@ -74,9 +71,7 @@ abstract class AbstractExporter
     /**
      * used to be able to track the last response independently of the concrete mailchimp account
      *
-     * @param MailChimpExportService $exportService
      *
-     * @return MailChimp
      */
     protected function getApiClientFromExportService(MailChimpExportService $exportService): MailChimp
     {

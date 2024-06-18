@@ -34,7 +34,6 @@ class DefaultCustomerSaveValidator implements CustomerSaveValidatorInterface
     /**
      * DefaultCustomerSaveValidator constructor.
      *
-     * @param array $requiredFields
      * @param bool $checkForDuplicates
      */
     public function __construct(array $requiredFields, $checkForDuplicates)
@@ -44,7 +43,6 @@ class DefaultCustomerSaveValidator implements CustomerSaveValidatorInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param bool $withDuplicatesCheck
      *
      * @return bool
@@ -65,7 +63,6 @@ class DefaultCustomerSaveValidator implements CustomerSaveValidatorInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return bool
      *
@@ -109,7 +106,6 @@ class DefaultCustomerSaveValidator implements CustomerSaveValidatorInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return bool
      *
@@ -137,7 +133,6 @@ class DefaultCustomerSaveValidator implements CustomerSaveValidatorInterface
     }
 
     /**
-     * @param CustomerInterface $customer
      * @param string $field
      * @param bool $throwException
      *

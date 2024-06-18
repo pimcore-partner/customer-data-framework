@@ -48,9 +48,6 @@ class SegmentsOfCustomersController extends RestHandlerController
         return $response;
     }
 
-    /**
-     * @return SegmentsOfCustomerHandler
-     */
     protected function getHandler(): SegmentsOfCustomerHandler
     {
         return \Pimcore::getContainer()->get('cmf.rest.segments_of_customer_handler');

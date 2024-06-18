@@ -41,7 +41,6 @@ class SalutationToGender extends AbstractCustomerSaveHandler
     }
 
     /**
-     * @param CustomerInterface $customer
      *
      * @return void
      */

@@ -72,7 +72,6 @@ abstract class AbstractTermSegmentBuilderDefinition extends \Pimcore\Model\DataO
     }
 
     /**
-     * @param array $phrases
      *
      * @return array
      */
@@ -86,11 +85,13 @@ abstract class AbstractTermSegmentBuilderDefinition extends \Pimcore\Model\DataO
             foreach ($allPhrases as $_term) {
                 if ($term == $_term) {
                     $result[] = $term;
+
                     break;
                 }
 
                 if (@preg_match($_term, $term)) {
                     $result[] = $term;
+
                     break;
                 }
             }
@@ -104,7 +105,6 @@ abstract class AbstractTermSegmentBuilderDefinition extends \Pimcore\Model\DataO
     /**
      * Adds/deletes CustomerSegment objects within given $customerSegmentGroup depending on defined terms within this TermSegmentBuilderDefinition.
      *
-     * @param CustomerSegmentGroup $customerSegmentGroup
      *
      * @return void;
      */
@@ -130,6 +130,7 @@ abstract class AbstractTermSegmentBuilderDefinition extends \Pimcore\Model\DataO
             foreach ($updatedSegments as $updatedSegment) {
                 if ($currentSegment->getId() == $updatedSegment->getId()) {
                     unset($currentSegments[$key]);
+
                     break;
                 }
             }

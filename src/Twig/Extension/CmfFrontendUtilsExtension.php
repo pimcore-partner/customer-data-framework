@@ -51,10 +51,6 @@ class CmfFrontendUtilsExtension extends AbstractExtension
     /**
      * CmfFrontendUtilsExtension constructor.
      *
-     * @param Packages $packages
-     * @param JsConfigService $jsConfigService
-     * @param SegmentManagerInterface $segmentManager
-     * @param ExporterManagerInterface $customerExportManager
      */
     public function __construct(Packages $packages, JsConfigService $jsConfigService, SegmentManagerInterface $segmentManager, ExporterManagerInterface $customerExportManager)
     {
@@ -64,9 +60,6 @@ class CmfFrontendUtilsExtension extends AbstractExtension
         $this->customerExportManager = $customerExportManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [
@@ -92,7 +85,7 @@ class CmfFrontendUtilsExtension extends AbstractExtension
     {
         return [
             new TwigFilter('cmf_printFieldCombinations', [$this, 'printFieldCombinations']),
-            new TwigFilter('cmf_codeList', [$this, 'buildCodeList'])
+            new TwigFilter('cmf_codeList', [$this, 'buildCodeList']),
         ];
     }
 

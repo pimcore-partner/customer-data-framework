@@ -37,7 +37,6 @@ trait LoggerAware
     }
 
     /**
-     * @param LoggerInterface $logger
      *
      * @return $this
      */
