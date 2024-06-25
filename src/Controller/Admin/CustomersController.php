@@ -165,7 +165,6 @@ class CustomersController extends Admin
 
         $idField = Service::getVersionDependentDatabaseColumnName('id');
         $query = $listing->getQueryBuilder()
-            ->resetQueryPart('select')
             ->select($idField);
         $ids = Db::get()->fetchFirstColumn((string)$query);
 

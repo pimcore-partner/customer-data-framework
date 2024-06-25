@@ -58,7 +58,6 @@ class ActivitiesController extends UserAwareController implements KernelControll
             $list->setOrder('desc');
 
             $select = $list->getQueryBuilder()
-                ->resetQueryParts(['select', 'from'])
                 ->from(MariaDb::ACTIVITIES_TABLE)
                 ->select('type')
                 ->distinct();

@@ -492,7 +492,6 @@ class Mailchimp implements NewsletterProviderHandlerInterface
         $groups = $this->getExportableSegmentGroups();
         $idField = Service::getVersionDependentDatabaseColumnName('id');
         $select = $groups->getQueryBuilder()
-            ->resetQueryPart('select')
             ->select($idField);
 
         $segments = $this->segmentManager->getSegments();
