@@ -1,3 +1,6 @@
+#### v4.2.0
+- Removed the package "rybakit/twig-deferred-extension"
+
 #### v4.0.0
  - Added primary key to `plugin_cmf_deletions` table.
  - Removed the package "hwi/oauth-bundle".
