@@ -14,13 +14,13 @@
   },
   "require": {
     "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
-    "openspout/openspout": "^4.0",
     "doctrine/dbal": "^3.4.2",
     "doctrine/migrations": "^3.0.2",
     "dragonmantank/cron-expression": "^3.0.2",
     "drewm/mailchimp-api": "^2.2",
     "guzzlehttp/guzzle": "^7.2",
     "knplabs/knp-components": "^4.0",
+    "openspout/openspout": "^4.0",
     "pear/archive_tar": "^1.4.14",
     "pimcore/newsletter-bundle": "^1.0",
     "pimcore/number-sequence-generator": "^2.0",
@@ -29,6 +29,7 @@
     "pimcore/pimcore": "^11.0",
     "pimcore/search-query-parser": "^1.3",
     "pimcore/personalization-bundle": "^1.0",
+    "rybakit/twig-deferred-extension": "^3.0",
     "symfony/asset": "^6.2",
     "symfony/config": "^6.2",
     "symfony/console": "^6.2",
@@ -44,17 +45,20 @@
     "symfony/stopwatch": "^6.2"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.5",
     "codeception/codeception": "^5.0.3",
     "codeception/module-symfony": "^3.1.0",
     "codeception/phpunit-wrapper": "^9",
     "php-http/guzzle7-adapter": "^0.1.1",
     "phpstan/phpstan": "^1.9",
-    "phpstan/phpstan-symfony": "^1.2.14"
+    "phpstan/phpstan-symfony": "^1.2.14",
+    "phpunit/phpunit": "^9.5"
+  },
+  "conflict": {
+    "twig/twig": "^3.9.0"
   },
   "suggest": {
-    "php-http/httplug-bundle": "^1.20.0",
-    "php-http/guzzle7-adapter": "^0.1.1"
+    "php-http/guzzle7-adapter": "^0.1.1",
+    "php-http/httplug-bundle": "^1.20.0"
   },
   "autoload": {
     "psr-4": {
