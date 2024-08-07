@@ -7,8 +7,3 @@ services:
     CustomerManagementFrameworkBundle\Twig\Extension\CmfUrlUtilsExtension:
         autowire: true
         tags: [ 'twig.extension' ]
-
-    # the deferred extension is needed for placeholder helpers to work
-    # as otherwise the placeholder block would be rendered before any
-    # content was added (e.g. headTitle)
-    Twig\DeferredExtension\DeferredExtension: ~
