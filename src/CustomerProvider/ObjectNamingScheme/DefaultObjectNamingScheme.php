@@ -152,7 +152,7 @@ class DefaultObjectNamingScheme implements ObjectNamingSchemeInterface
         foreach ($namingScheme as $i => $namingSchemeItem) {
             preg_match_all('/{([a-zA-Z0-9]*)}/', $namingSchemeItem, $matchedPlaceholder);
 
-            if (sizeof($matchedPlaceholder)) {
+            if (count($matchedPlaceholder[0]) > 0) {
                 foreach ($matchedPlaceholder[0] as $j => $placeholder) {
                     $field = $matchedPlaceholder[1][$j];
 

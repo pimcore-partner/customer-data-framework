@@ -23,10 +23,10 @@ jobs:
                     - { php-version: "8.3", dependencies: "highest", pimcore_version: "11.x-dev as 11.3.9", experimental: true }
         steps:
             - name: "Checkout code"
-              uses: "actions/checkout@v2"
+              uses: "actions/checkout@v4"
 
             - name: "Install PHP"
-              uses: "shivammathur/setup-php@v2"
+              uses: shivammathur/setup-php@v2
               with:
                   coverage: "none"
                   php-version: "${{ matrix.php-version }}"
@@ -46,7 +46,7 @@ jobs:
                 fi    
 
             - name: "Install dependencies with Composer"
-              uses: "ramsey/composer-install@v2"
+              uses: ramsey/composer-install@v3
               with:
                   dependency-versions: "${{ matrix.dependencies }}"
 
@@ -64,7 +64,7 @@ jobs:
 
             - name: "Upload baseline file"
               if: ${{ failure() }}
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   name: phpstan-baseline.neon
                   path: phpstan-baseline.neon
