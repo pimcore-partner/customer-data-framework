@@ -48,8 +48,8 @@ class SegmentAssignmentController extends UserAwareController
      */
     public function inheritableSegments(Request $request, SegmentManagerInterface $segmentManager): JsonResponse
     {
-        $id = $request->get('id');
-        $type = $request->get('type');
+        $id = $request->query->getInt('id');
+        $type = $request->query->getString('type');
         if (!$type || !$id) {
             return $this->jsonResponse(['data' => []]);
         }
@@ -80,8 +80,8 @@ class SegmentAssignmentController extends UserAwareController
      */
     public function assignedSegments(Request $request): JsonResponse
     {
-        $id = $request->get('id') ?? '';
-        $type = $request->get('type') ?? '';
+        $id = $request->query->getInt('id');
+        $type = $request->query->getString('type');
         $assignmentTable = $this->getParameter('cmf.segmentAssignment.table.raw');
         $segmentIds = \Pimcore\Db::get()->fetchOne("SELECT `segments` FROM $assignmentTable WHERE `elementId` = ? AND `elementType` = ?", [$id, $type]);
 
@@ -101,10 +101,10 @@ class SegmentAssignmentController extends UserAwareController
      */
     public function assign(Request $request): JsonResponse
     {
-        $id = $request->get('id') ?? '';
-        $type = $request->get('type') ?? '';
-        $breaksInheritance = $request->get('breaksInheritance') === 'true';
-        $segmentIds = json_decode($request->get('segmentIds'), true) ?? [];
+        $id = $request->request->getString('id');
+        $type = $request->request->getString('type');
+        $breaksInheritance = $request->request->getBoolean('breaksInheritance');
+        $segmentIds = json_decode($request->request->getString('segmentIds'), true) ?? [];
 
         $success = $this->segmentAssigner->assignById($id, $type, $breaksInheritance, $segmentIds);
 
@@ -116,8 +116,8 @@ class SegmentAssignmentController extends UserAwareController
      */
     public function breaksInheritance(Request $request): JsonResponse
     {
-        $id = $request->get('id') ?? '';
-        $type = $request->get('type') ?? '';
+        $id = $request->request->getString('id');
+        $type = $request->request->getString('type');
         $assignmentTable = $this->getParameter('cmf.segmentAssignment.table.raw');
 
         $breaksInheritance = \Pimcore\Db::get()->fetchOne("SELECT `breaksInheritance` FROM $assignmentTable WHERE `elementId` = ? AND `elementType` = ?", [$id, $type]);

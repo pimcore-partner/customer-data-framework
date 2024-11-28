@@ -104,8 +104,8 @@ class Admin extends UserAwareController implements KernelControllerEventInterfac
             $defaultPageSize = $this->defaultPageSize;
         }
 
-        $page = (int)$request->get('page', 1);
-        $pageSize = (int)$request->get('perPage', $defaultPageSize);
+        $page = $request->query->getInt('page', 1);
+        $pageSize = $request->query->getInt('perPage', $defaultPageSize);
 
         return $this->paginator->paginate($data, $page, $pageSize);
     }

@@ -101,7 +101,7 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
      */
     public function readRecord(Request $request)
     {
-        $customer = $this->loadCustomer($request->get('id'));
+        $customer = $this->loadCustomer($request->attributes->getInt('id'));
 
         return $this->createCustomerResponse($customer, $request);
     }
@@ -139,7 +139,7 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
      */
     public function updateRecord(Request $request)
     {
-        $customer = $this->loadCustomer($request->get('id'));
+        $customer = $this->loadCustomer($request->attributes->getInt('id'));
         $data = $this->getRequestData($request);
 
         try {
@@ -160,7 +160,7 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
      */
     public function deleteRecord(Request $request)
     {
-        $customer = $this->loadCustomer($request->get('id'));
+        $customer = $this->loadCustomer($request->attributes->getInt('id'));
 
         try {
             $this->customerProvider->delete($customer);

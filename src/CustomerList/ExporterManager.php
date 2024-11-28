@@ -78,7 +78,7 @@ class ExporterManager implements ExporterManagerInterface
      */
     public function getExportTmpData(Request $request)
     {
-        if (!$jobId = $request->get('jobId')) {
+        if (!$jobId = $request->query->getString('jobId')) {
             throw new \Exception('no jobId given');
         }
 
