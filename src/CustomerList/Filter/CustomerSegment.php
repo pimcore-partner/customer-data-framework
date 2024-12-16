@@ -215,22 +215,21 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
         );
 
         $condition = $baseCondition;
-        $valuePlaceHolder = $joinName . '_value';
+        $valuePlaceholder = $joinName . '_value';
         if ($this->type === self::OPERATOR_OR) {
             // must match any of the passed IDs
             $condition .= sprintf(
                 ' AND %1$s.dest_id IN (%2$s)',
                 $joinName,
-                ':' . $valuePlaceHolder
+                ':' . $valuePlaceholder
             );
-            $value = implode(',', $conditionValue);
-
+            $value = implode(',', array_keys($conditionValue));
         } else {
             // runs an extra join for every ID - all joins must match
             $condition .= sprintf(
                 ' AND %1$s.dest_id = %2$s',
                 $joinName,
-                ':' . $valuePlaceHolder
+                ':' . $valuePlaceholder
             );
             $value = $conditionValue;
         }
@@ -242,6 +241,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
             $condition
         );
 
-        $queryBuilder->setParameter($valuePlaceHolder, $value);
+        $queryBuilder->setParameter($valuePlaceholder, $value);
     }
 }
