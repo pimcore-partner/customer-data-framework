@@ -18,6 +18,8 @@ namespace CustomerManagementFrameworkBundle\CustomerList\Filter;
 use CustomerManagementFrameworkBundle\Listing\Filter\AbstractFilter;
 use CustomerManagementFrameworkBundle\Listing\Filter\OnCreateQueryFilterInterface;
 use CustomerManagementFrameworkBundle\Service\MariaDb;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Exception;
 use InvalidArgumentException;
@@ -216,6 +218,7 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
 
         $condition = $baseCondition;
         $valuePlaceholder = $joinName . '_value';
+        $parameterType = ParameterType::INTEGER;
         if ($this->type === self::OPERATOR_OR) {
             // must match any of the passed IDs
             $condition .= sprintf(
@@ -223,7 +226,8 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
                 $joinName,
                 ':' . $valuePlaceholder
             );
-            $value = implode(',', array_keys($conditionValue));
+            $value = array_keys($conditionValue);
+            $parameterType = Connection::PARAM_INT_ARRAY;
         } else {
             // runs an extra join for every ID - all joins must match
             $condition .= sprintf(
@@ -241,6 +245,6 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
             $condition
         );
 
-        $queryBuilder->setParameter($valuePlaceholder, $value);
+        $queryBuilder->setParameter($valuePlaceholder, $value, $parameterType);
     }
 }
