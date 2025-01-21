@@ -65,7 +65,7 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
      * @param DataObject\CustomerSegment[] $segments
      * @param string $type
      */
-    public function __construct(array $segments, DataObject\CustomerSegmentGroup $segmentGroup = null, $type = self::OPERATOR_AND)
+    public function __construct(array $segments, ?DataObject\CustomerSegmentGroup $segmentGroup = null, $type = self::OPERATOR_AND)
     {
         $this->identifier = $this->buildIdentifier($segmentGroup);
         $this->segmentGroup = $segmentGroup;
@@ -102,7 +102,7 @@ class CustomerSegment extends AbstractFilter implements OnCreateQueryFilterInter
      *
      * @return string
      */
-    protected function buildIdentifier(DataObject\CustomerSegmentGroup $segmentGroup = null)
+    protected function buildIdentifier(?DataObject\CustomerSegmentGroup $segmentGroup = null)
     {
         return sprintf(
             'fltr_seg_%d_%d',

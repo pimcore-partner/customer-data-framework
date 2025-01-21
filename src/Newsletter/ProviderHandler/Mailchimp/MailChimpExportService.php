@@ -149,7 +149,7 @@ class MailChimpExportService
      *
      * @return Note
      */
-    public function createExportNote(ElementInterface $object, $listId, $remoteId, \DateTime $date = null, $title = 'Mailchimp Export', $additionalFields = [])
+    public function createExportNote(ElementInterface $object, $listId, $remoteId, ?\DateTime $date = null, $title = 'Mailchimp Export', $additionalFields = [])
     {
         if (!$date) {
             $date = Carbon::now();

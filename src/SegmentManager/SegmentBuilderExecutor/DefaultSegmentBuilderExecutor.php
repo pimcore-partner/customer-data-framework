@@ -88,7 +88,7 @@ class DefaultSegmentBuilderExecutor implements SegmentBuilderExecutorInterface
     public function buildCalculatedSegments(
         $changesQueueOnly = true,
         $segmentBuilderServiceId = null,
-        array $customQueue = null,
+        ?array $customQueue = null,
         $activeState = null,
         $options = [],
         $captureSignals = false
