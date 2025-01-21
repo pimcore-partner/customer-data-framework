@@ -141,7 +141,7 @@ abstract class AbstractRestController extends UserAwareController
         );
     }
 
-    protected function createNotFoundResponseException($message = null, \Exception $previous = null)
+    protected function createNotFoundResponseException($message = null, ?\Exception $previous = null)
     {
         return new ResponseException($this->createErrorResponse(
             $message ?: Response::$statusTexts[Response::HTTP_NOT_FOUND],

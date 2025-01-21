@@ -213,7 +213,7 @@ class DefaultSegmentManager implements SegmentManagerInterface
         }
     }
 
-    public function getSegmentByReference($segmentReference, CustomerSegmentGroup $segmentGroup = null, $calculated = null)
+    public function getSegmentByReference($segmentReference, ?CustomerSegmentGroup $segmentGroup = null, $calculated = null)
     {
         $list = $this->getSegments()
             ->setUnpublished(true)

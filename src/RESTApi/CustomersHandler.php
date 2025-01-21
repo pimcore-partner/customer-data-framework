@@ -210,7 +210,7 @@ class CustomersHandler extends AbstractHandler implements CrudHandlerInterface
     protected function createCustomerResponse(
         CustomerInterface $customer,
         Request $request,
-        ExportCustomersFilterParams $params = null
+        ?ExportCustomersFilterParams $params = null
     ) {
         if (null === $params) {
             $params = ExportCustomersFilterParams::fromRequest($request);

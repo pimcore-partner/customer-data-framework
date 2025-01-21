@@ -235,7 +235,7 @@ class DefaultMariaDbDuplicatesIndex implements DuplicatesIndexInterface
         );
     }
 
-    public function getPotentialDuplicates($page, $pageSize = 100, $declined = false, Concrete $filterCustomerList = null)
+    public function getPotentialDuplicates($page, $pageSize = 100, $declined = false, ?Concrete $filterCustomerList = null)
     {
         $db = \Pimcore\Db::get();
 

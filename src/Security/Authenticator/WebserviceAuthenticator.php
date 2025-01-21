@@ -84,7 +84,7 @@ class WebserviceAuthenticator extends AbstractAuthenticator implements Interacti
         );
     }
 
-    private function createAccessDeniedException(\Throwable $previous = null)
+    private function createAccessDeniedException(?\Throwable $previous = null)
     {
         return new AccessDeniedHttpException('API request needs either a valid API key or a valid session.', $previous);
     }
