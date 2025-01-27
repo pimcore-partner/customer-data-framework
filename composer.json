@@ -83,6 +83,9 @@
       "bundles": [
         "CustomerManagementFrameworkBundle\\PimcoreCustomerManagementFrameworkBundle"
       ]
-    }
+    },
+    "branch-alias": {
+        "5.x": "4.x-dev"
+    }    
   }
 }
