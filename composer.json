@@ -14,7 +14,7 @@
   },
   "require": {
     "php": "~8.1.0 || ~8.2.0",
-    "doctrine/dbal": "^3.4.4",
+    "doctrine/dbal": "^3.4.6",
     "doctrine/migrations": "^3.0.2",
     "dragonmantank/cron-expression": "^3.0.2",
     "drewm/mailchimp-api": "^2.2",
