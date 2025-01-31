@@ -326,7 +326,7 @@ class CustomerListTest extends ModelTestCase
         $dateFilter = new DateBetween(
             'birthdate',
             Carbon::createFromFormat('Y-m-d', '1970-01-01', date_default_timezone_get()),
-            Carbon::now(date_default_timezone_get())
+            Carbon::now()
         );
         $handler->addFilter($dateFilter);
 

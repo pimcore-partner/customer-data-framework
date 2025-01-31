@@ -280,7 +280,7 @@ class CustomersController extends Admin
         $filename = sprintf(
             '%s-%s-segment-export.%s',
             $exporter->getName(),
-            Carbon::now(date_default_timezone_get())->format('YmdHis'),
+            Carbon::now()->format('YmdHis'),
             $exporter->getExtension()
         );
 
