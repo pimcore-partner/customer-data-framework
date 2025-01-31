@@ -48,7 +48,7 @@ class Date implements MailchimpDataTransformerInterface
             return null;
         }
 
-        return Carbon::createFromFormat($this->importFormat, $data);
+        return Carbon::createFromFormat($this->importFormat, $data, date_default_timezone_get());
     }
 
     public function didMergeFieldDataChange($pimcoreData, $mailchimpImportData)
