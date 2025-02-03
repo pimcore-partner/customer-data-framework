@@ -147,7 +147,7 @@ class CustomerListTest extends ModelTestCase
             $customer->setEmail($customerData['email']);
             $customer->setZip($customerData['zip']);
             $customer->setBirthdate(
-                Carbon::createFromFormat('Y-m-d', $customerData['date'], date_default_timezone_get())
+                Carbon::createFromFormat('Y-m-d', $customerData['date'])
             );
 
             $segments = [];
@@ -325,7 +325,7 @@ class CustomerListTest extends ModelTestCase
 
         $dateFilter = new DateBetween(
             'birthdate',
-            Carbon::createFromFormat('Y-m-d', '1970-01-01', date_default_timezone_get()),
+            Carbon::createFromFormat('Y-m-d', '1970-01-01'),
             Carbon::now()
         );
         $handler->addFilter($dateFilter);
@@ -338,7 +338,7 @@ class CustomerListTest extends ModelTestCase
 
         $dateFilter = new DateBetween(
             'birthdate',
-            Carbon::createFromFormat('Y-m-d', '1980-05-01', date_default_timezone_get()),
+            Carbon::createFromFormat('Y-m-d', '1980-05-01'),
             Carbon::createFromFormat('Y-m-d', '1980-05-31')
         );
         $handler->addFilter($dateFilter);
@@ -352,15 +352,15 @@ class CustomerListTest extends ModelTestCase
 
         $dateFilter = new DateBetween(
             'birthdate',
-            Carbon::createFromFormat('Y-m-d', '1980-05-01', date_default_timezone_get()),
-            Carbon::createFromFormat('Y-m-d', '1980-05-31', date_default_timezone_get())
+            Carbon::createFromFormat('Y-m-d', '1980-05-01'),
+            Carbon::createFromFormat('Y-m-d', '1980-05-31')
         );
         $handler->addFilter($dateFilter);
 
         $dateFilter = new DateBetween(
             'birthdate',
-            Carbon::createFromFormat('Y-m-d', '1980-01-01', date_default_timezone_get()),
-            Carbon::createFromFormat('Y-m-d', '1980-08-31', date_default_timezone_get())
+            Carbon::createFromFormat('Y-m-d', '1980-01-01'),
+            Carbon::createFromFormat('Y-m-d', '1980-08-31')
         );
         $handler->addFilter($dateFilter);
 

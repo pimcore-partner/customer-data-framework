@@ -49,6 +49,6 @@ class Date implements DataTransformerInterface
             return null;
         }
 
-        return Carbon::createFromFormat($this->format, $data, date_default_timezone_get());
+        return Carbon::createFromFormat($this->format, $data);
     }
 }
