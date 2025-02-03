@@ -1,19 +1,4 @@
-name: "Static Analysis"
-
-on:
-    pull_request:
-        branches:
-            - "[0-9]+.[0-9]+"
-            - "[0-9]+.x"
-    push:
-        branches:
-            - "[0-9]+.[0-9]+"
-            - "[0-9]+.x"
-
-jobs:
-    static-analysis-phpstan:
-        name: "Static Analysis with PHPStan"
-        runs-on: "ubuntu-20.04"name: "Static analysis centralised"
+name: "Static analysis centralised"
 
 on:
     schedule:
@@ -108,57 +93,3 @@ jobs:
         secrets:
             SSH_PRIVATE_KEY_PIMCORE_DEPLOYMENTS_USER: ${{ secrets.SSH_PRIVATE_KEY_PIMCORE_DEPLOYMENTS_USER }}
             COMPOSER_PIMCORE_REPO_PACKAGIST_TOKEN: ${{ secrets.COMPOSER_PIMCORE_REPO_PACKAGIST_TOKEN }}
-        continue-on-error: ${{ matrix.experimental }}
-        strategy:
-            matrix:
-                include:
-                    - { php-version: "8.1", dependencies: "lowest", experimental: false }
-                    - { php-version: "8.2", dependencies: "highest", experimental: false  }
-                    - { php-version: "8.3", dependencies: "highest", pimcore_version: "11.x-dev as 11.3.9", experimental: true }
-        steps:
-            - name: "Checkout code"
-              uses: "actions/checkout@v4"
-
-            - name: "Install PHP"
-              uses: shivammathur/setup-php@v2
-              with:
-                  coverage: "none"
-                  php-version: "${{ matrix.php-version }}"
-
-            - name: "Setup Pimcore environment"
-              env:
-                  DEPENDENCIES: "${{ matrix.dependencies }}"
-              run: |
-                  .github/ci/scripts/setup-environment.sh
-
-            - name: "Update Pimcore version"
-              env:
-                PIMCORE_VERSION: "${{ matrix.pimcore_version }}"
-              run: |
-                if [ ! -z "$PIMCORE_VERSION" ]; then
-                      composer require --no-update pimcore/pimcore:"${PIMCORE_VERSION}"
-                fi    
-
-            - name: "Install dependencies with Composer"
-              uses: ramsey/composer-install@v3
-              with:
-                  dependency-versions: "${{ matrix.dependencies }}"
-
-            - name: "Run a static analysis with phpstan/phpstan (highest)"
-              if: ${{ matrix.dependencies == 'highest' }}
-              run: "vendor/bin/phpstan analyse --memory-limit=-1"
-
-            - name: "Run a static analysis with phpstan/phpstan (lowest)"
-              if: ${{ matrix.dependencies == 'lowest' }}
-              run: "vendor/bin/phpstan analyse --memory-limit=-1 -c phpstan-lowest.neon"
-
-            - name: "Generate baseline file"
-              if: ${{ failure() }}
-              run: "vendor/bin/phpstan analyse --memory-limit=-1 --generate-baseline"
-
-            - name: "Upload baseline file"
-              if: ${{ failure() }}
-              uses: actions/upload-artifact@v4
-              with:
-                  name: phpstan-baseline.neon
-                  path: phpstan-baseline.neon
